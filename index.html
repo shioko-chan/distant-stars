@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>星球表面建设 MVP</title>
+    <link rel="stylesheet" href="src/styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="sim-stage" aria-label="星球表面">
+        <canvas id="planetCanvas"></canvas>
+        <div class="top-strip">
+          <div>
+            <p class="eyebrow">Planetary Surface Construction</p>
+            <h1>泰洛斯 IV</h1>
+          </div>
+          <div class="planet-stats" id="planetStats"></div>
+        </div>
+      </section>
+
+      <aside class="control-panel" aria-label="建设控制台">
+        <section class="panel-section">
+          <div class="section-title">视角</div>
+          <div class="segmented" id="viewModes">
+            <button class="active" data-view="macro" type="button">宏观</button>
+            <button data-view="meso" type="button">中观</button>
+            <button data-view="micro" type="button">微观</button>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title">工具</div>
+          <div class="tool-grid" id="toolModes">
+            <button class="active" data-tool="zone" type="button">划区</button>
+            <button data-tool="hub" type="button">枢纽</button>
+            <button data-tool="inspect" type="button">检查</button>
+          </div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title">功能区</div>
+          <div class="district-grid" id="districtTypes"></div>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title">策略</div>
+          <label class="field-label" for="policySelect">星球政策</label>
+          <select id="policySelect">
+            <option value="balanced">均衡发展</option>
+            <option value="industrial">快速工业化</option>
+            <option value="ecology">生态优先</option>
+            <option value="research">科研特区</option>
+            <option value="military">军事管制</option>
+            <option value="automation">自动化优先</option>
+          </select>
+
+          <label class="field-label" for="transportSelect">运输策略</label>
+          <select id="transportSelect">
+            <option value="balanced">稳定优先</option>
+            <option value="speed">速度优先</option>
+            <option value="cost">成本优先</option>
+            <option value="military">军事优先</option>
+            <option value="civilian">民生优先</option>
+          </select>
+        </section>
+
+        <section class="panel-section">
+          <div class="section-title">时间</div>
+          <div class="speed-row" id="speedControls">
+            <button data-speed="0" type="button">暂停</button>
+            <button class="active" data-speed="1" type="button">1x</button>
+            <button data-speed="3" type="button">3x</button>
+            <button data-speed="8" type="button">8x</button>
+          </div>
+        </section>
+
+        <section class="panel-section selected-panel" id="selectedPanel"></section>
+
+        <section class="panel-section">
+          <div class="section-title">星球事件</div>
+          <div class="event-log" id="eventLog"></div>
+        </section>
+      </aside>
+    </main>
+
+    <script src="src/app.js"></script>
+  </body>
+</html>
