@@ -1,0 +1,10 @@
+{
+  "name": "planetary-surface-construction-mvp",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node scripts/server.mjs",
+    "build": "node scripts/validate-balance.mjs && node --check src/app.js && node --check scripts/server.mjs"
+  }
+}
