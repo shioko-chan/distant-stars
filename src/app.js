@@ -50,10 +50,10 @@ const REGION_NAMES = [
 const state = {
   view: "macro",
   selectedRegion: null,
-  selectedMeso: null,
   selectedObject: null,
   hoveredObject: null,
   pointer: new THREE.Vector2(),
+  autoRotationSuppressed: false,
   currentHour: 0,
   speed: SIMULATION.defaultSpeed,
   simulationAccumulator: 0,
@@ -115,6 +115,28 @@ let pickables = [];
 let clickTimer = null;
 let cameraTween = null;
 let macroDevelopmentLayer = null;
+let mesoDetailLayer = null;
+let mesoLayerRevealStarted = 0;
+let regionMeshes = [];
+let zoomIntent = 0;
+let lastZoomInputAt = 0;
+let zoomTransitionLockedUntil = 0;
+
+const ZOOM_LEVELS = {
+  macroToMeso: 8.2,
+  mesoToMacro: 8.6,
+};
+const MESO_LAYER_FADE = { near: 6.05, far: 8.45 };
+const MESO_PATCH_ANGLE = 0.76;
+const MESO_TILE_WORLD_SIZE = 5 * MESO_PATCH_ANGLE / 8;
+
+function isRegionPickType(pickType) {
+  return pickType === "region" || pickType === "region-context";
+}
+
+function isMesoPickType(pickType) {
+  return pickType === "meso";
+}
 
 function seededNoise(a, b = 0, c = 0) {
   const value = Math.sin(a * 12.9898 + b * 78.233 + c * 37.719) * 43758.5453;
@@ -131,16 +153,6 @@ function smooth(value) {
 
 function interpolate(a, b, amount) {
   return a + (b - a) * amount;
-}
-
-function valueNoise2D(x, y, seed = 0) {
-  const x0 = Math.floor(x);
-  const y0 = Math.floor(y);
-  const tx = smooth(x - x0);
-  const ty = smooth(y - y0);
-  const a = interpolate(seededNoise(x0 + seed * 17, y0, seed), seededNoise(x0 + 1 + seed * 17, y0, seed), tx);
-  const b = interpolate(seededNoise(x0 + seed * 17, y0 + 1, seed), seededNoise(x0 + 1 + seed * 17, y0 + 1, seed), tx);
-  return interpolate(a, b, ty);
 }
 
 function valueNoise3D(x, y, z, seed = 0) {
@@ -164,20 +176,6 @@ function valueNoise3D(x, y, z, seed = 0) {
     return interpolate(a, b, ty);
   };
   return interpolate(layer(0), layer(1), tz);
-}
-
-function fractalNoise2D(x, y, seed, octaves = 5) {
-  let amplitude = 0.55;
-  let frequency = 1;
-  let total = 0;
-  let weight = 0;
-  for (let octave = 0; octave < octaves; octave += 1) {
-    total += valueNoise2D(x * frequency, y * frequency, seed + octave * 7) * amplitude;
-    weight += amplitude;
-    amplitude *= 0.5;
-    frequency *= 2.03;
-  }
-  return total / weight;
 }
 
 function fractalNoise3D(x, y, z, seed, octaves = 5) {
@@ -233,58 +231,51 @@ function samplePlanet(direction) {
   return { elevation, moisture, temperature, terrain: classifyTerrain(elevation, moisture, temperature) };
 }
 
-const LOCAL_BASE_ELEVATION = {
-  ocean: -0.12,
-  plains: 0.11,
-  forest: 0.14,
-  desert: 0.09,
-  mountain: 0.34,
-  ice: 0.07,
-};
-
-function sampleRegionTerrain(regionId, u, v, parentTerrain) {
-  const seedOffset = regionId * 3.71;
-  const broad = fractalNoise2D(u * 2.15 + seedOffset, v * 2.15 - seedOffset * 0.37, regionId + 211, 5);
-  const ridgeNoise = fractalNoise2D(u * 5.8 - seedOffset * 0.2, v * 5.8 + seedOffset, regionId + 307, 4);
-  const detail = fractalNoise2D(u * 15.5 + seedOffset, v * 15.5, regionId + 401, 3);
-  const ridge = 1 - Math.abs(ridgeNoise * 2 - 1);
-  const mountainWeight = parentTerrain === "mountain" ? 0.42 : 0.19;
-  const elevation = clamp(
-    LOCAL_BASE_ELEVATION[parentTerrain]
-      + (broad - 0.5) * 0.38
-      + Math.max(0, ridge - 0.7) * mountainWeight
-      + (detail - 0.5) * 0.06,
-    -0.2,
-    0.72,
+function samplePlanetDetail(direction, regionId = 0) {
+  const base = samplePlanet(direction);
+  const detail = fractalNoise3D(
+    direction.x * 28 + regionId * 0.17,
+    direction.y * 28 - regionId * 0.11,
+    direction.z * 28 + regionId * 0.07,
+    601,
+    4,
   );
-  const moistureBias = parentTerrain === "forest" ? 0.18 : parentTerrain === "desert" ? -0.2 : 0;
-  const moisture = clamp(fractalNoise2D(u * 3.4 + 19, v * 3.4 - 7, regionId + 503, 4) + moistureBias);
-  const latitudeTemperature = parentTerrain === "ice" ? 0.1 : parentTerrain === "desert" ? 0.82 : 0.56;
-  const temperature = clamp(latitudeTemperature - Math.max(0, elevation) * 0.58);
-  return { elevation, moisture, temperature, terrain: classifyTerrain(elevation, moisture, temperature) };
+  const drainageSource = fractalNoise3D(
+    direction.x * 46 - 3.2,
+    direction.y * 46 + 7.4,
+    direction.z * 46 - 1.8,
+    701,
+    3,
+  );
+  const drainage = 1 - Math.abs(drainageSource * 2 - 1);
+  const coastStability = smooth(clamp(Math.abs(base.elevation) / 0.11));
+  const relief = base.terrain === "mountain" ? 0.065 : base.terrain === "ocean" ? 0.012 : 0.038;
+  const elevation = clamp(
+    base.elevation + ((detail - 0.5) * relief + Math.max(0, drainage - 0.86) * relief * 0.45) * coastStability,
+    -0.28,
+    0.68,
+  );
+  return { ...base, elevation };
 }
 
-function sampleMicroTerrain(regionId, mesoX, mesoY, u, v, parentTerrain) {
-  const globalU = (mesoX + u) / 8;
-  const globalV = (mesoY + v) / 8;
-  const base = sampleRegionTerrain(regionId, globalU, globalV, parentTerrain);
-  const localSeed = regionId * 64 + mesoY * 8 + mesoX;
-  const detail = fractalNoise2D(u * 4.2 + localSeed * 0.31, v * 4.2 - localSeed * 0.17, localSeed + 601, 4);
-  const drainageSource = fractalNoise2D(u * 7.5 - localSeed * 0.08, v * 7.5 + localSeed * 0.12, localSeed + 701, 3);
-  const drainage = 1 - Math.abs(drainageSource * 2 - 1);
-  const relief = parentTerrain === "mountain" ? 0.18 : parentTerrain === "ocean" ? 0.035 : 0.11;
-  const elevation = clamp(
-    base.elevation + (detail - 0.5) * relief + Math.max(0, drainage - 0.82) * relief * 0.65,
-    -0.2,
-    0.76,
-  );
-  const moisture = clamp(base.moisture + (drainage - 0.5) * 0.1);
-  return {
-    elevation,
-    moisture,
-    temperature: base.temperature,
-    terrain: classifyTerrain(elevation, moisture, base.temperature),
-  };
+function createSurfaceFrame(center) {
+  const reference = Math.abs(center.y) > 0.85 ? new THREE.Vector3(1, 0, 0) : new THREE.Vector3(0, 1, 0);
+  const tangentX = new THREE.Vector3().crossVectors(reference, center).normalize();
+  const tangentZ = new THREE.Vector3().crossVectors(center, tangentX).normalize();
+  return { tangentX, tangentZ };
+}
+
+function patchDirectionFromCenter(center, frame, u, v) {
+  const x = (u - 0.5) * MESO_PATCH_ANGLE;
+  const z = (v - 0.5) * MESO_PATCH_ANGLE;
+  const angle = Math.hypot(x, z);
+  if (angle < 0.000001) return center.clone();
+  const radial = frame.tangentX.clone().multiplyScalar(x)
+    .addScaledVector(frame.tangentZ, z)
+    .normalize();
+  return center.clone().multiplyScalar(Math.cos(angle))
+    .addScaledVector(radial, Math.sin(angle))
+    .normalize();
 }
 
 function sphericalPosition(lat, lon, radius) {
@@ -342,16 +333,18 @@ function createRegions() {
       resource: resourceFor(terrain, index),
       districts: 0,
       population: Math.round(0.4 + seededNoise(index, 29) * 4.8),
-      meso: createMesoCells(index, terrain),
+      meso: createMesoCells(index, center),
     };
   });
 }
 
-function createMesoCells(regionId, parentTerrain) {
+function createMesoCells(regionId, center) {
+  const frame = createSurfaceFrame(center);
   return Array.from({ length: 64 }, (_, index) => {
     const x = index % 8;
     const y = Math.floor(index / 8);
-    const sample = sampleRegionTerrain(regionId, (x + 0.5) / 8, (y + 0.5) / 8, parentTerrain);
+    const direction = patchDirectionFromCenter(center, frame, (x + 0.5) / 8, (y + 0.5) / 8);
+    const sample = samplePlanetDetail(direction, regionId);
     const terrain = sample.terrain;
     const resource = seededNoise(regionId * 9 + x, y, 21) > 0.82
       ? resourceFor(terrain, regionId * 64 + index)
@@ -364,29 +357,6 @@ function createMesoCells(regionId, parentTerrain) {
       elevation: sample.elevation,
       moisture: sample.moisture,
       resource,
-      district: "none",
-      hub: null,
-      development: 0,
-      micro: createMicroCells(regionId, index, parentTerrain, x, y),
-    };
-  });
-}
-
-function createMicroCells(regionId, mesoId, regionTerrain, mesoX, mesoY) {
-  return Array.from({ length: 64 }, (_, index) => {
-    const x = index % 8;
-    const y = Math.floor(index / 8);
-    const sample = sampleMicroTerrain(regionId, mesoX, mesoY, (x + 0.5) / 8, (y + 0.5) / 8, regionTerrain);
-    return {
-      id: index,
-      x,
-      y,
-      terrain: sample.terrain,
-      elevation: sample.elevation,
-      moisture: sample.moisture,
-      resource: seededNoise(regionId + mesoId, index, 91) > 0.95
-        ? resourceFor(sample.terrain, regionId * 4096 + mesoId * 64 + index)
-        : null,
       district: "none",
       hub: null,
       development: 0,
@@ -419,13 +389,7 @@ function regionDevelopmentProfile(region) {
     byDistrict.set(district, (byDistrict.get(district) || 0) + amount);
     total += amount;
   };
-  region.meso.forEach((meso) => {
-    if (meso.district !== "none") {
-      add(meso.district, meso.development || 0);
-    } else {
-      meso.micro.forEach((cell) => add(cell.district, (cell.development || 0) * SIMULATION.scale.microEconomy));
-    }
-  });
+  region.meso.forEach((meso) => add(meso.district, meso.development || 0));
   return {
     total,
     districts: [...byDistrict.entries()].sort((a, b) => b[1] - a[1]),
@@ -569,6 +533,8 @@ function refreshMacroDevelopment() {
 
 function buildMacroView() {
   clearWorld();
+  regionMeshes = [];
+  mesoDetailLayer = null;
   addStars();
   const regionVertices = new Map(regions.map((region) => [region.id, []]));
   const regionColors = new Map(regions.map((region) => [region.id, []]));
@@ -621,6 +587,7 @@ function buildMacroView() {
     const mesh = new THREE.Mesh(geometry, material);
     mesh.userData = { pickType: "region", data: region, baseColor: baseColor.clone() };
     worldRoot.add(mesh);
+    regionMeshes.push(mesh);
     pickables.push(mesh);
   }
 
@@ -653,120 +620,22 @@ function buildMacroView() {
   configureView(
     new THREE.Vector3(0, 1.8, 14.5),
     new THREE.Vector3(),
-    { min: 7.2, max: 24, rotate: true, pan: false, autoRotate: true },
+    { min: 7.2, max: 24, rotate: true, pan: false, autoRotate: !state.autoRotationSuppressed },
   );
-}
-
-function terrainSurfaceHeight(sample) {
-  if (sample.elevation < 0) return 0.055;
-  return 0.075 + sample.elevation * 2.25;
-}
-
-function addPlanarBase(size) {
-  const base = new THREE.Mesh(
-    new THREE.BoxGeometry(size + 0.8, 0.3, size + 0.8),
-    new THREE.MeshStandardMaterial({ color: 0x242a2c, roughness: 1 }),
-  );
-  base.position.y = -0.27;
-  worldRoot.add(base);
-}
-
-function createTerrainTile(cell, tileSize, resolution, sampleAt, userData, tintSeed) {
-  const positions = [];
-  const colors = [];
-  const indices = [];
-  const plannedColor = cell.district === "none" ? null : new THREE.Color(DISTRICTS[cell.district].color);
-
-  for (let row = 0; row <= resolution; row += 1) {
-    for (let column = 0; column <= resolution; column += 1) {
-      const u = column / resolution;
-      const v = row / resolution;
-      const sample = sampleAt(u, v);
-      const color = plannedColor ? plannedColor.clone() : terrainColor(sample, tintSeed);
-      if (plannedColor) color.offsetHSL(0, 0, sample.elevation * 0.08);
-      positions.push((u - 0.5) * tileSize, terrainSurfaceHeight(sample), (v - 0.5) * tileSize);
-      colors.push(...color.toArray());
-    }
-  }
-
-  for (let row = 0; row < resolution; row += 1) {
-    for (let column = 0; column < resolution; column += 1) {
-      const a = row * (resolution + 1) + column;
-      const b = a + 1;
-      const d = (row + 1) * (resolution + 1) + column;
-      const c = d + 1;
-      indices.push(a, d, b, b, d, c);
-    }
-  }
-
-  const geometry = new THREE.BufferGeometry();
-  geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
-  geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
-  geometry.setIndex(indices);
-  geometry.computeVertexNormals();
-  const material = new THREE.MeshStandardMaterial({
-    color: 0xffffff,
-    vertexColors: true,
-    roughness: 0.9,
-    metalness: 0.01,
-    emissive: 0x000000,
-    side: THREE.DoubleSide,
-  });
-  const tile = new THREE.Mesh(geometry, material);
-  const centerSample = sampleAt(0.5, 0.5);
-  tile.userData = {
-    ...userData,
-    surfaceY: terrainSurfaceHeight(centerSample),
-    baseColor: new THREE.Color(0xffffff),
-  };
-  return tile;
-}
-
-function addResourceMarker(cell, tile, tileSize) {
-  if (!cell.resource) return;
-  const resource = RESOURCES[cell.resource];
-  const marker = new THREE.Mesh(
-    new THREE.OctahedronGeometry(tileSize * 0.13, 0),
-    new THREE.MeshStandardMaterial({
-      color: resource.color,
-      emissive: resource.color,
-      emissiveIntensity: 0.75,
-      roughness: 0.25,
-    }),
-  );
-  marker.position.set(
-    tile.position.x + tileSize * 0.25,
-    tile.userData.surfaceY + 0.23,
-    tile.position.z - tileSize * 0.25,
-  );
-  marker.userData = tile.userData;
-  worldRoot.add(marker);
-  pickables.push(marker);
-}
-
-function addHubMarker(cell, tile, tileSize) {
-  if (!cell.hub) return;
-  const hub = HUBS[cell.hub];
-  const marker = new THREE.Mesh(
-    cell.hub === "spaceport"
-      ? new THREE.CylinderGeometry(tileSize * 0.14, tileSize * 0.24, tileSize * 0.32, 8)
-      : new THREE.BoxGeometry(tileSize * 0.32, tileSize * 0.32, tileSize * 0.32),
-    new THREE.MeshStandardMaterial({ color: hub.color, emissive: hub.color, emissiveIntensity: 0.28 }),
-  );
-  marker.position.set(
-    tile.position.x - tileSize * 0.24,
-    tile.userData.surfaceY + 0.22,
-    tile.position.z + tileSize * 0.24,
-  );
-  marker.userData = tile.userData;
-  worldRoot.add(marker);
-  pickables.push(marker);
 }
 
 function addMesoDevelopment(cell, tile, tileSize) {
   const group = new THREE.Group();
-  group.position.set(tile.position.x, tile.userData.surfaceY + 0.035, tile.position.z);
-  worldRoot.add(group);
+  const spherical = Boolean(tile.userData.surfaceNormal);
+  if (spherical) {
+    group.position.copy(tile.userData.surfaceAnchor).addScaledVector(tile.userData.surfaceNormal, 0.018);
+    group.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), tile.userData.surfaceNormal);
+    group.scale.setScalar(MESO_TILE_WORLD_SIZE / tileSize);
+    mesoDetailLayer.add(group);
+  } else {
+    group.position.set(tile.position.x, tile.userData.surfaceY + 0.035, tile.position.z);
+    worldRoot.add(group);
+  }
 
   const addProxy = (district, development, x, z, scale = 1) => {
     if (district === "none" || development <= 0) return;
@@ -826,61 +695,206 @@ function addMesoDevelopment(cell, tile, tileSize) {
         0.9 + seededNoise(cell.id, index, 118) * 0.45,
       );
     }
+    group.traverse((object) => {
+      object.userData.lodVisualLayer = "structures";
+    });
     return;
   }
 
-  cell.micro.forEach((micro) => {
-    if (micro.district === "none") return;
-    const localX = (micro.x - 3.5) / 8 * tileSize;
-    const localZ = (micro.y - 3.5) / 8 * tileSize;
-    addProxy(micro.district, micro.development || 0, localX, localZ, 0.42);
+}
+
+function disposeObjectTree(root) {
+  root.traverse((object) => {
+    object.geometry?.dispose();
+    if (object.material) {
+      const materials = Array.isArray(object.material) ? object.material : [object.material];
+      materials.forEach((material) => material.dispose());
+    }
   });
 }
 
-function buildMesoView() {
-  clearWorld();
-  const region = state.selectedRegion;
-  addPlanarBase(9.4);
-  const tileSize = 1.08;
-  const offset = 3.5;
-  region.meso.forEach((cell) => {
-    const tile = createTerrainTile(
-      cell,
-      tileSize,
-      5,
-      (u, v) => sampleRegionTerrain(region.id, (cell.x + u) / 8, (cell.y + v) / 8, region.terrain),
-      { pickType: "meso", data: cell, region },
-      region.id,
-    );
-    tile.position.set((cell.x - offset) * tileSize, 0, (cell.y - offset) * tileSize);
-    worldRoot.add(tile);
-    pickables.push(tile);
-    addResourceMarker(cell, tile, tileSize);
-    addHubMarker(cell, tile, tileSize);
-    addMesoDevelopment(cell, tile, tileSize);
-  });
-  configureView(
-    new THREE.Vector3(8.8, 11.2, 10.8),
-    new THREE.Vector3(0, 0, 0),
-    { min: 8, max: 22, rotate: true, pan: true, autoRotate: false },
+function removeMesoDetail() {
+  if (!mesoDetailLayer) return;
+  const removed = new Set();
+  mesoDetailLayer.traverse((object) => removed.add(object));
+  pickables = pickables.filter((object) => !removed.has(object));
+  mesoDetailLayer.parent?.remove(mesoDetailLayer);
+  disposeObjectTree(mesoDetailLayer);
+  mesoDetailLayer = null;
+}
+
+function updateMesoLayerLod(time = performance.now()) {
+  if (!mesoDetailLayer) return;
+  const distance = camera.position.length();
+  const distanceProgress = clamp(
+    (MESO_LAYER_FADE.far - distance) / (MESO_LAYER_FADE.far - MESO_LAYER_FADE.near),
   );
+  const revealProgress = smooth(clamp((time - mesoLayerRevealStarted) / 360));
+  const layerOpacity = {
+    terrain: smooth(clamp(distanceProgress / 0.62)) * revealProgress,
+    resource: smooth(clamp((distanceProgress - 0.18) / 0.62)) * revealProgress,
+    hub: smooth(clamp((distanceProgress - 0.24) / 0.58)) * revealProgress,
+    structures: smooth(clamp((distanceProgress - 0.38) / 0.58)) * revealProgress,
+  };
+  mesoDetailLayer.visible = layerOpacity.terrain > 0.025;
+  mesoDetailLayer.traverse((object) => {
+    if (!object.material) return;
+    const opacity = layerOpacity[object.userData.lodVisualLayer || "terrain"];
+    const materials = Array.isArray(object.material) ? object.material : [object.material];
+    materials.forEach((material) => {
+      if (material.userData.lodBaseOpacity === undefined) {
+        material.userData.lodBaseOpacity = material.opacity;
+      }
+      material.transparent = opacity < 0.995 || material.userData.lodBaseOpacity < 1;
+      material.opacity = material.userData.lodBaseOpacity * opacity;
+      material.depthWrite = opacity > 0.88;
+    });
+  });
+  if (macroDevelopmentLayer) {
+    const macroOpacity = 1 - layerOpacity.structures;
+    macroDevelopmentLayer.visible = macroOpacity > 0.025;
+    macroDevelopmentLayer.traverse((object) => {
+      if (!object.material) return;
+      const materials = Array.isArray(object.material) ? object.material : [object.material];
+      materials.forEach((material) => {
+        if (material.userData.lodBaseOpacity === undefined) material.userData.lodBaseOpacity = material.opacity;
+        material.transparent = macroOpacity < 0.995 || material.userData.lodBaseOpacity < 1;
+        material.opacity = material.userData.lodBaseOpacity * macroOpacity;
+      });
+    });
+  }
+  if (state.view === "macro" && distance >= MESO_LAYER_FADE.far) removeMesoDetail();
 }
 
-function addRoads(cells, tileSize) {
-  const roadMaterial = new THREE.MeshStandardMaterial({ color: 0x30383b, roughness: 1 });
-  const railMaterial = new THREE.MeshStandardMaterial({ color: 0x8aafb2, metalness: 0.5, roughness: 0.45 });
-  const hasRail = cells.some((cell) => cell.hub === "rail");
-  cells.forEach((cell) => {
-    const elevation = terrainSurfaceHeight(cell);
-    const material = hasRail && (cell.x === 3 || cell.y === 3) ? railMaterial : roadMaterial;
-    const width = material === railMaterial ? tileSize * 0.09 : tileSize * 0.055;
-    const horizontal = new THREE.Mesh(new THREE.BoxGeometry(tileSize * 0.92, 0.025, width), material);
-    horizontal.position.set((cell.x - 3.5) * tileSize, elevation + 0.035, (cell.y - 3.5) * tileSize - tileSize * 0.46);
-    worldRoot.add(horizontal);
-    const vertical = new THREE.Mesh(new THREE.BoxGeometry(width, 0.027, tileSize * 0.92), material);
-    vertical.position.set((cell.x - 3.5) * tileSize - tileSize * 0.46, elevation + 0.037, (cell.y - 3.5) * tileSize);
-    worldRoot.add(vertical);
+function regionSurfaceFrame(region) {
+  return createSurfaceFrame(region.center);
+}
+
+function regionPatchDirection(region, frame, u, v) {
+  return patchDirectionFromCenter(region.center, frame, u, v);
+}
+
+function createSphericalMesoTile(cell, region, frame) {
+  const resolution = 6;
+  const centerU = (cell.x + 0.5) / 8;
+  const centerV = (cell.y + 0.5) / 8;
+  const normal = regionPatchDirection(region, frame, centerU, centerV);
+  if (nearestRegion(normal) !== region) return null;
+  const positions = [];
+  const colors = [];
+  const indices = [];
+  const plannedColor = cell.district === "none" ? null : new THREE.Color(DISTRICTS[cell.district].color);
+
+  for (let row = 0; row <= resolution; row += 1) {
+    for (let column = 0; column <= resolution; column += 1) {
+      const u = (cell.x + column / resolution) / 8;
+      const v = (cell.y + row / resolution) / 8;
+      const direction = regionPatchDirection(region, frame, u, v);
+      const sample = samplePlanetDetail(direction, region.id);
+      const point = direction.multiplyScalar(planetSurfaceRadius(sample) + 0.012);
+      const color = plannedColor ? plannedColor.clone() : terrainColor(sample, region.id);
+      if (plannedColor) color.offsetHSL(0, 0, sample.elevation * 0.08);
+      positions.push(...point.toArray());
+      colors.push(...color.toArray());
+    }
+  }
+
+  for (let row = 0; row < resolution; row += 1) {
+    for (let column = 0; column < resolution; column += 1) {
+      const centerU = (cell.x + (column + 0.5) / resolution) / 8;
+      const centerV = (cell.y + (row + 0.5) / resolution) / 8;
+      if (nearestRegion(regionPatchDirection(region, frame, centerU, centerV)) !== region) continue;
+      const a = row * (resolution + 1) + column;
+      const b = a + 1;
+      const d = (row + 1) * (resolution + 1) + column;
+      const c = d + 1;
+      indices.push(a, d, b, b, d, c);
+    }
+  }
+
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute("position", new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute("color", new THREE.Float32BufferAttribute(colors, 3));
+  geometry.setIndex(indices);
+  geometry.computeVertexNormals();
+  const tile = new THREE.Mesh(geometry, new THREE.MeshStandardMaterial({
+    color: 0xffffff,
+    vertexColors: true,
+    roughness: 0.88,
+    metalness: 0.02,
+    emissive: 0x000000,
+    side: THREE.DoubleSide,
+  }));
+  const centerSample = samplePlanetDetail(normal, region.id);
+  tile.userData = {
+    pickType: "meso",
+    data: cell,
+    region,
+    baseColor: new THREE.Color(0xffffff),
+    surfaceNormal: normal,
+    surfaceAnchor: normal.clone().multiplyScalar(planetSurfaceRadius(centerSample) + 0.028),
+    lodVisualLayer: "terrain",
+  };
+  return tile;
+}
+
+function addSphericalMarker(cell, tile, type) {
+  const data = type === "resource" ? RESOURCES[cell.resource] : HUBS[cell.hub];
+  if (!data) return;
+  const size = MESO_TILE_WORLD_SIZE;
+  const marker = new THREE.Mesh(
+    type === "resource"
+      ? new THREE.OctahedronGeometry(size * 0.13, 0)
+      : cell.hub === "spaceport"
+        ? new THREE.CylinderGeometry(size * 0.14, size * 0.22, size * 0.3, 8)
+        : new THREE.BoxGeometry(size * 0.26, size * 0.26, size * 0.26),
+    new THREE.MeshStandardMaterial({
+      color: data.color,
+      emissive: data.color,
+      emissiveIntensity: type === "resource" ? 0.75 : 0.3,
+      roughness: 0.3,
+    }),
+  );
+  const holder = new THREE.Group();
+  holder.position.copy(tile.userData.surfaceAnchor);
+  holder.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), tile.userData.surfaceNormal);
+  marker.position.set(type === "resource" ? size * 0.22 : -size * 0.2, size * 0.22, type === "resource" ? -size * 0.2 : size * 0.2);
+  marker.userData = { ...tile.userData, lodVisualLayer: type };
+  holder.add(marker);
+  mesoDetailLayer.add(holder);
+  pickables.push(marker);
+}
+
+function buildMesoView(focusCamera = true, animateReveal = true) {
+  const region = state.selectedRegion;
+  removeMesoDetail();
+  mesoDetailLayer = new THREE.Group();
+  mesoLayerRevealStarted = performance.now() - (animateReveal ? 0 : 360);
+  worldRoot.add(mesoDetailLayer);
+  regionMeshes.forEach((mesh) => {
+    mesh.userData.pickType = "region-context";
   });
+
+  const frame = regionSurfaceFrame(region);
+  region.meso.forEach((cell) => {
+    const tile = createSphericalMesoTile(cell, region, frame);
+    if (!tile) return;
+    mesoDetailLayer.add(tile);
+    pickables.push(tile);
+    addSphericalMarker(cell, tile, "resource");
+    addSphericalMarker(cell, tile, "hub");
+    addMesoDevelopment(cell, tile, 1.08);
+  });
+
+  controls.minDistance = 5.65;
+  controls.maxDistance = 24;
+  controls.enableRotate = true;
+  controls.enablePan = false;
+  controls.autoRotate = false;
+  if (!focusCamera) return;
+  const focusDistance = Math.min(camera.position.length(), 6.35);
+  const position = camera.position.clone().normalize().multiplyScalar(focusDistance);
+  configureView(position, new THREE.Vector3(), { min: 5.65, max: 24, rotate: true, pan: false, autoRotate: false });
 }
 
 function buildingStage(development) {
@@ -889,179 +903,58 @@ function buildingStage(development) {
   ), 1);
 }
 
-function addBuildingPart(group, geometry, material, position, userData, rotation = null) {
-  const part = new THREE.Mesh(geometry, material);
-  part.position.set(position[0], position[1], position[2]);
-  if (rotation) part.rotation.set(rotation[0], rotation[1], rotation[2]);
-  part.userData = userData;
-  group.add(part);
-  pickables.push(part);
-  return part;
-}
-
-function addBuilding(cell, tile, tileSize, parentId) {
-  if (cell.district === "none") return;
-  const stage = buildingStage(cell.development || 0);
-  const seed = seededNoise(parentId, cell.id, 41);
-  const group = new THREE.Group();
-  group.position.set(tile.position.x, tile.userData.surfaceY + 0.035, tile.position.z);
-  group.rotation.y = Math.floor(seed * 4) * Math.PI / 2;
-  worldRoot.add(group);
-
-  const userData = tile.userData;
-  const baseColor = DISTRICTS[cell.district].color;
-  const shell = new THREE.MeshStandardMaterial({ color: baseColor, roughness: 0.62, metalness: 0.12 });
-  const structure = new THREE.MeshStandardMaterial({ color: 0x354046, roughness: 0.76, metalness: 0.22 });
-  const roof = new THREE.MeshStandardMaterial({ color: 0x232b31, roughness: 0.52, metalness: 0.35 });
-  const light = new THREE.MeshStandardMaterial({
-    color: 0xa8e5df,
-    emissive: 0x62cfc5,
-    emissiveIntensity: 0.65,
-    roughness: 0.28,
-    metalness: 0.18,
-  });
-  const glass = new THREE.MeshPhysicalMaterial({
-    color: 0x82bfc1,
-    transparent: true,
-    opacity: 0.58,
-    roughness: 0.18,
-    metalness: 0.08,
-  });
-  const s = tileSize;
-
-  if (cell.district === "residential") {
-    addBuildingPart(group, new THREE.BoxGeometry(s * 0.68, 0.11, s * 0.62), structure, [0, 0.055, 0], userData);
-    const towerCount = stage >= 3 ? 3 : stage >= 2 ? 2 : 1;
-    for (let index = 0; index < towerCount; index += 1) {
-      const height = 0.28 + stage * 0.12 + seededNoise(cell.id, index, parentId) * 0.14;
-      const x = towerCount === 1 ? 0 : (index - (towerCount - 1) / 2) * s * 0.22;
-      const z = index % 2 ? s * 0.12 : -s * 0.08;
-      addBuildingPart(group, new THREE.BoxGeometry(s * 0.18, height, s * 0.18), shell, [x, 0.11 + height / 2, z], userData);
-      addBuildingPart(group, new THREE.BoxGeometry(s * 0.19, 0.025, s * 0.19), roof, [x, 0.12 + height, z], userData);
-      if (stage >= 2) {
-        for (let floor = 0; floor < Math.min(4, stage + 1); floor += 1) {
-          addBuildingPart(group, new THREE.BoxGeometry(s * 0.185, 0.018, s * 0.012), light, [x, 0.19 + floor * height * 0.16, z + s * 0.096], userData);
-        }
-      }
-    }
-  }
-
-  if (cell.district === "industrial") {
-    addBuildingPart(group, new THREE.BoxGeometry(s * 0.62, 0.22 + stage * 0.035, s * 0.42), shell, [-s * 0.05, 0.13 + stage * 0.017, 0], userData);
-    addBuildingPart(group, new THREE.CylinderGeometry(s * 0.14, s * 0.14, 0.22, 16), roof, [s * 0.23, 0.12, s * 0.18], userData);
-    const stacks = stage >= 3 ? 3 : stage >= 2 ? 2 : 1;
-    for (let index = 0; index < stacks; index += 1) {
-      const height = 0.28 + index * 0.06 + stage * 0.04;
-      addBuildingPart(group, new THREE.CylinderGeometry(s * 0.035, s * 0.045, height, 10), structure, [-s * 0.24 + index * s * 0.18, 0.24 + height / 2, -s * 0.12], userData);
-      addBuildingPart(group, new THREE.CylinderGeometry(s * 0.044, s * 0.044, 0.035, 10), light, [-s * 0.24 + index * s * 0.18, 0.25 + height, -s * 0.12], userData);
-    }
-  }
-
-  if (cell.district === "research") {
-    addBuildingPart(group, new THREE.CylinderGeometry(s * 0.28, s * 0.34, 0.12, 12), structure, [0, 0.06, 0], userData);
-    const height = 0.34 + stage * 0.13;
-    addBuildingPart(group, new THREE.CylinderGeometry(s * 0.11, s * 0.2, height, 12), glass, [0, 0.12 + height / 2, 0], userData);
-    addBuildingPart(group, new THREE.SphereGeometry(s * (0.14 + stage * 0.012), 16, 10), light, [0, 0.15 + height, 0], userData);
-    if (stage >= 2) {
-      addBuildingPart(group, new THREE.TorusGeometry(s * 0.25, s * 0.025, 8, 24), light, [0, 0.28 + stage * 0.09, 0], userData, [Math.PI / 2, 0, 0]);
-    }
-    if (stage >= 4) {
-      addBuildingPart(group, new THREE.CylinderGeometry(s * 0.012, s * 0.012, 0.32, 6), roof, [0, 0.58 + height, 0], userData);
-    }
-  }
-
-  if (cell.district === "agriculture") {
-    const rows = 3 + stage;
-    for (let index = 0; index < rows; index += 1) {
-      const z = (index - (rows - 1) / 2) * s * 0.1;
-      addBuildingPart(group, new THREE.BoxGeometry(s * 0.66, 0.035, s * 0.055), shell, [0, 0.025, z], userData);
-    }
-    const greenhouseCount = stage >= 3 ? 2 : 1;
-    for (let index = 0; index < greenhouseCount; index += 1) {
-      addBuildingPart(group, new THREE.BoxGeometry(s * 0.2, 0.16, s * 0.42), glass, [(index ? 1 : -1) * s * 0.24, 0.09, 0], userData);
-      addBuildingPart(group, new THREE.ConeGeometry(s * 0.145, 0.11, 4), glass, [(index ? 1 : -1) * s * 0.24, 0.225, 0], userData, [0, Math.PI / 4, 0]);
-    }
-  }
-
-  if (cell.district === "military") {
-    addBuildingPart(group, new THREE.BoxGeometry(s * 0.64, 0.2, s * 0.55), shell, [0, 0.1, 0], userData);
-    addBuildingPart(group, new THREE.BoxGeometry(s * 0.48, 0.08, s * 0.4), roof, [0, 0.24, 0], userData);
-    const towers = stage >= 3 ? 4 : 2;
-    for (let index = 0; index < towers; index += 1) {
-      const x = index % 2 ? s * 0.28 : -s * 0.28;
-      const z = index < 2 ? -s * 0.23 : s * 0.23;
-      addBuildingPart(group, new THREE.CylinderGeometry(s * 0.055, s * 0.07, 0.25 + stage * 0.035, 8), structure, [x, 0.2, z], userData);
-    }
-    if (stage >= 2) {
-      addBuildingPart(group, new THREE.CylinderGeometry(s * 0.012, s * 0.012, 0.38, 6), structure, [0, 0.47, 0], userData);
-      addBuildingPart(group, new THREE.SphereGeometry(s * 0.045, 10, 8), light, [0, 0.68, 0], userData);
-    }
-  }
-}
-
-function buildMicroView() {
-  clearWorld();
-  const meso = state.selectedMeso;
-  addPlanarBase(9);
-  const tileSize = 1;
-  const offset = 3.5;
-  meso.micro.forEach((cell) => {
-    if (cell.district === "none" && meso.district !== "none") cell.district = meso.district;
-    const tile = createTerrainTile(
-      cell,
-      tileSize,
-      5,
-      (u, v) => sampleMicroTerrain(
-        state.selectedRegion.id,
-        meso.x,
-        meso.y,
-        (cell.x + u) / 8,
-        (cell.y + v) / 8,
-        state.selectedRegion.terrain,
-      ),
-      { pickType: "micro", data: cell, meso, region: state.selectedRegion },
-      state.selectedRegion.id,
-    );
-    tile.position.set((cell.x - offset) * tileSize, 0, (cell.y - offset) * tileSize);
-    worldRoot.add(tile);
-    pickables.push(tile);
-    addBuilding(cell, tile, tileSize, meso.id);
-    addResourceMarker(cell, tile, tileSize);
-    addHubMarker(cell, tile, tileSize);
-  });
-  addRoads(meso.micro, tileSize);
-  configureView(
-    new THREE.Vector3(7.8, 9.6, 9.4),
-    new THREE.Vector3(0, 0.3, 0),
-    { min: 6.8, max: 18, rotate: true, pan: true, autoRotate: false },
-  );
-}
-
 function configureView(position, target, options) {
-  cameraTween = {
-    start: performance.now(),
-    duration: 620,
-    fromPosition: camera.position.clone(),
-    toPosition: position.clone(),
-    fromTarget: controls.target.clone(),
-    toTarget: target.clone(),
-  };
   controls.minDistance = options.min;
   controls.maxDistance = options.max;
   controls.enableRotate = options.rotate;
   controls.enablePan = options.pan;
   controls.autoRotate = options.autoRotate;
+
+  cameraTween = {
+    start: performance.now(),
+    duration: 760,
+    fromPosition: camera.position.clone(),
+    toPosition: position.clone(),
+    fromTarget: controls.target.clone(),
+    toTarget: target.clone(),
+  };
 }
 
-function switchView(view) {
+function switchView(view, options = null) {
+  zoomTransitionLockedUntil = performance.now() + 420;
+  zoomIntent = 0;
+  const previousView = state.view;
   state.view = view;
   state.hoveredObject = null;
   state.selectedObject = null;
   hideTooltip();
   closeContextMenu();
-  if (view === "macro") buildMacroView();
-  if (view === "meso") buildMesoView();
-  if (view === "micro") buildMicroView();
+  if (view === "macro") {
+    regionMeshes.forEach((mesh) => {
+      mesh.userData.pickType = "region";
+    });
+    refreshMacroDevelopment();
+    controls.minDistance = 7.2;
+    controls.maxDistance = 24;
+    controls.enableRotate = true;
+    controls.enablePan = false;
+    controls.autoRotate = !state.autoRotationSuppressed;
+    if (!options?.keepCamera) {
+      const position = camera.position.clone().normalize().multiplyScalar(14.5);
+      configureView(position, new THREE.Vector3(), {
+        min: 7.2,
+        max: 24,
+        rotate: true,
+        pan: false,
+        autoRotate: !state.autoRotationSuppressed,
+      });
+    }
+  }
+  if (view === "meso") {
+    const enteringRegion = previousView !== "meso" || options?.refocus === true;
+    const focusCamera = !options?.keepCamera && enteringRegion;
+    buildMesoView(focusCamera, enteringRegion);
+  }
   updateUI();
 }
 
@@ -1069,13 +962,9 @@ function currentRegion() {
   return state.selectedRegion;
 }
 
-function currentCell() {
-  return state.selectedObject?.data || state.selectedMeso || null;
-}
-
 function totalHubs() {
   return regions.reduce((sum, region) => sum + region.meso.reduce((regionSum, cell) => (
-    regionSum + (cell.hub ? 1 : 0) + cell.micro.filter((micro) => micro.hub).length
+    regionSum + (cell.hub ? 1 : 0)
   ), 0), 0);
 }
 
@@ -1168,17 +1057,7 @@ function calculateEconomySnapshot() {
 
   regions.forEach((region) => {
     region.meso.forEach((meso) => {
-      if (meso.district !== "none") {
-        applyUnit(meso.district, meso.development, meso.resource, 1, meso.hub);
-      } else {
-        meso.micro.forEach((cell) => applyUnit(
-          cell.district,
-          cell.development,
-          cell.resource,
-          SIMULATION.scale.microEconomy,
-          cell.hub,
-        ));
-      }
+      applyUnit(meso.district, meso.development, meso.resource, 1, meso.hub);
     });
   });
   return { delta, housing, jobs, defense };
@@ -1213,23 +1092,19 @@ function updateUI() {
     button.classList.toggle("active", button.dataset.level === state.view);
     if (button.dataset.level === "macro") button.disabled = false;
     if (button.dataset.level === "meso") button.disabled = !region;
-    if (button.dataset.level === "micro") button.disabled = !state.selectedMeso;
   });
 
   const labels = {
     macro: "宏观 · 星球全景",
-    meso: `中观 · ${region?.name || "区域"}`,
-    micro: `微观 · ${region?.name || "区域"} / 地块 ${state.selectedMeso ? `${state.selectedMeso.x + 1}-${state.selectedMeso.y + 1}` : ""}`,
+    meso: `中观规划 · ${region?.name || "区域"}`,
   };
   const scales = {
     macro: "1 区块 ≈ 2,400 km",
     meso: "1 地块 ≈ 24 km",
-    micro: "1 单元 ≈ 300 m",
   };
   const hints = {
-    macro: "拖动旋转 · 滚轮缩放 · 悬浮高亮地貌区 · 双击进入",
-    meso: "悬浮查看 · 单击规划 · 双击展开局部微观布局",
-    micro: "单击单元规划建筑与交通 · 使用面包屑返回",
+    macro: "滚轮放大悬停区域 · 放大时停止旋转 · 双击快速进入",
+    meso: "单击地块规划区划、建筑与枢纽 · 周边区域可双击切换 · 缩小返回宏观",
   };
   viewIndicator.textContent = labels[state.view];
   levelScale.textContent = scales[state.view];
@@ -1245,10 +1120,6 @@ function updateUI() {
 function renderBreadcrumb() {
   const pieces = [{ view: "macro", label: "泰洛斯 IV" }];
   if (state.selectedRegion) pieces.push({ view: "meso", label: state.selectedRegion.name });
-  if (state.selectedMeso) pieces.push({
-    view: "micro",
-    label: `地块 ${state.selectedMeso.x + 1}-${state.selectedMeso.y + 1}`,
-  });
   breadcrumb.innerHTML = pieces.map((piece, index) => {
     const isCurrent = piece.view === state.view;
     const separator = index ? '<span class="crumb-separator">/</span>' : "";
@@ -1271,7 +1142,7 @@ function renderSelectedPanel() {
   }
   const data = hovered.data;
   const terrain = TERRAIN[data.terrain];
-  const isRegion = hovered.pickType === "region";
+  const isRegion = isRegionPickType(hovered.pickType);
   const district = isRegion ? null : DISTRICTS[data.district];
   const resource = data.resource ? RESOURCES[data.resource] : null;
   const regionProfile = isRegion ? regionDevelopmentProfile(data) : null;
@@ -1281,7 +1152,7 @@ function renderSelectedPanel() {
     ? `建设阶段 ${buildingStage(data.development || 0)} · ${Math.round((data.development || 0) * 100)}%`
     : null;
   selectedPanel.innerHTML = `
-    <div class="selection-kicker">${isRegion ? "宏观地貌区" : hovered.pickType === "meso" ? "中观地块" : "微观单元"}</div>
+    <div class="selection-kicker">${isRegion ? "宏观地貌区" : "中观规划地块"}</div>
     <div class="selection-title">${isRegion ? data.name : `${currentRegion().name} · ${data.x + 1}-${data.y + 1}`}</div>
     <p class="selection-copy">
       ${terrain.name}：${terrain.description}。
@@ -1371,16 +1242,47 @@ function hitTest(event) {
   return intersections.length ? objectFromIntersection(intersections[0]) : null;
 }
 
+function hitTestViewCenter() {
+  raycaster.setFromCamera(new THREE.Vector2(0, 0), camera);
+  const intersections = raycaster.intersectObjects(pickables, true);
+  return intersections.length ? objectFromIntersection(intersections[0]) : null;
+}
+
+function zoomFocus(expectedType) {
+  if (state.hoveredObject?.pickType === expectedType) return state.hoveredObject;
+  const centered = hitTestViewCenter();
+  return centered?.pickType === expectedType ? centered : null;
+}
+
+function handleZoomLevelTransition(time) {
+  if (!zoomIntent || cameraTween || time < zoomTransitionLockedUntil || time - lastZoomInputAt > 320) return;
+  const distance = camera.position.length();
+
+  if (zoomIntent > 0 && state.view === "macro" && distance <= ZOOM_LEVELS.macroToMeso) {
+    const focus = zoomFocus("region");
+    if (!focus) return;
+    state.selectedRegion = focus.data;
+    addEvent("缩放进入区域", `${focus.data.name} 已随视野放大展开为 8×8 中观地块。`);
+    switchView("meso", { keepCamera: true });
+    return;
+  }
+
+  if (zoomIntent < 0 && state.view === "meso" && distance >= ZOOM_LEVELS.mesoToMacro) {
+    addEvent("缩放返回星球", "已收束至行星宏观视野。");
+    switchView("macro", { keepCamera: true });
+  }
+}
+
 function showTooltip(event, hit) {
   const data = hit.data;
   const resource = data.resource ? RESOURCES[data.resource] : null;
-  const title = hit.pickType === "region" ? data.name : `地块 ${data.x + 1}-${data.y + 1}`;
-  const elevation = hit.pickType === "region" ? "" : ` · ${Math.round(data.elevation * 2200)} m`;
+  const title = isRegionPickType(hit.pickType) ? data.name : `地块 ${data.x + 1}-${data.y + 1}`;
+  const elevation = isRegionPickType(hit.pickType) ? "" : ` · ${Math.round(data.elevation * 2200)} m`;
   tooltip.innerHTML = `
     <div class="tooltip-title">${title}</div>
     <div class="tooltip-meta">${TERRAIN[data.terrain].name}${elevation}${data.district && data.district !== "none" ? ` · ${DISTRICTS[data.district].name}` : ""}</div>
     <div>${resource ? `<strong style="color:${resource.color}">${resource.name}</strong>：${resource.effect}` : "无特殊资源点"}</div>
-    <div class="tooltip-action">${hit.pickType === "macro" || hit.pickType === "region" ? "双击展开中观地图" : hit.pickType === "meso" ? "单击规划 · 双击查看微观" : "单击规划此单元"}</div>
+    <div class="tooltip-action">${isRegionPickType(hit.pickType) ? "双击设为中观焦点" : "单击规划区划、建筑与枢纽"}</div>
   `;
   const rect = stage.getBoundingClientRect();
   const left = Math.min(event.clientX - rect.left + 15, rect.width - 232);
@@ -1404,12 +1306,12 @@ function positionContextMenu(event) {
 }
 
 function openContextMenu(event, hit) {
-  if (hit.pickType === "region") return;
+  if (isRegionPickType(hit.pickType)) return;
   state.selectedObject = hit;
   const cell = hit.data;
   const resource = cell.resource ? RESOURCES[cell.resource] : null;
-  const costScale = hit.pickType === "meso" ? SIMULATION.scale.mesoCost : 1;
-  const economicScale = hit.pickType === "meso" ? SIMULATION.scale.mesoEconomy : SIMULATION.scale.microEconomy;
+  const costScale = 1;
+  const economicScale = 1;
   const districtActions = Object.entries(DISTRICTS).filter(([key]) => key !== "none").map(([key, district]) => `
     <button class="action-button ${cell.district === key ? "current" : ""}" data-district="${key}" type="button" ${cell.district === key || !canAfford(DISTRICT_ECONOMY[key].cost, costScale) ? "disabled" : ""}>
       <span class="district-swatch" style="background:#${new THREE.Color(district.color).getHexString()}"></span>
@@ -1465,20 +1367,14 @@ function applyDistrict(key) {
   const hit = state.selectedObject;
   if (!hit) return;
   if (hit.data.district === key) return;
-  const costScale = hit.pickType === "meso" ? SIMULATION.scale.mesoCost : 1;
+  const costScale = 1;
   if (!payCost(DISTRICT_ECONOMY[key].cost, costScale)) {
     addEvent("建设资源不足", `${DISTRICTS[key].name}需要 ${formatCost(DISTRICT_ECONOMY[key].cost, costScale)}。`);
     return;
   }
   hit.data.district = key;
   hit.data.development = Math.max(hit.data.development || 0, SIMULATION.developmentGrowth.initialMeso);
-  if (hit.pickType === "meso") {
-    hit.data.micro.forEach((cell) => {
-      if (cell.district === "none") {
-        cell.district = key;
-        cell.development = Math.max(cell.development || 0, SIMULATION.developmentGrowth.initialMicro);
-      }
-    });
+  if (isMesoPickType(hit.pickType)) {
     hit.region.districts = hit.region.meso.filter((cell) => cell.district !== "none").length;
   }
   addEvent("区划方案更新", `${currentRegion().name} 的 ${hit.data.x + 1}-${hit.data.y + 1} 已指定为${DISTRICTS[key].name}，投入 ${formatCost(DISTRICT_ECONOMY[key].cost, costScale)}。`);
@@ -1493,7 +1389,7 @@ function applyHub(key) {
     hit.data.hub = null;
     addEvent("物流网络更新", `${HUBS[key].name}已停止运行。`);
   } else {
-    const costScale = hit.pickType === "meso" ? SIMULATION.scale.mesoCost : 1;
+    const costScale = 1;
     if (!payCost(HUBS[key].cost, costScale)) {
       addEvent("建设资源不足", `${HUBS[key].name}需要 ${formatCost(HUBS[key].cost, costScale)}。`);
       return;
@@ -1539,13 +1435,12 @@ function onCanvasDoubleClick(event) {
   if (!hit) return;
   if (state.view === "macro" && hit.pickType === "region") {
     state.selectedRegion = hit.data;
-    state.selectedMeso = null;
     addEvent("进入区域地图", `${hit.data.name} 已展开为 8×8 中观地块。`);
     switchView("meso");
-  } else if (state.view === "meso" && hit.pickType === "meso") {
-    state.selectedMeso = hit.data;
-    addEvent("进入微观布局", `地块 ${hit.data.x + 1}-${hit.data.y + 1} 已展开为 8×8 建设单元。`);
-    switchView("micro");
+  } else if (state.view === "meso" && hit.pickType === "region-context") {
+    state.selectedRegion = hit.data;
+    addEvent("切换区域焦点", `${hit.data.name} 已在当前连续地图中展开。`);
+    switchView("meso", { refocus: true });
   }
 }
 
@@ -1581,28 +1476,19 @@ function advanceSimulationHour() {
   const policy = document.querySelector("#policySelect").value;
   const growthMultiplier = SIMULATION.developmentGrowth.policyMultiplier[policy]
     ?? SIMULATION.developmentGrowth.policyMultiplier.default;
-  let rebuildMicro = false;
   let rebuildMeso = false;
 
   regions.forEach((region) => {
     region.meso.forEach((meso) => {
       if (meso.district !== "none") {
         const oldStage = buildingStage(meso.development || 0);
-        meso.development = clamp((meso.development || 0) + SIMULATION.developmentGrowth.mesoPerHour * growthMultiplier);
+        const terrainPenalty = SIMULATION.developmentGrowth.terrainPenalty[meso.terrain]
+          ?? SIMULATION.developmentGrowth.terrainPenalty.default;
+        meso.development = clamp((meso.development || 0) + SIMULATION.developmentGrowth.mesoPerHour * growthMultiplier * terrainPenalty);
         if (state.view === "meso" && state.selectedRegion === region && buildingStage(meso.development) !== oldStage) {
           rebuildMeso = true;
         }
       }
-      meso.micro.forEach((cell) => {
-        if (cell.district === "none") return;
-        const oldStage = buildingStage(cell.development || 0);
-        const terrainPenalty = SIMULATION.developmentGrowth.terrainPenalty[cell.terrain]
-          ?? SIMULATION.developmentGrowth.terrainPenalty.default;
-        cell.development = clamp((cell.development || 0) + SIMULATION.developmentGrowth.microPerHour * growthMultiplier * terrainPenalty);
-        if (state.view === "micro" && state.selectedMeso === meso && buildingStage(cell.development) !== oldStage) {
-          rebuildMicro = true;
-        }
-      });
     });
   });
 
@@ -1630,8 +1516,7 @@ function advanceSimulationHour() {
   }
   updateClockUI();
   renderEconomy();
-  if (rebuildMicro) buildMicroView();
-  else if (rebuildMeso) buildMesoView();
+  if (rebuildMeso) buildMesoView(false, false);
   if (state.view === "macro" && state.currentHour % 24 === 0) refreshMacroDevelopment();
 }
 
@@ -1661,6 +1546,8 @@ function animate(time) {
     if (progress === 1) cameraTween = null;
   }
   controls.update();
+  handleZoomLevelTransition(time);
+  updateMesoLayerLod(time);
   renderer.render(scene, camera);
 }
 
@@ -1682,7 +1569,16 @@ canvas.addEventListener("pointerleave", () => {
 });
 canvas.addEventListener("click", onCanvasClick);
 canvas.addEventListener("dblclick", onCanvasDoubleClick);
+canvas.addEventListener("wheel", (event) => {
+  zoomIntent = event.deltaY < 0 ? 1 : -1;
+  lastZoomInputAt = performance.now();
+  if (zoomIntent > 0) {
+    state.autoRotationSuppressed = true;
+    controls.autoRotate = false;
+  }
+}, { passive: true });
 canvas.addEventListener("pointerdown", () => {
+  state.autoRotationSuppressed = true;
   controls.autoRotate = false;
 });
 window.addEventListener("resize", onResize);
@@ -1692,9 +1588,7 @@ breadcrumb.addEventListener("click", (event) => {
   if (!button || button.classList.contains("current")) return;
   if (button.dataset.view === "macro") {
     state.selectedRegion = null;
-    state.selectedMeso = null;
   }
-  if (button.dataset.view === "meso") state.selectedMeso = null;
   switchView(button.dataset.view);
 });
 
@@ -1713,12 +1607,8 @@ contextMenu.addEventListener("click", (event) => {
   if (event.target.closest("[data-clear]")) {
     state.selectedObject.data.district = "none";
     state.selectedObject.data.development = 0;
-    if (state.selectedObject.pickType === "meso") {
-      state.selectedObject.data.micro.forEach((cell) => {
-        cell.district = "none";
-        cell.development = 0;
-      });
-    }
+    state.selectedObject.region.districts = state.selectedObject.region.meso
+      .filter((cell) => cell.district !== "none").length;
     closeContextMenu();
     switchView(state.view);
   }
