@@ -1,6 +1,8 @@
-# 星球表面建设 MVP
+# Distant Stars
 
-这是基于 `docs/design/planetary_surface_construction_gdd.md` 实现的 Three.js 交互原型。
+跨恒星系国家经营游戏的早期原型。当前仓库已实现单星球表面建设模块，整体设计以 `docs/design/distant_stars_game_design_baseline.md` 为准，单星球规则见 `docs/design/planetary_surface_construction_gdd.md`。
+
+技术方向见 `docs/architecture/technology_direction.md`。项目默认继续使用工程化 Web 技术栈，并以独立模拟核心、React 管理界面和 Three.js 战略视图作为演进方向。
 
 ## 运行
 
