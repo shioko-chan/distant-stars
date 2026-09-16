@@ -19,6 +19,31 @@ export interface StarSystem {
     risk: number;
     anomaly?: 'ruins' | 'civilization';
     planets: number;
+    bodies: PlanetBody[];
+}
+export interface PlanetBody {
+    id: string;
+    name: string;
+    kind: '岩质' | '气态' | '冰质';
+    orbit: number;
+    radius: number;
+    primary: boolean;
+    habitability?: number;
+    resources?: number;
+}
+export type SurfacePoint = [number, number, number];
+export interface SurfaceDraft {
+    kind: 'road' | 'zone';
+    zone: Zone;
+    points: SurfacePoint[];
+    width: number;
+}
+export interface SurfaceProject extends SurfaceDraft {
+    id: string;
+    progress: number;
+    cost: number;
+    spent: number;
+    status: string;
 }
 export interface Cohort {
     id: number;
@@ -40,9 +65,7 @@ export interface Cohort {
 }
 export interface District {
     id: number;
-    cells: number[];
     zone: Zone;
-    parcels: Zone[];
     priority: number;
     progress: number;
     density: number;
@@ -68,6 +91,9 @@ export interface Finance {
 }
 export interface WorldState {
     systemId: string;
+    radiusKm: number;
+    planetId: string;
+    surface: SurfaceProject[];
     name: string;
     foundedAt: number;
     population: number;
@@ -105,6 +131,7 @@ export interface WorldState {
 }
 export interface IntelRecord {
     systemId: string;
+    planetId: string;
     level: 'observed' | 'surveyed' | 'colonized';
     observedAt: number;
     receivedAt: number;
@@ -133,10 +160,10 @@ export interface Ship {
 }
 export interface Directive {
     targetId: string;
-    kind: 'policy' | 'budget' | 'plan' | 'hub' | 'project' | 'reform' | 'contact' | 'relief' | 'evacuate' | 'charter';
+    kind: 'policy' | 'budget' | 'surface' | 'hub' | 'project' | 'reform' | 'contact' | 'relief' | 'evacuate' | 'charter';
     value: string;
     district?: number;
-    cells?: number[];
+    surface?: SurfaceDraft[];
     budget: number;
     priority: number;
     deadline: number;
@@ -199,7 +226,7 @@ export type Action = {
     enabled: boolean;
 };
 export interface GameState {
-    version: 2;
+    version: 3;
     contentVersion: string;
     seed: number;
     tick: number;

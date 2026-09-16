@@ -1,5 +1,7 @@
 # GDD：星球表面建设（Planetary Surface Construction）
 
+> 2026-09 更新：地表交互改为连续缩放与自由绘制，固定 12×64 地块、24 km 最小规划尺度及编号网格入口不再作为当前实现要求。原文保留的旧原型参数属于历史设计。当前实现与未完成项见 [地表规划记录](../verification/surface_planning.md)。
+
 本文件是 [《Distant Stars》整体游戏设计基线](./distant_stars_game_design_baseline.md) 的单星球建设模块文档。整体玩家身份、时间、通信、经济和初步可玩版本边界以上位基线为准。
 
 ## 1. 模块定位
