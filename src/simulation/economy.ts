@@ -1,6 +1,8 @@
+import { HOME } from './locations';
+import { settleSurface, surfacePower } from './surface';
 import { BALANCE, POLICIES, PROJECTS, RESEARCH } from '../content/catalog';
 import { deterministicNoise } from './rng';
-import type { ResearchFocus, StarSystem, WorldState } from './types';
+import type { ResearchFocus, StarSystem, WorldState, Zone } from './types';
 export const clamp = (n: number, low = 0, high = 100) => Math.max(low, Math.min(high, n));
 export interface LocalEvent {
     title: string;
@@ -10,18 +12,24 @@ export interface LocalEvent {
 /** One fixed month. No rendering, wall clock, or random calls. */
 export function settleWorld(w: WorldState, system: StarSystem, time: number): LocalEvent[] {
     const events: LocalEvent[] = [];
+    const planet=system.bodies.find(b=>b.id===w.planetId)!;
+    settleSurface(w);
     const dt = 1 / 12, p = POLICIES[w.policy];
     const units = Math.max(1, w.population * BALANCE.stockPerPerson);
     const oldSupport = w.support, oldAutonomy = w.autonomy, oldEcology = w.ecology;
     const logistics = clamp(55 + w.districts.filter(d => d.hub).length * 5 - w.districts.reduce((s, d) => s + d.damage, 0) / 12, 25, 100) / 100;
-    const zonePower = (zone: string) => w.districts.reduce((s, d) => s + (d.parcels.filter(p => p === zone).length / 64) * (d.progress / 100 + .2) * (1 - d.damage / 100), 0);
+    const localPower = new Map<Zone, number>();
+    const zonePower = (zone: Zone) => {
+        if (!localPower.has(zone)) localPower.set(zone, surfacePower(w, zone) + w.districts.reduce((s, d) => s + (d.zone === zone ? 1 : 0) * (d.progress / 100 + .2) * (1 - d.damage / 100), 0));
+        return localPower.get(zone)!;
+    };
     const shortage = w.stock.food < units * .12 || w.stock.energy < units * .12;
     const efficiency = (shortage ? BALANCE.shortageEfficiency : 1) * (.65 + w.stability * .0035) * (BALANCE.logisticsFloor + logistics * (1 - BALANCE.logisticsFloor));
     const foodOutput = units * (1.1 + zonePower('farm') * .15) * (.7 + w.ecology * .004) * (1 + w.tech.ecology * .1) * efficiency;
     const foodDemand = units * (w.policy === 'ration' ? .75 : 1);
     const power = units * (1.5 + w.tech.industry * .15) * efficiency;
     const inputs = units * (.5 + w.industry * .003);
-    const raw = units * (.9 + system.resources * .3) * efficiency;
+    const raw = units * (.9 + planet.resources! * .3) * efficiency;
     const goods = units * (.55 + zonePower('industry') * .12) * p.industry * (1 + w.tech.industry * .12) * efficiency;
     const energyUse = units * (1 + zonePower('science') * .035 + zonePower('industry') * .03);
     w.stock.food = clamp(w.stock.food + (foodOutput - foodDemand) * dt, 0, units * 15);
@@ -69,7 +77,7 @@ export function settleWorld(w: WorldState, system: StarSystem, time: number): Lo
         c.identity = clamp(c.identity - distancePressure * .02 * dt + (w.tech.governance * .01) * dt);
         c.young = clamp(c.young + (.22 - c.young) * dt * .01, 0, 1);
         c.elderly = clamp(c.elderly + (.2 - c.elderly) * dt * .01, 0, 1);
-        const capacity = w.systemId === 'sol' ? 30e9 : 40000 + zonePower('housing') * 250000 + w.industry * 10000;
+        const capacity = w.planetId === HOME ? 30e9 : 40000 + zonePower('housing') * 250000 + w.industry * 10000;
         c.size = Math.max(0, c.size * (1 + (BALANCE.annualGrowth * (1 - w.population / capacity) - (shortage ? BALANCE.annualStarvationLoss : 0)) * dt));
     }
     w.population = w.cohorts.reduce((s, c) => s + c.size, 0);
@@ -150,7 +158,7 @@ export function settleWorld(w: WorldState, system: StarSystem, time: number): Lo
         w.stage = stage;
         events.push({ title: ['着陆', '临时前哨', '基础自持', '区域工业化', '成熟世界', '恒星系中心'][stage], cause: ['能源与食物供给', '地方工业持续建设', `工业能力 ${w.industry.toFixed(0)}`] });
     }
-    if (system.anomaly === 'civilization') {
+    if (planet.primary && system.anomaly === 'civilization') {
         const trustRate = { observe: .1, secret: -.04, contact: .35, exchange: .6, compete: -.8 }[w.contact];
         w.alienTrust = clamp(w.alienTrust + trustRate * dt);
         w.alienDevelopment = clamp(w.alienDevelopment + (w.contact === 'exchange' ? .3 : .02) * dt);

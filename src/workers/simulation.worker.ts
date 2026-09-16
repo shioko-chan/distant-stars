@@ -1,27 +1,8 @@
 import { createGame, applyAction, advanceMonths, replay } from '../simulation/world';
 import { getPlayerView } from '../simulation/queries';
 import { decodeSave, encodeSave } from '../persistence/save';
-import type { Action } from '../simulation/types';
-export type WorkerRequest = {
-    type: 'init';
-    raw?: string | null;
-} | {
-    type: 'new';
-    seed: number;
-} | {
-    type: 'action';
-    action: Action;
-} | {
-    type: 'advance';
-    months: number;
-} | {
-    type: 'save';
-} | {
-    type: 'load';
-    raw: string;
-} | {
-    type: 'replay';
-};
+import type { WorkerRequest, WorkerResponse } from './protocol';
+const respond = (response: WorkerResponse) => self.postMessage(response);
 let state = createGame();
 let initialized = false;
 self.onmessage = (event: MessageEvent<WorkerRequest>) => {
@@ -55,7 +36,7 @@ self.onmessage = (event: MessageEvent<WorkerRequest>) => {
         if (request.type === 'advance')
             state = advanceMonths(state, Math.min(240, Math.max(0, request.months)), true);
         if (request.type === 'save') {
-            self.postMessage({ type: 'save', raw: encodeSave(state) });
+            respond({ type: 'save', raw: encodeSave(state) });
             return;
         }
         if (request.type === 'replay') {
@@ -65,9 +46,9 @@ self.onmessage = (event: MessageEvent<WorkerRequest>) => {
         }
         if (state.pauseRequested && !notice)
             notice = '自动暂停：' + (state.messages.filter(m => m.pause).at(-1)?.title ?? '重要事件');
-        self.postMessage({ type: 'view', view: getPlayerView(state), pause: state.pauseRequested, notice, metrics: { milliseconds: performance.now() - start } });
+        respond({ type: 'view', view: getPlayerView(state), pause: state.pauseRequested, notice, metrics: { milliseconds: performance.now() - start } });
     }
     catch (error) {
-        self.postMessage({ type: 'error', notice: error instanceof Error ? error.message : '模拟出错' });
+        respond({ type: 'error', notice: error instanceof Error ? error.message : '模拟出错' });
     }
 };

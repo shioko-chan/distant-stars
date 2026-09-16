@@ -1,5 +1,5 @@
 import type { Policy, ResearchFocus, Resource, ShipKind, Zone } from '../simulation/types';
-export const CONTENT_VERSION = '0.4.0';
+export const CONTENT_VERSION = '0.7.0';
 export const START_TIME = 2180;
 export const BALANCE = {
     systems: 100, initialObserved: 20, maxShips: 100, reportYears: 5,
