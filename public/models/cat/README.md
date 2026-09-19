@@ -14,13 +14,12 @@ The complete license is included in `LICENSE.txt`.
 - Downloaded: 2026-09-19
 
 The downloaded GLB and its embedded textures are unchanged. Distant Stars
-adapts the model at runtime with dark fur material, scene lighting, and a
-scripted jump/landing movement. The source includes an idle motion, **not**
-a dedicated jump animation. No endorsement by the original artists is implied.
+adapts the model at runtime with original bicolor texture and long fur shading, scene lighting, and a
+random walking and seated arrival choreography. The source includes an idle motion. The cat appears on the desk after the viewer sits down; no jump clip is played. No endorsement by the original artists is implied.
 
 Suggested compact credit (with links to this file and the license):
 
-> Cat: kenchoo / guillaume bolis · CC BY 4.0 · dark material and motion adapted.
+> Cat: kenchoo / guillaume bolis · CC BY 4.0 · fur shading and motion adapted.
 
 ## Integration notes
 
@@ -48,3 +47,21 @@ Suggested compact credit (with links to this file and the license):
   `Wolf_l_HindLeg_HipSHJnt_27`, `Wolf_r_HindLeg_HipSHJnt_33`.
 - Clone multiple cats with `SkeletonUtils.clone`, not `Object3D.clone`, to
   preserve independent skeleton bindings.
+
+## Realtime long fur
+
+A shell-based Fur Shader adds 28 skinned layers with tapered alpha coverage,
+strand length variation and bent tips. Both the base mesh and shells retain
+the original color atlas. Physical sheen supplies soft grazing highlights.
+Fur length is 2.6% of the local mesh bounds diagonal (3.25 times the old short
+coat). Shells share geometry and skeleton; this adds 28 body draw calls.
+Eyes and whiskers keep their original materials. This is shader fur, not
+individual strand simulation.
+
+尺度校准：以静止姿态脚底到肩背表面 0.2950806076 m 为基准，统一缩放至肩高 0.24 m（缩放因子 0.8133370808）。不再按整体包围盒高度放大至 0.78 m。
+
+## Retargeted walk preview
+
+The opening screen uses a walk adapted from volkanongun’s
+CC BY 4.0 Low Poly Cat Walk. See [source and conversion notes](walk-source/README.md).
+The original bicolor mesh, long fur and 24 cm shoulder scale are retained.

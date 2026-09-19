@@ -1,0 +1,137 @@
+{
+  "format": "distant-stars-score-index",
+  "version": 1,
+  "source": {
+    "file": "src/content/music.ts",
+    "sha256": "9202841b5a9b9e8c9c83f2bac5f693d09ed5b766fe62230fbf46b64e1d89a1a2"
+  },
+  "tracks": [
+    {
+      "id": "distant-stars",
+      "title": "遥远群星",
+      "file": "distant-stars.json",
+      "duration_seconds": 90,
+      "note_count": 103,
+      "instruments": [
+        "pad",
+        "cello",
+        "pluck",
+        "horn"
+      ]
+    },
+    {
+      "id": "blue-cradle",
+      "title": "蓝色摇篮",
+      "file": "blue-cradle.json",
+      "duration_seconds": 79,
+      "note_count": 286,
+      "instruments": [
+        "bass",
+        "harp",
+        "cello"
+      ]
+    },
+    {
+      "id": "coronal-sails",
+      "title": "日冕之帆",
+      "file": "coronal-sails.json",
+      "duration_seconds": 90,
+      "note_count": 598,
+      "instruments": [
+        "bass",
+        "kick",
+        "pluck",
+        "hat",
+        "snare",
+        "pad",
+        "horn"
+      ]
+    },
+    {
+      "id": "long-voyage",
+      "title": "漫长航路",
+      "file": "long-voyage.json",
+      "duration_seconds": 95,
+      "note_count": 27,
+      "instruments": [
+        "drone",
+        "harp",
+        "cello",
+        "bell"
+      ]
+    },
+    {
+      "id": "delayed-echoes",
+      "title": "迟来的回声",
+      "file": "delayed-echoes.json",
+      "duration_seconds": 84,
+      "note_count": 144,
+      "instruments": [
+        "bell",
+        "pluck"
+      ]
+    },
+    {
+      "id": "dawn-beyond",
+      "title": "彼岸晨曦",
+      "file": "dawn-beyond.json",
+      "duration_seconds": 91,
+      "note_count": 306,
+      "instruments": [
+        "strings",
+        "cello",
+        "flute",
+        "harp",
+        "horn"
+      ]
+    },
+    {
+      "id": "endless-beyond",
+      "title": "无尽的彼方",
+      "file": "endless-beyond.json",
+      "duration_seconds": 112,
+      "note_count": 1732,
+      "instruments": [
+        "pad",
+        "harp",
+        "shepard-air",
+        "bell",
+        "shepard",
+        "cello",
+        "strings",
+        "flute",
+        "horn"
+      ]
+    },
+    {
+      "id": "unsent-starlight",
+      "title": "未寄出的星光",
+      "file": "unsent-starlight.json",
+      "duration_seconds": 88,
+      "note_count": 745,
+      "instruments": [
+        "pizzicato",
+        "harp",
+        "strings",
+        "horn",
+        "marimba",
+        "bell",
+        "cello"
+      ]
+    },
+    {
+      "id": "starstage-rondo",
+      "title": "星幕间的回旋",
+      "file": "starstage-rondo.json",
+      "duration_seconds": 90,
+      "note_count": 563,
+      "instruments": [
+        "harp",
+        "bell",
+        "marimba",
+        "pizzicato",
+        "cello"
+      ]
+    }
+  ]
+}
