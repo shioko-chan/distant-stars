@@ -5,12 +5,14 @@ import type { WorkerRequest, WorkerResponse } from './protocol';
 const respond = (response: WorkerResponse) => self.postMessage(response);
 let state = createGame();
 let initialized = false;
+let debugEnabled = false;
 self.onmessage = (event: MessageEvent<WorkerRequest>) => {
     const start = performance.now();
     let notice = event.data.type === 'init' ? '模拟核心已就绪' : '';
     try {
         const request = event.data;
         if (request.type === 'init') {
+            debugEnabled = request.debug === true;
             state = request.raw ? decodeSave(request.raw) : createGame();
             initialized = true;
         }
@@ -40,15 +42,21 @@ self.onmessage = (event: MessageEvent<WorkerRequest>) => {
             return;
         }
         if (request.type === 'replay') {
+            if (!debugEnabled) throw new Error('请先启用调试模式');
             const replayed = replay(state.seed, state.actions, state.tick);
             const canonical = (s: typeof state) => JSON.stringify({ ...s, pauseRequested: false });
-            notice = canonical(replayed) === canonical(state) ? '确定性回放校验通过' : '回放不一致：请保存并报告此问题';
+            const matches = canonical(replayed) === canonical(state);
+            respond({ type: 'replay', status: matches ? 'passed' : 'failed', notice: matches ? '确定性回放校验通过' : '回放不一致：请保存并报告此问题', milliseconds: performance.now() - start });
+            return;
         }
         if (state.pauseRequested && !notice)
             notice = '自动暂停：' + (state.messages.filter(m => m.pause).at(-1)?.title ?? '重要事件');
         respond({ type: 'view', view: getPlayerView(state), pause: state.pauseRequested, notice, metrics: { milliseconds: performance.now() - start } });
     }
     catch (error) {
-        respond({ type: 'error', notice: error instanceof Error ? error.message : '模拟出错' });
+        const notice = error instanceof Error ? error.message : '模拟出错';
+        respond(event.data.type === 'replay'
+            ? { type: 'replay', status: 'error', notice, milliseconds: performance.now() - start }
+            : { type: 'error', notice });
     }
 };

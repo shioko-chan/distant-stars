@@ -8,7 +8,7 @@ export function SolarPortrait({ planetId }: { planetId: string }) {
     useEffect(()=>{
         const url=solarTexture(planetId); if(!url) return;
         const root=host.current!, renderer=new THREE.WebGLRenderer({alpha:true,antialias:true});
-        renderer.setSize(160,160); renderer.setPixelRatio(Math.min(window.devicePixelRatio,2)); root.appendChild(renderer.domElement);
+        renderer.setSize(160,160,false); renderer.setPixelRatio(Math.min(window.devicePixelRatio,2)); root.appendChild(renderer.domElement);
         const scene=new THREE.Scene(), camera=new THREE.PerspectiveCamera(35,1,.1,20); camera.position.z=3.6;
         scene.add(new THREE.AmbientLight(0xffffff,1.5));
         const light=new THREE.DirectionalLight(0xffffff,2); light.position.set(-3,2,4); scene.add(light);
