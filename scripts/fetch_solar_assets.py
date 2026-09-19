@@ -3,7 +3,7 @@ from urllib.request import urlopen, Request
 from concurrent.futures import ThreadPoolExecutor
 
 root = Path(__file__).resolve().parents[1]
-textures = ['mercury','venus_surface','earth_daymap','earth_specular_map','mars','jupiter','saturn','uranus','neptune','sun']
+textures = ['mercury','venus_surface','earth_daymap','earth_clouds','earth_specular_map','mars','jupiter','saturn','uranus','neptune','sun']
 def download(name):
     extension = 'tif' if name == 'earth_specular_map' else 'jpg'
     url = f'https://www.solarsystemscope.com/textures/download/2k_{name}.{extension}'

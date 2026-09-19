@@ -5,6 +5,7 @@ import { EmpireClock } from './EmpireClock';
 import { SystemView } from '../presentation/SystemView';
 import { useEffect, useState } from 'react';
 import { POLICIES, RESEARCH, RESOURCES, SHIPS, SPEEDS, ZONES } from '../content/catalog';
+import { AudioSettings, useAudioSettings } from './AudioSettings';
 import { MusicControl } from './MusicControl';
 import { GalaxyMap } from '../presentation/GalaxyMap';
 import { PlanetView } from '../presentation/PlanetView';
@@ -21,7 +22,8 @@ const levelNames = { observed: '天文观测', surveyed: '实地勘测', coloniz
 const tabs = { overview: '情报', economy: '经济', population: '人口政治', research: '科研', planning: '星球规划', transport: '舰船运输', contact: '文明接触', orders: '命令', history: '历史' };
 type Tab = keyof typeof tabs;
 export function App() {
-    const music = useThemeMusic();
+    const audioSettings = useAudioSettings();
+    const music = useThemeMusic(audioSettings.music);
     const [atConsole, setAtConsole] = useState(false);
     const [debugMode] = useState(() => new URLSearchParams(window.location.search).get('debug') === '1');
     const session = useSimulation(debugMode);
@@ -38,18 +40,18 @@ export function App() {
     const [selectedPlanet,setSelectedPlanet] = useState<string>();
     const newGame = () => { if (view && !window.confirm('开始新纪元？当前未保存进度将丢失。'))
         return; startNewGame(); };
-    if (!atConsole)
-        return <BridgeIntro music={music} simulationReady={Boolean(view)} simulationError={fatal ? notice : undefined} onEnter={() => setAtConsole(true)} onNewGame={newGame}/>;
+    const deck = <BridgeIntro active={!atConsole} audioSettings={audioSettings} music={music} simulationReady={Boolean(view)} simulationError={fatal ? notice : undefined} onEnter={() => setAtConsole(true)} onNewGame={newGame}/>;
+    if (!atConsole) return <>{deck}</>;
     if (!view)
-        return <main className="loading"><h1>DISTANT STARS</h1><p>{notice}</p>{fatal && <button onClick={newGame}>开始新纪元</button>}{debugMode && <DebugConsole session={session}/>}</main>;
+        return <>{deck}<main className="loading"><h1>DISTANT STARS</h1><p>{notice}</p>{fatal && <button onClick={newGame}>开始新纪元</button>}{debugMode && <DebugConsole session={session}/>}</main></>;
     const system = view.systems.find(s => s.id === selected) ?? view.systems[0], planet = system.bodies.find(b=>b.id===selectedPlanet) ?? system.bodies.find(b=>b.primary)!, targetId=planet.id, intel = view.intel[targetId], world = view.worlds[targetId], estimate = estimateWorld(view, targetId), home = view.worlds[HOME];
     const knownWorlds = Object.values(view.worlds).filter(w => !w.independent), knownPopulation = knownWorlds.reduce((n, w) => n + (estimateWorld(view, w.planetId)?.population ?? w.population), 0);
     const selectedShip = view.ships.find(ship => ship.id === selectedShipId);
-    return <div className="app command-station">
+    return <>{deck}<div className="app command-station">
   <header className="masthead">
    <div className="brand"><span className="brand-mark" aria-hidden="true">✧</span><div><b>DISTANT STARS</b><small>遥远群星</small></div></div>
    <div className="bridge-designation"><span className="status-light" />舰桥中控台<small>COMMAND STATION / 01</small></div>
-   <div className="save-actions"><MusicControl control={music}/><button onClick={() => { setSpeed(0); setAtConsole(false); }}>观景甲板</button><button onClick={save}>保存</button><button onClick={load}>读取</button><button onClick={newGame}>新纪元</button>{debugMode && <DebugConsole session={session}/>}</div>
+   <div className="save-actions"><MusicControl control={music}/><button onClick={() => { setSpeed(0); setAtConsole(false); }}>观景甲板</button><button onClick={save}>保存</button><button onClick={load}>读取</button><button onClick={newGame}>新纪元</button>{debugMode && <DebugConsole session={session}/>}<AudioSettings settings={audioSettings}/></div>
   </header>
   {view.failed && <div role="alert" className="failure">帝国人口低于延续阈值。可读取旧档或开始新纪元。</div>}
   <main className={"workspace " + (panelOpen ? "panel-open" : "")}>
@@ -96,7 +98,7 @@ export function App() {
    <div className="speed"><span className="time-state"><i className={speed === 0 ? 'status-light paused' : 'status-light'}/>{speed === 0 ? '时间暂停' : '时间推进'}<small>推进尺度 · 年 / 秒</small></span><div>{SPEEDS.map(s => <button disabled={view.failed || fatal} key={s.label} aria-pressed={speed === s.value} className={speed === s.value ? 'active' : ''} onClick={() => setSpeed(s.value)}>{s.label}</button>)}</div></div>
    <div className="status-strip"><div role="status" className={fatal ? 'error' : ''}>{notice}</div><span>自动记录 · 30 秒<span className="status-light" /></span></div>
   </footer>
- </div>;
+ </div></>;
 }
 function Metric({ label, value }: {
     label: string;
