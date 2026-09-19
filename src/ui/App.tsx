@@ -1,3 +1,4 @@
+import { CockpitFrame, InstrumentIcon } from './CockpitFrame';
 import { VoyageOverlay } from './VoyageOverlay';
 import { HOME, systemForPlanet, planetById, travelDistance } from '../simulation/locations';
 import { EmpireClock } from './EmpireClock';
@@ -11,13 +12,20 @@ import { estimateWorld, getShipProgress, researchEstimate } from '../simulation/
 import { shipSpeed } from '../simulation/world';
 import type { Action, Directive, PlayerView, ResearchFocus, ShipKind, WorldState, Zone } from '../simulation/types';
 import { useSimulation } from './useSimulation';
+import { DebugConsole } from './DebugConsole';
+import { BridgeIntro } from './BridgeIntro';
+import { useThemeMusic } from './useThemeMusic';
 const year = (n: number) => `${Math.floor(n)}.${String(Math.floor((n % 1) * 12 + 1.001)).padStart(2, '0')}`;
 const number = (n: number) => new Intl.NumberFormat('zh-CN', { notation: 'compact', maximumFractionDigits: 1 }).format(n);
 const levelNames = { observed: '天文观测', surveyed: '实地勘测', colonized: '定居报告' };
 const tabs = { overview: '情报', economy: '经济', population: '人口政治', research: '科研', planning: '星球规划', transport: '舰船运输', contact: '文明接触', orders: '命令', history: '历史' };
 type Tab = keyof typeof tabs;
 export function App() {
-    const { view, notice, fatal, speed, setSpeed, metrics, fraction, pending, act, save, load, startNewGame, replay } = useSimulation();
+    const music = useThemeMusic();
+    const [atConsole, setAtConsole] = useState(false);
+    const [debugMode] = useState(() => new URLSearchParams(window.location.search).get('debug') === '1');
+    const session = useSimulation(debugMode);
+    const { view, notice, fatal, speed, setSpeed, fraction, pending, act, save, load, startNewGame } = session;
     const [selected, setSelected] = useState('star-1'), [tab, setTab] = useState<Tab>('overview'), [map, setMap] = useState<'galaxy' | 'system' | 'planet'>('galaxy'), [historyLimit, setHistoryLimit] = useState(120);
     const [selectedShipId, setSelectedShipId] = useState<string>();
     const [panelOpen, setPanelOpen] = useState(false);
@@ -30,33 +38,48 @@ export function App() {
     const [selectedPlanet,setSelectedPlanet] = useState<string>();
     const newGame = () => { if (view && !window.confirm('开始新纪元？当前未保存进度将丢失。'))
         return; startNewGame(); };
+    if (!atConsole)
+        return <BridgeIntro music={music} simulationReady={Boolean(view)} simulationError={fatal ? notice : undefined} onEnter={() => setAtConsole(true)} onNewGame={newGame}/>;
     if (!view)
-        return <main className="loading"><h1>DISTANT STARS</h1><p>{notice}</p>{fatal && <button onClick={newGame}>开始新纪元</button>}</main>;
+        return <main className="loading"><h1>DISTANT STARS</h1><p>{notice}</p>{fatal && <button onClick={newGame}>开始新纪元</button>}{debugMode && <DebugConsole session={session}/>}</main>;
     const system = view.systems.find(s => s.id === selected) ?? view.systems[0], planet = system.bodies.find(b=>b.id===selectedPlanet) ?? system.bodies.find(b=>b.primary)!, targetId=planet.id, intel = view.intel[targetId], world = view.worlds[targetId], estimate = estimateWorld(view, targetId), home = view.worlds[HOME];
     const knownWorlds = Object.values(view.worlds).filter(w => !w.independent), knownPopulation = knownWorlds.reduce((n, w) => n + (estimateWorld(view, w.planetId)?.population ?? w.population), 0);
     const selectedShip = view.ships.find(ship => ship.id === selectedShipId);
-    return <div className="app">
-  <header className="masthead"><div className="brand"><b>DISTANT STARS</b><small>遥远群星 · 中央指挥部</small></div><EmpireClock time={view.time} fraction={fraction} pending={pending}/><div className="header-stats"><span><small>中央财政</small><b>{number(view.credits)} Cr</b></span><span><small>人口估计</small><b>{number(knownPopulation)}</b></span><span><small>已确认世界</small><b>{knownWorlds.length}</b></span></div><div className="save-actions"><MusicControl/><button onClick={save}>保存</button><button onClick={load}>读取</button><button onClick={newGame}>新纪元</button></div></header>
+    return <div className="app command-station">
+  <header className="masthead">
+   <div className="brand"><span className="brand-mark" aria-hidden="true">✧</span><div><b>DISTANT STARS</b><small>遥远群星</small></div></div>
+   <div className="bridge-designation"><span className="status-light" />舰桥中控台<small>COMMAND STATION / 01</small></div>
+   <div className="save-actions"><MusicControl control={music}/><button onClick={() => { setSpeed(0); setAtConsole(false); }}>观景甲板</button><button onClick={save}>保存</button><button onClick={load}>读取</button><button onClick={newGame}>新纪元</button>{debugMode && <DebugConsole session={session}/>}</div>
+  </header>
   {view.failed && <div role="alert" className="failure">帝国人口低于延续阈值。可读取旧档或开始新纪元。</div>}
-  <main className={"workspace immersive " + (panelOpen ? "panel-open" : "")}><nav className="command-rail" aria-label="指挥部门"><div className="rail-insignia" aria-hidden="true">✧</div>{Object.entries(tabs).map(([id, name], i) => <button aria-expanded={panelOpen && tab === id} aria-controls="command-panel" className={panelOpen && tab === id ? "active" : ""} key={id} onClick={() => { setTab(id as Tab); setPanelOpen(!(panelOpen && tab === id)); }}><span aria-hidden="true">{["◎", "◇", "♙", "⌬", "▦", "↗", "◈", "≡", "◷"][i]}</span><small>{name}</small></button>)}<span className="rail-footer">SOL / 01</span></nav><section className="map-column">
-   <div className="map-toolbar"><div>{(['galaxy', 'system', 'planet'] as const).map((m, i) => <button key={m} className={map === m ? 'active' : ''} disabled={m === 'planet' && !world} onClick={() => { setMap(m); if (m === 'planet') setTab('planning'); }}>{['银河', '恒星系', '星球'][i]}</button>)}</div><select aria-label="目标恒星系" value={system.id} onChange={e => { setSelected(e.target.value);  }}>{view.systems.map(s => <option key={s.id} value={s.id}>{s.name} · {levelNames[view.intel[s.bodies.find(b=>b.primary)!.id].level]}</option>)}</select><select aria-label="目标行星" value={targetId} onChange={e=>setSelectedPlanet(e.target.value)}>{system.bodies.map(b=><option key={b.id} value={b.id}>{b.name}{view.worlds[b.id] ? " · 已开发" : ""}</option>)}</select></div>
+  <main className={"workspace " + (panelOpen ? "panel-open" : "")}>
+   <nav className="command-dock" aria-label="指挥部门">
+    <span className="dock-label" aria-hidden="true">舰桥<br/>终端</span>
+    {Object.entries(tabs).map(([id, name], i) => <button aria-expanded={panelOpen && tab === id} aria-controls="command-panel" className={panelOpen && tab === id ? "active" : ""} key={id} onClick={() => { setTab(id as Tab); setPanelOpen(!(panelOpen && tab === id)); }}><span className="instrument-number" aria-hidden="true">0{i + 1}</span><InstrumentIcon name={id as Tab}/><small>{name}</small><i aria-hidden="true" /></button>)}
+   </nav>
+   <section className={"map-column view-" + map} aria-label="飞船观测舷窗">
+    <CockpitFrame/>
+    <div className="map-toolbar">
+     <div className="view-switch" aria-label="观测尺度">{(['galaxy', 'system', 'planet'] as const).map((m, i) => <button key={m} aria-pressed={map === m} className={map === m ? 'active' : ''} disabled={m === 'planet' && !world} onClick={() => { setMap(m); if (m === 'planet') setTab('planning'); }}><span aria-hidden="true">0{i + 1}</span>{['银河', '恒星系', '星球'][i]}</button>)}</div>
+     <div className="target-selectors"><select aria-label="目标恒星系" value={system.id} onChange={e => { setSelected(e.target.value); setSelectedShipId(undefined); }}>{view.systems.map(s => <option key={s.id} value={s.id}>{s.name} · {levelNames[view.intel[s.bodies.find(b=>b.primary)!.id].level]}</option>)}</select><select aria-label="目标行星" value={targetId} onChange={e=>setSelectedPlanet(e.target.value)}>{system.bodies.map(b=><option key={b.id} value={b.id}>{b.name}{view.worlds[b.id] ? " · 已开发" : ""}</option>)}</select></div>
+    </div>
    {map === 'galaxy' ? <GalaxyMap state={view} selectedId={system.id} selectedShipId={selectedShipId} onSelectShip={setSelectedShipId} onSelect={id => { setSelected(id); setSelectedShipId(undefined); }}/> : map === 'planet' && world ? <PlanetView key={world.planetId} world={world} time={view.time} distance={system.distance} credits={view.credits} act={act}/> : <SystemView key={system.id} system={system} worlds={view.worlds} intel={view.intel} onSelect={setSelectedPlanet} onSurface={id => { setSelectedPlanet(id); setMap('planet'); setTab('planning'); setPanelOpen(false); }} onExplore={id => { setSelectedPlanet(id); openPanel('transport'); }}/>}
-   <div className="map-title"><small>{map === 'galaxy' ? '近邻空间' : system.name}</small><h1>{system.name}<span className="target-class">{levelNames[intel.level]}</span></h1><p>{map === 'planet' ? `地表展示 ${year(intel.observedAt)} 年确认状态；点击区域规划，滚轮查看建筑。` : `${view.systems.length} / 100 个已编目恒星系 · 距离单位：光年`}</p></div>
+   <div className="map-title"><small>{map === 'galaxy' ? '深空观测 / NEARBY SPACE' : '轨道观测 / ORBITAL VIEW'}</small><h1>{system.name}<span className="target-class">{levelNames[intel.level]}</span></h1><p>{map === 'planet' ? `地表展示 ${year(intel.observedAt)} 年确认状态；点击区域规划，滚轮查看建筑。` : `${view.systems.length} / 100 个已编目恒星系 · 距离单位：光年`}</p></div>
    {map === 'galaxy' && selectedShip && <VoyageOverlay view={view} ship={selectedShip} onClose={() => setSelectedShipId(undefined)} onDestination={() => { const destination = systemForPlanet(view.systems, selectedShip.targetId); if (destination) { setSelected(destination.id); setSelectedPlanet(selectedShip.targetId); setMap('system'); setSelectedShipId(undefined); } }}/>}
    {map === 'galaxy' && !selectedShip && <aside className="target-console" aria-label="选中目标">
-    <small>观测目标 / {levelNames[intel.level]}</small>
+    <small><span className="target-indicator" />观测目标 / {levelNames[intel.level]}</small>
     <h2>{system.name}<span>{system.distance.toFixed(2)} <small>光年</small></span></h2>
     <p>{system.distance > 0 ? '你看到的是 ' + Math.max(0, view.time - intel.observedAt).toFixed(1) + ' 年前的这里' : '太阳系 · 文明的出发地'}</p>
     <div className="signal-track"><span>情报发生 {year(intel.observedAt)}</span><span>接收 {year(intel.receivedAt)}</span></div>
     <div className="target-actions"><button onClick={() => setMap('system')}>靠近恒星系 ↗</button><button onClick={() => openPanel(world ? 'planning' : 'transport')}>{world ? '经营世界' : intel.survey ? '准备远征' : '派遣探测器'}</button><button onClick={() => openPanel('overview')}>情报</button></div>
    </aside>}
    {map === 'galaxy' && !panelOpen && <aside className="dispatch-console" aria-label="抵达报告">
-    <small>来自群星的消息</small><div className="map-legend"><span>◇ 舰船 · 预计位置</span><span>○ 金色信号 · 命令去程</span></div>
+    <small><span className="status-light" />深空通信 / INCOMING</small><div className="map-legend"><span>◇ 舰船 · 预计位置</span><span>○ 金色信号 · 命令去程</span></div>
     {view.messages.at(-1) && <button onClick={() => openPanel('history')}><span>↙ 最新抵达 · {year(view.messages.at(-1)!.receivedAt)}</span><strong>{view.messages.at(-1)!.title}</strong><small>打开报告 →</small></button>}
     <button className="fleet-link" onClick={() => openPanel('transport')}>◇ {view.ships.filter(s => s.status === 'outbound' || s.status === 'building').length} 项航行计划 · 查看舰队 →</button>
    </aside>}
    <div className="map-bottom"><button disabled={view.systems.length >= 100 || view.credits < 2000} onClick={() => act({ type: 'catalog' })}>扩展天文编目 · 2,000 Cr</button><span>{map === 'system' ? '轨道与设施采用战略示意' : '拖动旋转 · 滚轮缩放'}</span></div>
-  </section><section id="command-panel" aria-label={tabs[tab]} hidden={!panelOpen} className="command-column"><div className="department-heading"><span>中央行政 / {tabs[tab]}</span><button aria-label="关闭管理面板" onClick={() => setPanelOpen(false)}>收起 ×</button></div><div className="scroll-pane">
+  </section><section id="command-panel" aria-label={tabs[tab]} hidden={!panelOpen} className="command-column"><div className="department-heading"><span>舰桥终端 / {tabs[tab]}</span><button aria-label="关闭舰桥终端" onClick={() => setPanelOpen(false)}>收起 ×</button></div><div className="scroll-pane">
    <div className="pane-heading"><small>{levelNames[intel.level]} · {system.distance.toFixed(2)} 光年</small><h2>{planet.name} <small>· {system.name}</small></h2><p>情报发生 {year(intel.observedAt)} → 接收 {year(intel.receivedAt)} · 年龄 {(view.time - intel.observedAt).toFixed(1)} 年</p></div>
    {tab === 'overview' && <><section className="card"><h3>来自过去的情报</h3><div className="metrics"><Metric label="宜居度" value={intel.survey ? `${(system.habitability * 100).toFixed(0)}%` : '待近距探测'}/><Metric label="资源潜力" value={intel.survey ? `${(system.resources * 100).toFixed(0)}%` : '未知'}/><Metric label="环境风险" value={intel.survey ? `${(system.risk * 100).toFixed(0)}%` : '未知'}/></div><p>不确定性来自光速延迟、轨道覆盖与人口统计。航迹是依据已知计划推算，远方结果须等待报告。</p></section>{estimate && world && <section className="card"><h3>确认与估计</h3><Metric label="最后确认人口" value={number(world.population)}/><Metric label="估计当前人口区间" value={`${number(estimate.lower)} – ${number(estimate.upper)}`}/><p>中心估计 {number(estimate.population)} · ±{(estimate.error * 100).toFixed(0)}%。其他指标保留在确认时间，未伪装为实时值。</p><div className="metrics"><Metric label="支持率" value={`${world.support.toFixed(0)}%`}/><Metric label="生态" value={`${world.ecology.toFixed(0)}%`}/><Metric label="工业" value={world.industry.toFixed(0)}/></div></section>}<LaunchPanel view={view} targetId={targetId} act={act}/><section className="card"><h3>经营提示</h3><ol><li>先探测，等待航行与返回光程。</li><li>在母星规划产业、科研和社会政策。</li><li>依据勘测情报批准拓荒，并选择地方授权。</li><li>收到前哨报告后调整政策或安排物资运输。</li></ol><p>月档适合经营观察；年档和更高速度适合长程等待。重要报告会自动暂停。</p></section></>}
    {tab === 'economy' && (world ? <><section className="card"><h3>当地实体库存</h3><div className="metrics">{Object.entries(RESOURCES).map(([k, name]) => <Metric key={k} label={name} value={number(world.stock[k as keyof typeof RESOURCES])}/>)}</div><p>单位为标准资源批次。物资位于此世界，不能通过中央余额瞬间调拨。</p><details><summary>供给与社会变化的主要原因</summary>{world.causes.length?world.causes.map((cause,i)=><p key={i}>{cause}</p>):<p>首个年度结算后显示生产与消费解释。</p>}</details></section><section className="card"><h3>地方财政</h3><div className="metrics"><Metric label="余额" value={`${number(world.finance.balance)} Cr`}/><Metric label="价格指数" value={world.finance.price.toFixed(2)}/><Metric label="实际购买力" value={number(world.finance.balance / world.finance.price)}/><Metric label="年税收" value={number(world.finance.revenue)}/><Metric label="年支出" value={number(world.finance.expenses)}/><Metric label="债务 / 借款上限" value={`${number(world.finance.debt)} / ${number(world.finance.limit)}`}/><Metric label="年利息" value={number(world.finance.interest)}/><Metric label="预算承诺" value={number(world.finance.commitments)}/></div></section><DirectivePanel key={`budget-${targetId}`} view={view} targetId={targetId} kind="budget" act={act}/></> : <Empty />)}
@@ -66,8 +89,13 @@ export function App() {
    {tab === 'transport' && <><LaunchPanel view={view} targetId={targetId} act={act}/>{world && targetId !== HOME && <section className="card"><h3>战略补给航线</h3><p>每十年按已收到的库存报告判断补给需求，自动建造货船；航线不代表即时供给。</p><button onClick={() => act({ type: 'route', targetId, enabled: !view.routes.includes(targetId) })}>{view.routes.includes(targetId) ? '停止批准新的普通货运' : '启用民生优先补给航线'}</button></section>}{world && targetId !== HOME && !world.independent && <><DirectivePanel key={'evacuate-' + targetId} view={view} targetId={targetId} kind="evacuate" act={act}/><DirectivePanel key={'charter-' + targetId} view={view} targetId={targetId} kind="charter" act={act}/></>}<Fleet view={view} onSelect={id => { setSelectedShipId(id); setMap("galaxy"); setPanelOpen(false); }}/></>}
    {tab === 'contact' && <>{intel.survey?.anomaly ? <><section className="card"><h3>{system.anomaly === 'civilization' ? '原生智慧文明' : '文明遗迹'}</h3><p>观测与接触结果受通信延迟限制。技术交流可改变对方的发展，资源竞争可能损害信任并引起国内反对。</p>{world && <div className="metrics"><Metric label="确认信任" value={world.alienTrust.toFixed(0)}/><Metric label="发展指数" value={world.alienDevelopment.toFixed(0)}/><Metric label="当前接触方式" value={world.contact}/></div>}</section><DirectivePanel key={`contact-${targetId}`} view={view} targetId={targetId} kind="contact" act={act}/></> : <section className="card"><h3>尚无已确认智慧活动</h3><p>探测器的近距扫描可能发现文明或遗迹。天文观测不会预先暴露它们。</p></section>}</>}
    {tab === 'orders' && <><section className="card"><h3>命令传播规则</h3><p>旧命令不能撤回。更正命令按发出顺序传播；地方执行后，中央仍须等待返回光程才能确认结果。</p></section>{[...view.orders].reverse().map(o => <article className="card" key={o.id}><div className="row"><b>{o.kind} → {planetById(view.systems,o.targetId)?.name}</b><span className="badge">{{ transmitting: '等待报告', deferred: '已知推迟', executed: '确认执行', adjusted: '确认调整', rejected: '确认拒绝' }[o.status]}</span></div><p>{o.result}</p><small>发出 {year(o.issuedAt)} · 预计抵达 {year(o.arrivesAt)} · 预算 {o.budget} Cr</small><details><summary>完整授权</summary><p>来源 {o.sourceId}；优先级 {o.priority}；期限 {year(o.deadline)}；风险容忍 {(o.risk * 100).toFixed(0)}%；{o.authorization}；完成后 {o.after}</p></details></article>)}</>}
-   {tab === 'history' && <><section className="card"><h3>可解释的国家历史</h3><p>只显示已经抵达中央的报告。重要结果列出主要原因与下一步行动。</p><button onClick={replay}>校验本局确定性回放</button></section>{world && <HistoryChart world={world}/>}<div className="feed">{[...view.messages].reverse().slice(0, historyLimit).map(m => <article className={`card ${m.tone}`} key={m.id}><small>发生 {year(m.occurredAt)} → 得知 {year(m.receivedAt)}</small><h3>{m.title}</h3><p>{m.body}</p><details><summary>原因与可采取行动</summary><ul>{m.cause.map((c, i) => <li key={i}>{c}</li>)}</ul><p>{m.action}</p></details></article>)}</div>{view.messages.length>historyLimit&&<button onClick={()=>setHistoryLimit(n=>n+120)}>读取更早的历史</button>}</>}
-  </div></section></main><footer className="timeline"><div role="status" className={fatal ? 'error' : ''}>{notice}<small>模拟 {metrics.toFixed(1)} ms / 次 · 本地存档每 30 秒更新</small></div><div className="speed"><span className="time-state">{speed === 0 ? 'Ⅱ 已暂停' : '▶ 推进中'}<small>年 / 秒</small></span>{SPEEDS.map(s => <button disabled={view.failed || fatal} key={s.label} className={speed === s.value ? 'active' : ''} onClick={() => setSpeed(s.value)}>{s.label}</button>)}</div></footer>
+   {tab === 'history' && <><section className="card"><h3>可解释的国家历史</h3><p>只显示已经抵达中央的报告。重要结果列出主要原因与下一步行动。</p></section>{world && <HistoryChart world={world}/>}<div className="feed">{[...view.messages].reverse().slice(0, historyLimit).map(m => <article className={`card ${m.tone}`} key={m.id}><small>发生 {year(m.occurredAt)} → 得知 {year(m.receivedAt)}</small><h3>{m.title}</h3><p>{m.body}</p><details><summary>原因与可采取行动</summary><ul>{m.cause.map((c, i) => <li key={i}>{c}</li>)}</ul><p>{m.action}</p></details></article>)}</div>{view.messages.length>historyLimit&&<button onClick={()=>setHistoryLimit(n=>n+120)}>读取更早的历史</button>}</>}
+  </div></section></main>
+  <footer className="bridge-console">
+   <div className="bridge-readouts"><EmpireClock time={view.time} fraction={fraction} pending={pending}/><div className="header-stats"><span><small>中央财政</small><b>{number(view.credits)} <em>Cr</em></b></span><span><small>人口估计</small><b>{number(knownPopulation)}</b></span><span><small>已确认世界</small><b>{String(knownWorlds.length).padStart(2, '0')}</b></span></div></div>
+   <div className="speed"><span className="time-state"><i className={speed === 0 ? 'status-light paused' : 'status-light'}/>{speed === 0 ? '时间暂停' : '时间推进'}<small>推进尺度 · 年 / 秒</small></span><div>{SPEEDS.map(s => <button disabled={view.failed || fatal} key={s.label} aria-pressed={speed === s.value} className={speed === s.value ? 'active' : ''} onClick={() => setSpeed(s.value)}>{s.label}</button>)}</div></div>
+   <div className="status-strip"><div role="status" className={fatal ? 'error' : ''}>{notice}</div><span>自动记录 · 30 秒<span className="status-light" /></span></div>
+  </footer>
  </div>;
 }
 function Metric({ label, value }: {
