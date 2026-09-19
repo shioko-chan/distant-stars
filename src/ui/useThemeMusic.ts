@@ -1,11 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import { MUSIC_TRACKS } from '../content/music';
-import type { MusicRenderRequest, MusicRenderResult } from '../workers/music.worker';
 
 export interface ThemeMusicControl {
     enabled: boolean;
     playing: boolean;
-    rendering: boolean;
+    loading: boolean;
     error: boolean;
     trackIndex: number;
     toggle: () => void;
@@ -13,12 +12,18 @@ export interface ThemeMusicControl {
     next: () => void;
 }
 
-/** Keep one soundtrack session mounted in App across the deck and command station. */
-export function useThemeMusic(): ThemeMusicControl {
+/** One soundtrack session across the deck and command station. */
+export function useThemeMusic(volume = .5): ThemeMusicControl {
+    const activeAudio = useRef<HTMLAudioElement | null>(null);
+    const volumeRef = useRef(volume);
+    useEffect(() => {
+        volumeRef.current = volume;
+        if (activeAudio.current) activeAudio.current.volume = volume;
+    }, [volume]);
     const controls = useRef<{ toggle: () => void; select: (index: number) => void; next: () => void } | null>(null);
     const [enabled, setEnabled] = useState(true);
     const [playing, setPlaying] = useState(false);
-    const [rendering, setRendering] = useState(false);
+    const [loading, setLoading] = useState(false);
     const [error, setError] = useState(false);
     const [trackIndex, setTrackIndex] = useState(0);
 
@@ -26,97 +31,58 @@ export function useThemeMusic(): ThemeMusicControl {
         let disposed = false;
         let wanted = true;
         let index = 0;
-        let context: AudioContext | null = null;
-        let renderWorker: Worker | null = null;
-        let active: { source: AudioBufferSourceNode; volume: GainNode } | null = null;
+        let audio: HTMLAudioElement | null = null;
+        let attempt = 0;
 
-        const cancelRender = () => {
-            renderWorker?.terminate();
-            renderWorker = null;
-            if (!disposed) setRendering(false);
-        };
         const stop = () => {
-            cancelRender();
-            if (!active || !context) return;
-            const { source, volume } = active;
-            active = null;
-            // Manual changes must not fire the playlist's natural-end handler.
-            source.onended = () => { source.disconnect(); volume.disconnect(); };
-            if (context.state === 'running') {
-                volume.gain.setTargetAtTime(0, context.currentTime, .015);
-                source.stop(context.currentTime + .08);
-            } else {
-                source.stop();
-                source.disconnect();
-                volume.disconnect();
-            }
-        };
-        const fail = () => {
-            stop();
-            if (!disposed) setError(true);
+            attempt++;
+            if (!audio) return;
+            audio.onplaying = audio.onpause = audio.onwaiting = audio.oncanplay = audio.onerror = audio.onended = null;
+            audio.pause();
+            audio.removeAttribute('src');
+            audio.load();
+            audio = null;
+            activeAudio.current = null;
         };
         const start = () => {
             if (!wanted || disposed) return;
-            try {
-                if (!context) {
-                    context = new AudioContext();
-                    const current = context;
-                    current.onstatechange = () => {
-                        if (!disposed) setPlaying(current.state === 'running');
-                    };
-                }
-                // Request resume in the gesture itself, before background synthesis finishes.
-                void context.resume().catch(() => { if (!disposed && wanted) setError(true); });
-                if (active || renderWorker) return;
-                setError(false);
-                setRendering(true);
-                const worker = new Worker(new URL('../workers/music.worker.ts', import.meta.url), { type: 'module' });
-                renderWorker = worker;
-                worker.onerror = event => {
-                    event.preventDefault();
-                    if (!disposed && renderWorker === worker) fail();
+            if (!audio) {
+                const current = new Audio(`${import.meta.env.BASE_URL}audio/${MUSIC_TRACKS[index].id}.mp3`);
+                audio = current;
+                activeAudio.current = current;
+                current.volume = volumeRef.current;
+                current.preload = 'auto';
+                const isCurrent = () => !disposed && audio === current;
+                current.onplaying = () => { if (isCurrent()) { setPlaying(true); setLoading(false); setError(false); } };
+                current.onpause = () => { if (isCurrent()) setPlaying(false); };
+                current.onwaiting = () => { if (isCurrent() && wanted) { setPlaying(false); setLoading(true); } };
+                current.oncanplay = () => { if (isCurrent()) setLoading(false); };
+                current.onerror = () => {
+                    if (isCurrent()) { setError(true); setPlaying(false); setLoading(false); }
                 };
-                worker.onmessage = (event: MessageEvent<MusicRenderResult>) => {
-                    // A rapid selection can supersede a response already queued for delivery.
-                    if (disposed || renderWorker !== worker) return;
-                    cancelRender();
-                    if (!wanted || !context) return;
-                    if (!event.data.ok) { fail(); return; }
-                    try {
-                        const left = new Float32Array(event.data.left), right = new Float32Array(event.data.right);
-                        const buffer = context.createBuffer(2, left.length, context.sampleRate);
-                        buffer.copyToChannel(left, 0);
-                        buffer.copyToChannel(right, 1);
-                        const source = context.createBufferSource();
-                        const volume = context.createGain();
-                        volume.gain.value = .45;
-                        source.buffer = buffer;
-                        source.connect(volume).connect(context.destination);
-                        source.onended = () => {
-                            source.disconnect();
-                            volume.disconnect();
-                            if (disposed || active?.source !== source) return;
-                            active = null;
-                            index = (index + 1) % MUSIC_TRACKS.length;
-                            setTrackIndex(index);
-                            start();
-                        };
-                        source.start();
-                        active = { source, volume };
-                    } catch {
-                        fail();
-                    }
+                current.onended = () => {
+                    if (!isCurrent() || !wanted) return;
+                    select((index + 1) % MUSIC_TRACKS.length);
                 };
-                const request: MusicRenderRequest = { trackIndex: index, sampleRate: context.sampleRate };
-                worker.postMessage(request);
-            } catch {
-                fail();
             }
+            const current = audio, request = ++attempt;
+            setError(false);
+            setLoading(current.readyState < 3);
+            // Call directly in the gesture: browsers can reject delayed autoplay.
+            void current.play().catch((reason: unknown) => {
+                if (disposed || audio !== current || request !== attempt || !wanted) return;
+                setPlaying(false);
+                setLoading(false);
+                if (!(reason instanceof DOMException && (reason.name === 'NotAllowedError' || reason.name === 'AbortError'))) setError(true);
+            });
         };
         const select = (nextIndex: number) => {
+            if (!Number.isInteger(nextIndex) || nextIndex < 0 || nextIndex >= MUSIC_TRACKS.length) return;
             stop();
             index = nextIndex;
             setTrackIndex(index);
+            setPlaying(false);
+            setLoading(false);
             setError(false);
             start();
         };
@@ -127,17 +93,21 @@ export function useThemeMusic(): ThemeMusicControl {
                 wanted = !wanted;
                 setEnabled(wanted);
                 setError(false);
-                if (wanted) start();
-                else {
-                    cancelRender();
-                    if (context) void context.suspend().catch(() => { if (!disposed) setError(true); });
+                if (wanted) {
+                    if (audio?.error) stop();
+                    start();
+                } else {
+                    attempt++;
+                    audio?.pause();
+                    setPlaying(false);
+                    setLoading(false);
                 }
             },
         };
         start();
         const interact = (event: Event) => {
             if (event.target instanceof Element && event.target.closest('[data-music-control]')) return;
-            if (context?.state !== 'running') start();
+            if (audio?.paused) start();
         };
         window.addEventListener('pointerdown', interact);
         window.addEventListener('keydown', interact);
@@ -147,15 +117,11 @@ export function useThemeMusic(): ThemeMusicControl {
             window.removeEventListener('pointerdown', interact);
             window.removeEventListener('keydown', interact);
             stop();
-            if (context) {
-                context.onstatechange = null;
-                void context.close().catch(() => {});
-            }
         };
     }, []);
 
     return {
-        enabled, playing, rendering, error, trackIndex,
+        enabled, playing, loading, error, trackIndex,
         toggle: () => controls.current?.toggle(),
         select: nextIndex => controls.current?.select(nextIndex),
         next: () => controls.current?.next(),

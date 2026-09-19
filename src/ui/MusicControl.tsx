@@ -2,11 +2,11 @@ import { MUSIC_TRACKS } from '../content/music';
 import type { ThemeMusicControl } from './useThemeMusic';
 
 export function MusicControl({ control }: { control: ThemeMusicControl }) {
-    const { enabled, playing, rendering, error, trackIndex, toggle, select, next } = control;
+    const { enabled, playing, loading, error, trackIndex, toggle, select, next } = control;
     const track = MUSIC_TRACKS[trackIndex];
     const status = error ? '音频暂不可用，请重新开启音乐'
-        : !enabled ? '音乐已关闭' : rendering ? '正在准备曲目' : playing ? '正在播放 · 顺序循环' : '音乐已开启，首次交互后播放';
-    return <div className="music-control" data-music-control role="group" aria-label="主题音乐" aria-busy={rendering}>
+        : !enabled ? '音乐已关闭' : loading ? '正在准备曲目' : playing ? '正在播放 · 顺序循环' : '音乐已开启，首次交互后播放';
+    return <div className="music-control" data-music-control role="group" aria-label="主题音乐" aria-busy={loading}>
         <button type="button" aria-pressed={enabled} onClick={toggle}
             title={status} aria-label={enabled ? '关闭主题音乐' : '开启主题音乐'}>
             {error ? '♪ 音频不可用' : enabled ? '♫ 音乐开' : '♪ 音乐关'}

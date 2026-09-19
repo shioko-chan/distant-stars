@@ -1,0 +1,1075 @@
+{
+  "sampleRate": 48000,
+  "source": "https://s3.amazonaws.com/VersilianStudios/256OrchestralSamples.rar",
+  "samples": {
+    "CelloEns_susvib_C3_v1_1.wav": "a614ee7ca821b44660236e47b89620cf914ec6ad27a99bc0d9764f47dbe512e1",
+    "CelloEns_susvib_F2_v1_1.wav": "162054eab4ba118924f8f8986cf1b17ccfd65211d1945743ffbae30b4953f901",
+    "SGHorn_sus_F3_v2_rr1_Sum.wav": "19b0903d3c95f0db4d2637901379c7d288224deeeaffb49f59941b5d5be65180",
+    "SGHorn_sus_A#3_v2_rr1_Sum.wav": "f8b7a609e0dc37c33b9d2df4e0f0a5665338bae4bb0c4ca76d8441d453238b3c",
+    "CelloEns_susvib_B1_v1_1.wav": "4f95c087c4b8d87ee591e9d39c3c9caf085c6f1b9125eac3ca9e4e637da628ee",
+    "KSHarp_B3_mf1.wav": "f6f71be8c640822ef48a448b245585659acdfcc7ed5774e10f37be2fc02fcab4",
+    "KSHarp_D4_mf1.wav": "ebfde8aab4411019e37e3426f4dd88d6a52a38c2d0261d7f10ec63d8ff584dc7",
+    "KSHarp_A4_mf1.wav": "3665f3975cad4a33f46784aa4f896f4b4319ba2b7831e892d975bc38c9f09f23",
+    "KSHarp_C5_mf1.wav": "7c8b862f6fd3f1442ed87537af976d84bda8c05a5b4900e8907d570b5202a517",
+    "KSHarp_B5_mf1.wav": "f2757b674c6b7301bed52e17a1ae3e3d34d628b3f7edc5773ebb25798d2541f7",
+    "CelloEns_susvib_D2_v1_1.wav": "e8640dec9febc6e39fcf06b19d2c95a85d5ff8c38f13c9879e69f551eaf38ab8",
+    "KSHarp_C3_mf1.wav": "e5d232771704e140959819de8cf2a3e0ba49d021ca77354c42664ce4fce6d9f3",
+    "SGHorn_sus_D3_v2_rr3_Sum.wav": "6c3c7272f2c5226de9f1040f70d456d3b1a7c183e7c5246efbfcdae52275448a",
+    "Vibes_soft_A4_v2_rr3_Main.wav": "a92a2cae03ded20f7a530da80a339e380e03ac97653224f106d1d6f4430d2c08",
+    "Vibes_soft_B3_v2_rr2_Main.wav": "f2e4c751a4d4ec3033047779face0775d2670858a09d71eaf8510e97905e8cd5",
+    "Vibes_soft_D4_v2_rr2_Main.wav": "cbb0339e41566edc1bc213948ae449da24210062a966f66da36a71f2a38b3ad3",
+    "Vibes_soft_E3_v2_rr2_Main.wav": "0329f475d40a55575b521a308d68366abc16330553b653007bb664c9fc96c743",
+    "Vibes_soft_C5_v2_rr2_Main.wav": "7184d55b9006b4e4992243f343e2d6faf74051b68ee3386f62e9a465e43eea45",
+    "VlnEns_susVib_G2_v1.wav": "feb96c5064fbef43087c495d61a9cab9f70ff1be5b22905147c1f86d5f89547c",
+    "CelloEns_susvib_E1_v1_1.wav": "de31a61b02d4e1d5a79b8bc432b0f35fe2e434290ad34402cc0f2dd7dc278cde",
+    "VlnEns_susVib_B2_v1.wav": "1a873970a86da78ed8c9aa068303958496c34eee6fa94fcab39d499dbdfb7826",
+    "VlnEns_susVib_D3_v1.wav": "583e660bc5daa4e094aef5fc014fbb92751040be8741ed7a16847306a1fe0a99",
+    "LDFlute_susvib_A3_v1_1.wav": "4ea04a7a2ba152752e1b475798619a62f2546f54972caa6ddcd88f29a2046c81",
+    "LDFlute_susvib_C4_v1_1.wav": "e88a0ff35e6b8c29fd88bc778a4c817d955b2c3a2934def97a7d093b72e2ae97",
+    "LDFlute_susvib_E4_v1_2.wav": "84c1ecc4e989f25ca72d50dd2f9a5a7d6dfee5084468bfc0e83a33950ec0ce4d",
+    "VlnEns_susVib_A3_v1.wav": "72817a53dfd2eb61eca94658c14e1cab6017629ca2f27bab8e394c6675bfaad7",
+    "VlnEns_susVib_A2_v1.wav": "5b3ff9f991642a6dc2fdad56a7d94f581077d2c4082cc1ed89156737716ff22c",
+    "CelloEns_susvib_G1_v1_1.wav": "9e5d24e8e28d6c7f650f9bb2b33d43c13e341a8bd33124c64e23881378b181ba",
+    "CelloEns_susvib_C1_v1_1.wav": "abdcea431f384e135c469b0f3e4ac2a437f282f521dc5bcbe22abc221536e8de",
+    "LDFlute_susvib_G3_v1_1.wav": "5ea88acb1e8de6041713ee9f979146c593d6dbd2f9121a0b48402bacf6bc99f2",
+    "VlnEns_susVib_B4_v1.wav": "ec4cea41ac77f251bf5f4158fe9cbeeae13755e3785106e505808de18fdddc0d",
+    "LDFlute_susvib_G4_v1_1.wav": "a7d04d88262f8f1491237f6d4095aca3d401b416a3c377f18c327062b25df9f2",
+    "LDFlute_susvib_A4_v1_1.wav": "cf3c1c30943b8b8ef8b5b9ced89430c014987a037204098d002f86e424391ba9",
+    "VlnEns_susVib_C4_v1.wav": "c07edd5b2119fa1da2207aba996961b50dd616f69bbcf2300ab271bc6c16239f",
+    "VlnEns_susVib_D5_v1.wav": "f8d870457826c94270b9c3ead8e8ec02cb7e6c4a3481cded055641b7fab7df62",
+    "LDFlute_susvib_C5_v1_1.wav": "ecb78c59069866ea7c3327594851827cd2f50c5d411aad422269a88e53614fbe",
+    "VlnEns_susVib_E4_v1.wav": "787fb4bcfb47d5c88ee1573c8db15f32d345386301be4a8eea6a825847413ae2",
+    "SGHorn_sus_A#2_v2_rr1_Sum.wav": "be2b0b66122935c518dfd4926bb3afdee568ac765a04ad1a6c0708705efe230e",
+    "CelloEns_pizzT_C1_v1_3.wav": "6b324ca9b24dca4d400b76b063873055ad0c6d6eeed772a756d431fb8d24ee62",
+    "CelloEns_pizzT_A2_v1_3.wav": "e631614bddd8a6712ec6cc7caf41fa82a753a9c134f8bf4cd2f583e62b65f81b",
+    "CelloEns_pizzT_B1_v1_3.wav": "a7c74144d9a2ebdd187a8098631ea74697f52982f7b2420a92d4ba2c7787d231",
+    "Marimba_hit_Outrigger_C4_med_01.wav": "3e88c006eef05e8f7891f8f6027042006199a4ec3b53a0ad7308f9782a52d4df",
+    "CelloEns_pizzT_G1_v1_4.wav": "b5585fde75d843ffc0bf79a88d74d28e347b681ba832121b8f15d448db0318e6",
+    "CelloEns_pizzT_E1_v1_2.wav": "49103857fc6279932a03af6b09a2432be3b7f120de7a66307ad1cbd3266fa72d",
+    "CelloEns_pizzT_F2_v1_1.wav": "ff44e135372083b7c7989fc741c2ebc97bf91f11c5ba7d3c99bcf2c967f6c4e8",
+    "Marimba_hit_Outrigger_B4_med_02.wav": "19eb6cfa117d9f88baae1b17a4bfc61453159091a45525ff6edafd1196040bd3",
+    "Marimba_hit_Outrigger_F3_med_01.wav": "a493b31ac2e588ed961c522a66b790acc584b59a08918bd7193d6e6fa8df4756",
+    "KSHarp_A6_mf1.wav": "4605355d22fae6f58190bf0d033d2ebdd745d63e2e43204d6f41ad27e4f09af0",
+    "Marimba_hit_Outrigger_B2_med_02.wav": "59dab89b9fbcbd305ef372e60acee7e0592532e42a774bbe8a6741027e8b6a3a",
+    "Marimba_hit_Outrigger_G2_med_01.wav": "e9c2d33b9f50f0689b349dc9aee20a5b621961cf8294abb5ac4ba5a4674bd7c2",
+    "Marimba_hit_Outrigger_C2_med_01.wav": "fd9c329513ed9d54c36174bbe45add471a80ffad411c686428bbf0bbc0121438"
+  },
+  "mappings": [
+    {
+      "instrument": "cello",
+      "midi": 57,
+      "sample": "CelloEns_susvib_C3_v1_1.wav",
+      "rootMidi": 60
+    },
+    {
+      "instrument": "cello",
+      "midi": 55,
+      "sample": "CelloEns_susvib_F2_v1_1.wav",
+      "rootMidi": 53
+    },
+    {
+      "instrument": "cello",
+      "midi": 52,
+      "sample": "CelloEns_susvib_F2_v1_1.wav",
+      "rootMidi": 53
+    },
+    {
+      "instrument": "cello",
+      "midi": 53,
+      "sample": "CelloEns_susvib_F2_v1_1.wav",
+      "rootMidi": 53
+    },
+    {
+      "instrument": "cello",
+      "midi": 60,
+      "sample": "CelloEns_susvib_C3_v1_1.wav",
+      "rootMidi": 60
+    },
+    {
+      "instrument": "horn",
+      "midi": 64,
+      "sample": "SGHorn_sus_F3_v2_rr1_Sum.wav",
+      "rootMidi": 65
+    },
+    {
+      "instrument": "cello",
+      "midi": 59,
+      "sample": "CelloEns_susvib_C3_v1_1.wav",
+      "rootMidi": 60
+    },
+    {
+      "instrument": "horn",
+      "midi": 67,
+      "sample": "SGHorn_sus_F3_v2_rr1_Sum.wav",
+      "rootMidi": 65
+    },
+    {
+      "instrument": "cello",
+      "midi": 62,
+      "sample": "CelloEns_susvib_C3_v1_1.wav",
+      "rootMidi": 60
+    },
+    {
+      "instrument": "cello",
+      "midi": 64,
+      "sample": "CelloEns_susvib_C3_v1_1.wav",
+      "rootMidi": 60
+    },
+    {
+      "instrument": "horn",
+      "midi": 71,
+      "sample": "SGHorn_sus_A#3_v2_rr1_Sum.wav",
+      "rootMidi": 70
+    },
+    {
+      "instrument": "cello",
+      "midi": 45,
+      "sample": "CelloEns_susvib_B1_v1_1.wav",
+      "rootMidi": 47
+    },
+    {
+      "instrument": "harp",
+      "midi": 60,
+      "sample": "KSHarp_B3_mf1.wav",
+      "rootMidi": 59
+    },
+    {
+      "instrument": "harp",
+      "midi": 64,
+      "sample": "KSHarp_D4_mf1.wav",
+      "rootMidi": 62
+    },
+    {
+      "instrument": "harp",
+      "midi": 67,
+      "sample": "KSHarp_A4_mf1.wav",
+      "rootMidi": 69
+    },
+    {
+      "instrument": "harp",
+      "midi": 72,
+      "sample": "KSHarp_C5_mf1.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "harp",
+      "midi": 76,
+      "sample": "KSHarp_C5_mf1.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "harp",
+      "midi": 65,
+      "sample": "KSHarp_D4_mf1.wav",
+      "rootMidi": 62
+    },
+    {
+      "instrument": "harp",
+      "midi": 69,
+      "sample": "KSHarp_A4_mf1.wav",
+      "rootMidi": 69
+    },
+    {
+      "instrument": "harp",
+      "midi": 79,
+      "sample": "KSHarp_B5_mf1.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "harp",
+      "midi": 74,
+      "sample": "KSHarp_C5_mf1.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "harp",
+      "midi": 62,
+      "sample": "KSHarp_D4_mf1.wav",
+      "rootMidi": 62
+    },
+    {
+      "instrument": "harp",
+      "midi": 77,
+      "sample": "KSHarp_C5_mf1.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "harp",
+      "midi": 59,
+      "sample": "KSHarp_B3_mf1.wav",
+      "rootMidi": 59
+    },
+    {
+      "instrument": "harp",
+      "midi": 71,
+      "sample": "KSHarp_C5_mf1.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "harp",
+      "midi": 81,
+      "sample": "KSHarp_B5_mf1.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "cello",
+      "midi": 65,
+      "sample": "CelloEns_susvib_C3_v1_1.wav",
+      "rootMidi": 60
+    },
+    {
+      "instrument": "cello",
+      "midi": 48,
+      "sample": "CelloEns_susvib_B1_v1_1.wav",
+      "rootMidi": 47
+    },
+    {
+      "instrument": "cello",
+      "midi": 50,
+      "sample": "CelloEns_susvib_D2_v1_1.wav",
+      "rootMidi": 50
+    },
+    {
+      "instrument": "cello",
+      "midi": 47,
+      "sample": "CelloEns_susvib_B1_v1_1.wav",
+      "rootMidi": 47
+    },
+    {
+      "instrument": "harp",
+      "midi": 68,
+      "sample": "KSHarp_A4_mf1.wav",
+      "rootMidi": 69
+    },
+    {
+      "instrument": "harp",
+      "midi": 48,
+      "sample": "KSHarp_C3_mf1.wav",
+      "rootMidi": 48
+    },
+    {
+      "instrument": "horn",
+      "midi": 62,
+      "sample": "SGHorn_sus_D3_v2_rr3_Sum.wav",
+      "rootMidi": 62
+    },
+    {
+      "instrument": "horn",
+      "midi": 65,
+      "sample": "SGHorn_sus_F3_v2_rr1_Sum.wav",
+      "rootMidi": 65
+    },
+    {
+      "instrument": "horn",
+      "midi": 69,
+      "sample": "SGHorn_sus_A#3_v2_rr1_Sum.wav",
+      "rootMidi": 70
+    },
+    {
+      "instrument": "bell",
+      "midi": 81,
+      "sample": "Vibes_soft_A4_v2_rr3_Main.wav",
+      "rootMidi": 81
+    },
+    {
+      "instrument": "bell",
+      "midi": 69,
+      "sample": "Vibes_soft_B3_v2_rr2_Main.wav",
+      "rootMidi": 71
+    },
+    {
+      "instrument": "bell",
+      "midi": 74,
+      "sample": "Vibes_soft_D4_v2_rr2_Main.wav",
+      "rootMidi": 74
+    },
+    {
+      "instrument": "bell",
+      "midi": 77,
+      "sample": "Vibes_soft_D4_v2_rr2_Main.wav",
+      "rootMidi": 74
+    },
+    {
+      "instrument": "bell",
+      "midi": 78,
+      "sample": "Vibes_soft_A4_v2_rr3_Main.wav",
+      "rootMidi": 81
+    },
+    {
+      "instrument": "bell",
+      "midi": 71,
+      "sample": "Vibes_soft_B3_v2_rr2_Main.wav",
+      "rootMidi": 71
+    },
+    {
+      "instrument": "bell",
+      "midi": 76,
+      "sample": "Vibes_soft_D4_v2_rr2_Main.wav",
+      "rootMidi": 74
+    },
+    {
+      "instrument": "bell",
+      "midi": 66,
+      "sample": "Vibes_soft_E3_v2_rr2_Main.wav",
+      "rootMidi": 64
+    },
+    {
+      "instrument": "bell",
+      "midi": 86,
+      "sample": "Vibes_soft_C5_v2_rr2_Main.wav",
+      "rootMidi": 84
+    },
+    {
+      "instrument": "bell",
+      "midi": 83,
+      "sample": "Vibes_soft_C5_v2_rr2_Main.wav",
+      "rootMidi": 84
+    },
+    {
+      "instrument": "strings",
+      "midi": 53,
+      "sample": "VlnEns_susVib_G2_v1.wav",
+      "rootMidi": 55
+    },
+    {
+      "instrument": "cello",
+      "midi": 41,
+      "sample": "CelloEns_susvib_E1_v1_1.wav",
+      "rootMidi": 40
+    },
+    {
+      "instrument": "strings",
+      "midi": 60,
+      "sample": "VlnEns_susVib_B2_v1.wav",
+      "rootMidi": 59
+    },
+    {
+      "instrument": "strings",
+      "midi": 65,
+      "sample": "VlnEns_susVib_D3_v1.wav",
+      "rootMidi": 62
+    },
+    {
+      "instrument": "flute",
+      "midi": 69,
+      "sample": "LDFlute_susvib_A3_v1_1.wav",
+      "rootMidi": 69
+    },
+    {
+      "instrument": "flute",
+      "midi": 72,
+      "sample": "LDFlute_susvib_C4_v1_1.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "flute",
+      "midi": 76,
+      "sample": "LDFlute_susvib_E4_v1_2.wav",
+      "rootMidi": 76
+    },
+    {
+      "instrument": "strings",
+      "midi": 69,
+      "sample": "VlnEns_susVib_A3_v1.wav",
+      "rootMidi": 69
+    },
+    {
+      "instrument": "flute",
+      "midi": 74,
+      "sample": "LDFlute_susvib_C4_v1_1.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "strings",
+      "midi": 58,
+      "sample": "VlnEns_susVib_A2_v1.wav",
+      "rootMidi": 57
+    },
+    {
+      "instrument": "flute",
+      "midi": 77,
+      "sample": "LDFlute_susvib_E4_v1_2.wav",
+      "rootMidi": 76
+    },
+    {
+      "instrument": "cello",
+      "midi": 46,
+      "sample": "CelloEns_susvib_B1_v1_1.wav",
+      "rootMidi": 47
+    },
+    {
+      "instrument": "strings",
+      "midi": 62,
+      "sample": "VlnEns_susVib_D3_v1.wav",
+      "rootMidi": 62
+    },
+    {
+      "instrument": "strings",
+      "midi": 55,
+      "sample": "VlnEns_susVib_G2_v1.wav",
+      "rootMidi": 55
+    },
+    {
+      "instrument": "cello",
+      "midi": 43,
+      "sample": "CelloEns_susvib_G1_v1_1.wav",
+      "rootMidi": 43
+    },
+    {
+      "instrument": "strings",
+      "midi": 64,
+      "sample": "VlnEns_susVib_D3_v1.wav",
+      "rootMidi": 62
+    },
+    {
+      "instrument": "strings",
+      "midi": 57,
+      "sample": "VlnEns_susVib_A2_v1.wav",
+      "rootMidi": 57
+    },
+    {
+      "instrument": "strings",
+      "midi": 50,
+      "sample": "VlnEns_susVib_G2_v1.wav",
+      "rootMidi": 55
+    },
+    {
+      "instrument": "cello",
+      "midi": 38,
+      "sample": "CelloEns_susvib_C1_v1_1.wav",
+      "rootMidi": 36
+    },
+    {
+      "instrument": "flute",
+      "midi": 70,
+      "sample": "LDFlute_susvib_A3_v1_1.wav",
+      "rootMidi": 69
+    },
+    {
+      "instrument": "strings",
+      "midi": 48,
+      "sample": "VlnEns_susVib_G2_v1.wav",
+      "rootMidi": 55
+    },
+    {
+      "instrument": "flute",
+      "midi": 67,
+      "sample": "LDFlute_susvib_G3_v1_1.wav",
+      "rootMidi": 67
+    },
+    {
+      "instrument": "cello",
+      "midi": 36,
+      "sample": "CelloEns_susvib_C1_v1_1.wav",
+      "rootMidi": 36
+    },
+    {
+      "instrument": "strings",
+      "midi": 81,
+      "sample": "VlnEns_susVib_B4_v1.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "flute",
+      "midi": 79,
+      "sample": "LDFlute_susvib_G4_v1_1.wav",
+      "rootMidi": 79
+    },
+    {
+      "instrument": "flute",
+      "midi": 81,
+      "sample": "LDFlute_susvib_A4_v1_1.wav",
+      "rootMidi": 81
+    },
+    {
+      "instrument": "strings",
+      "midi": 84,
+      "sample": "VlnEns_susVib_B4_v1.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "strings",
+      "midi": 72,
+      "sample": "VlnEns_susVib_C4_v1.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "flute",
+      "midi": 82,
+      "sample": "LDFlute_susvib_A4_v1_1.wav",
+      "rootMidi": 81
+    },
+    {
+      "instrument": "strings",
+      "midi": 86,
+      "sample": "VlnEns_susVib_D5_v1.wav",
+      "rootMidi": 86
+    },
+    {
+      "instrument": "strings",
+      "midi": 74,
+      "sample": "VlnEns_susVib_C4_v1.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "flute",
+      "midi": 84,
+      "sample": "LDFlute_susvib_C5_v1_1.wav",
+      "rootMidi": 84
+    },
+    {
+      "instrument": "strings",
+      "midi": 88,
+      "sample": "VlnEns_susVib_D5_v1.wav",
+      "rootMidi": 86
+    },
+    {
+      "instrument": "strings",
+      "midi": 67,
+      "sample": "VlnEns_susVib_A3_v1.wav",
+      "rootMidi": 69
+    },
+    {
+      "instrument": "strings",
+      "midi": 76,
+      "sample": "VlnEns_susVib_E4_v1.wav",
+      "rootMidi": 76
+    },
+    {
+      "instrument": "flute",
+      "midi": 86,
+      "sample": "LDFlute_susvib_C5_v1_1.wav",
+      "rootMidi": 84
+    },
+    {
+      "instrument": "strings",
+      "midi": 89,
+      "sample": "VlnEns_susVib_D5_v1.wav",
+      "rootMidi": 86
+    },
+    {
+      "instrument": "strings",
+      "midi": 77,
+      "sample": "VlnEns_susVib_E4_v1.wav",
+      "rootMidi": 76
+    },
+    {
+      "instrument": "strings",
+      "midi": 82,
+      "sample": "VlnEns_susVib_B4_v1.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "strings",
+      "midi": 70,
+      "sample": "VlnEns_susVib_A3_v1.wav",
+      "rootMidi": 69
+    },
+    {
+      "instrument": "strings",
+      "midi": 79,
+      "sample": "VlnEns_susVib_E4_v1.wav",
+      "rootMidi": 76
+    },
+    {
+      "instrument": "harp",
+      "midi": 57,
+      "sample": "KSHarp_B3_mf1.wav",
+      "rootMidi": 59
+    },
+    {
+      "instrument": "harp",
+      "midi": 55,
+      "sample": "KSHarp_B3_mf1.wav",
+      "rootMidi": 59
+    },
+    {
+      "instrument": "harp",
+      "midi": 58,
+      "sample": "KSHarp_B3_mf1.wav",
+      "rootMidi": 59
+    },
+    {
+      "instrument": "harp",
+      "midi": 70,
+      "sample": "KSHarp_A4_mf1.wav",
+      "rootMidi": 69
+    },
+    {
+      "instrument": "horn",
+      "midi": 60,
+      "sample": "SGHorn_sus_A#2_v2_rr1_Sum.wav",
+      "rootMidi": 58
+    },
+    {
+      "instrument": "horn",
+      "midi": 66,
+      "sample": "SGHorn_sus_F3_v2_rr1_Sum.wav",
+      "rootMidi": 65
+    },
+    {
+      "instrument": "horn",
+      "midi": 55,
+      "sample": "SGHorn_sus_A#2_v2_rr1_Sum.wav",
+      "rootMidi": 58
+    },
+    {
+      "instrument": "cello",
+      "midi": 40,
+      "sample": "CelloEns_susvib_E1_v1_1.wav",
+      "rootMidi": 40
+    },
+    {
+      "instrument": "strings",
+      "midi": 66,
+      "sample": "VlnEns_susVib_A3_v1.wav",
+      "rootMidi": 69
+    },
+    {
+      "instrument": "flute",
+      "midi": 71,
+      "sample": "LDFlute_susvib_C4_v1_1.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "harp",
+      "midi": 84,
+      "sample": "KSHarp_B5_mf1.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "cello",
+      "midi": 54,
+      "sample": "CelloEns_susvib_F2_v1_1.wav",
+      "rootMidi": 53
+    },
+    {
+      "instrument": "horn",
+      "midi": 57,
+      "sample": "SGHorn_sus_A#2_v2_rr1_Sum.wav",
+      "rootMidi": 58
+    },
+    {
+      "instrument": "flute",
+      "midi": 66,
+      "sample": "LDFlute_susvib_G3_v1_1.wav",
+      "rootMidi": 67
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 36,
+      "sample": "CelloEns_pizzT_C1_v1_3.wav",
+      "rootMidi": 36
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 60,
+      "sample": "CelloEns_pizzT_A2_v1_3.wav",
+      "rootMidi": 57
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 48,
+      "sample": "CelloEns_pizzT_B1_v1_3.wav",
+      "rootMidi": 47
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 64,
+      "sample": "CelloEns_pizzT_A2_v1_3.wav",
+      "rootMidi": 57
+    },
+    {
+      "instrument": "marimba",
+      "midi": 76,
+      "sample": "Marimba_hit_Outrigger_C4_med_01.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "marimba",
+      "midi": 74,
+      "sample": "Marimba_hit_Outrigger_C4_med_01.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "marimba",
+      "midi": 72,
+      "sample": "Marimba_hit_Outrigger_C4_med_01.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "strings",
+      "midi": 71,
+      "sample": "VlnEns_susVib_C4_v1.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 47,
+      "sample": "CelloEns_pizzT_B1_v1_3.wav",
+      "rootMidi": 47
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 59,
+      "sample": "CelloEns_pizzT_A2_v1_3.wav",
+      "rootMidi": 57
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 62,
+      "sample": "CelloEns_pizzT_A2_v1_3.wav",
+      "rootMidi": 57
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 45,
+      "sample": "CelloEns_pizzT_B1_v1_3.wav",
+      "rootMidi": 47
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 57,
+      "sample": "CelloEns_pizzT_A2_v1_3.wav",
+      "rootMidi": 57
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 43,
+      "sample": "CelloEns_pizzT_G1_v1_4.wav",
+      "rootMidi": 43
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 55,
+      "sample": "CelloEns_pizzT_A2_v1_3.wav",
+      "rootMidi": 57
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 41,
+      "sample": "CelloEns_pizzT_E1_v1_2.wav",
+      "rootMidi": 40
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 53,
+      "sample": "CelloEns_pizzT_F2_v1_1.wav",
+      "rootMidi": 53
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 65,
+      "sample": "CelloEns_pizzT_A2_v1_3.wav",
+      "rootMidi": 57
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 40,
+      "sample": "CelloEns_pizzT_E1_v1_2.wav",
+      "rootMidi": 40
+    },
+    {
+      "instrument": "harp",
+      "midi": 83,
+      "sample": "KSHarp_B5_mf1.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 52,
+      "sample": "CelloEns_pizzT_F2_v1_1.wav",
+      "rootMidi": 53
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 38,
+      "sample": "CelloEns_pizzT_C1_v1_3.wav",
+      "rootMidi": 36
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 50,
+      "sample": "CelloEns_pizzT_B1_v1_3.wav",
+      "rootMidi": 47
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 42,
+      "sample": "CelloEns_pizzT_G1_v1_4.wav",
+      "rootMidi": 43
+    },
+    {
+      "instrument": "harp",
+      "midi": 66,
+      "sample": "KSHarp_A4_mf1.wav",
+      "rootMidi": 69
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 54,
+      "sample": "CelloEns_pizzT_F2_v1_1.wav",
+      "rootMidi": 53
+    },
+    {
+      "instrument": "strings",
+      "midi": 59,
+      "sample": "VlnEns_susVib_B2_v1.wav",
+      "rootMidi": 59
+    },
+    {
+      "instrument": "marimba",
+      "midi": 79,
+      "sample": "Marimba_hit_Outrigger_B4_med_02.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "marimba",
+      "midi": 81,
+      "sample": "Marimba_hit_Outrigger_B4_med_02.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "marimba",
+      "midi": 83,
+      "sample": "Marimba_hit_Outrigger_B4_med_02.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "marimba",
+      "midi": 78,
+      "sample": "Marimba_hit_Outrigger_B4_med_02.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "marimba",
+      "midi": 71,
+      "sample": "Marimba_hit_Outrigger_C4_med_01.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "marimba",
+      "midi": 69,
+      "sample": "Marimba_hit_Outrigger_C4_med_01.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "marimba",
+      "midi": 86,
+      "sample": "Marimba_hit_Outrigger_B4_med_02.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "marimba",
+      "midi": 65,
+      "sample": "Marimba_hit_Outrigger_F3_med_01.wav",
+      "rootMidi": 65
+    },
+    {
+      "instrument": "marimba",
+      "midi": 67,
+      "sample": "Marimba_hit_Outrigger_F3_med_01.wav",
+      "rootMidi": 65
+    },
+    {
+      "instrument": "harp",
+      "midi": 78,
+      "sample": "KSHarp_B5_mf1.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "harp",
+      "midi": 88,
+      "sample": "KSHarp_A6_mf1.wav",
+      "rootMidi": 93
+    },
+    {
+      "instrument": "harp",
+      "midi": 86,
+      "sample": "KSHarp_B5_mf1.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "strings",
+      "midi": 47,
+      "sample": "VlnEns_susVib_G2_v1.wav",
+      "rootMidi": 55
+    },
+    {
+      "instrument": "strings",
+      "midi": 83,
+      "sample": "VlnEns_susVib_B4_v1.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "harp",
+      "midi": 53,
+      "sample": "KSHarp_C3_mf1.wav",
+      "rootMidi": 48
+    },
+    {
+      "instrument": "marimba",
+      "midi": 57,
+      "sample": "Marimba_hit_Outrigger_B2_med_02.wav",
+      "rootMidi": 59
+    },
+    {
+      "instrument": "marimba",
+      "midi": 60,
+      "sample": "Marimba_hit_Outrigger_B2_med_02.wav",
+      "rootMidi": 59
+    },
+    {
+      "instrument": "marimba",
+      "midi": 77,
+      "sample": "Marimba_hit_Outrigger_C4_med_01.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "marimba",
+      "midi": 55,
+      "sample": "Marimba_hit_Outrigger_G2_med_01.wav",
+      "rootMidi": 55
+    },
+    {
+      "instrument": "marimba",
+      "midi": 62,
+      "sample": "Marimba_hit_Outrigger_B2_med_02.wav",
+      "rootMidi": 59
+    },
+    {
+      "instrument": "marimba",
+      "midi": 53,
+      "sample": "Marimba_hit_Outrigger_G2_med_01.wav",
+      "rootMidi": 55
+    },
+    {
+      "instrument": "marimba",
+      "midi": 58,
+      "sample": "Marimba_hit_Outrigger_B2_med_02.wav",
+      "rootMidi": 59
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 34,
+      "sample": "CelloEns_pizzT_C1_v1_3.wav",
+      "rootMidi": 36
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 46,
+      "sample": "CelloEns_pizzT_B1_v1_3.wav",
+      "rootMidi": 47
+    },
+    {
+      "instrument": "marimba",
+      "midi": 84,
+      "sample": "Marimba_hit_Outrigger_B4_med_02.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 33,
+      "sample": "CelloEns_pizzT_C1_v1_3.wav",
+      "rootMidi": 36
+    },
+    {
+      "instrument": "marimba",
+      "midi": 82,
+      "sample": "Marimba_hit_Outrigger_B4_med_02.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "marimba",
+      "midi": 70,
+      "sample": "Marimba_hit_Outrigger_C4_med_01.wav",
+      "rootMidi": 72
+    },
+    {
+      "instrument": "marimba",
+      "midi": 59,
+      "sample": "Marimba_hit_Outrigger_B2_med_02.wav",
+      "rootMidi": 59
+    },
+    {
+      "instrument": "pizzicato",
+      "midi": 35,
+      "sample": "CelloEns_pizzT_C1_v1_3.wav",
+      "rootMidi": 36
+    },
+    {
+      "instrument": "marimba",
+      "midi": 64,
+      "sample": "Marimba_hit_Outrigger_F3_med_01.wav",
+      "rootMidi": 65
+    },
+    {
+      "instrument": "marimba",
+      "midi": 88,
+      "sample": "Marimba_hit_Outrigger_B4_med_02.wav",
+      "rootMidi": 83
+    },
+    {
+      "instrument": "marimba",
+      "midi": 43,
+      "sample": "Marimba_hit_Outrigger_C2_med_01.wav",
+      "rootMidi": 48
+    }
+  ],
+  "tracks": [
+    {
+      "id": "distant-stars",
+      "duration": 90,
+      "peak": 0.35044482350349426,
+      "rms": 0.07599999999820367
+    },
+    {
+      "id": "blue-cradle",
+      "duration": 79,
+      "peak": 0.38531944155693054,
+      "rms": 0.07599999999862551
+    },
+    {
+      "id": "coronal-sails",
+      "duration": 90,
+      "peak": 0.4913114905357361,
+      "rms": 0.07600000000003496
+    },
+    {
+      "id": "long-voyage",
+      "duration": 95,
+      "peak": 0.3389126658439636,
+      "rms": 0.07600000000066318
+    },
+    {
+      "id": "delayed-echoes",
+      "duration": 84,
+      "peak": 0.4674411416053772,
+      "rms": 0.07600000000028143
+    },
+    {
+      "id": "dawn-beyond",
+      "duration": 91,
+      "peak": 0.4848141074180603,
+      "rms": 0.0759999999993808
+    },
+    {
+      "id": "endless-beyond",
+      "duration": 112,
+      "peak": 0.5056190490722656,
+      "rms": 0.07600000000056013
+    },
+    {
+      "id": "unsent-starlight",
+      "duration": 88,
+      "peak": 0.6297930479049683,
+      "rms": 0.07599999999928311
+    },
+    {
+      "id": "starstage-rondo",
+      "duration": 90,
+      "peak": 0.5525000095367432,
+      "rms": 0.06296274915786287
+    }
+  ]
+}
