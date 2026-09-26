@@ -4,7 +4,7 @@ export const BRIDGE_MOTION_DURATION = 5.3;
 export const LOUNGE_Z = -5.5;
 export const CAT_START_POSITION: Readonly<BridgeVector> = [0, 0, LOUNGE_Z + .2];
 export const CAT_LANDING_POSITION: Readonly<BridgeVector> = [.68, .75, LOUNGE_Z - 1.15];
-export const CAMERA_START_POSITION: Readonly<BridgeVector> = [0, 1.6, LOUNGE_Z + 3.4];
+export const CAMERA_START_POSITION: Readonly<BridgeVector> = [0, 1.6, .6];
 export const CAMERA_END_POSITION: Readonly<BridgeVector> = [1.1, 1.12, LOUNGE_Z - .15];
 const smooth = (value: number) => { const t = Math.max(0, Math.min(1, value)); return t * t * (3 - 2 * t); };
 const mix = (a: number, b: number, t: number) => a + (b - a) * t;
@@ -21,8 +21,8 @@ export function sampleBridgeMotion(seconds: number) {
     const phase: BridgeMotionPhase = time < 2.4 ? 'approaching' : time < 3.3 ? 'seating' : time < BRIDGE_MOTION_DURATION ? 'companion' : 'complete';
     return {
         cameraPosition,
-        cameraTarget: vector([0, 1.1, LOUNGE_Z - 3], [.95, .98, LOUNGE_Z - 1.2], smooth(time / 3.3)),
-        cameraFov: mix(48, 52, smooth(time / 3.3)),
+        cameraTarget: vector([0, 2.2, -30], [.95, .98, LOUNGE_Z - 1.2], smooth(time / 3.3)),
+        cameraFov: 52,
         catPosition: [...CAT_LANDING_POSITION] as BridgeVector,
         catVisible: time >= 3.45,
         catYaw: .45,

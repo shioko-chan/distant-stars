@@ -1,3 +1,4 @@
+import { ROOM_OBSTACLES } from './roomCollision';
 import gait from '../content/catGait.json';
 import { CAT_START_POSITION, LOUNGE_Z } from './bridgeMotion';
 
@@ -7,13 +8,7 @@ export const CAT_WALK_STRIDE = gait.stride * gait.modelScale;
 type Point = { x: number; z: number };
 // Conservative footprints include a 34 cm margin for the cat's body and tail.
 const margin = .34;
-const obstacles = [
-    [-3.12, -.88, -2.2, -1.24], // sofa
-    [-2.55, -1.45, -.825, -.275], // coffee table
-    [.3, 1.9, -1.475, -.725], // desk
-    [.85, 1.35, -.39, .105], // chair
-    [-3.8, -3.2, -2.2, -1.6], // floor lamp
-].map(([x0, x1, z0, z1]) => [x0 - margin, x1 + margin, z0 + LOUNGE_Z - margin, z1 + LOUNGE_Z + margin]);
+const obstacles = ROOM_OBSTACLES.map(({ x0, x1, z0, z1 }) => [x0 - margin, x1 + margin, z0 - margin, z1 + margin]);
 
 export function catPositionClear(p: Point): boolean {
     return Math.abs(p.x) < 8.3 && p.z > -8.3 && p.z < 10.6 &&

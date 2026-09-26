@@ -1,3 +1,6 @@
+import { moveInRoom, type FloorPoint } from './roomCollision';
+import { findRoomPath, isRoomMovementKey, movementFromKeys, ROOM_WALK_SPEED, stepRoomPath } from './roomNavigation';
+import { createRoomPointer } from './roomPointer';
 import catGait from '../content/catGait.json';
 import { CAT_WALK_STRIDE, createCatWander } from './catWander';
 import * as THREE from 'three';
@@ -9,6 +12,8 @@ import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
 import { createBridgeSolarSystem } from './bridgeSolarSystem';
+import { createOrbitalCity } from './orbitalCity';
+import { HABITAT_GROUND_Y } from './habitatFrame';
 import { addCatFur } from './catFur';
 import { mulberry32 } from '../simulation/rng';
 import { LOUNGE_Z, BRIDGE_MOTION_DURATION, sampleBridgeMotion, type BridgeMotionPhase } from './bridgeMotion';
@@ -27,6 +32,7 @@ function disposeObjects(objects: Iterable<THREE.Object3D>) {
     const textures = new Set<THREE.Texture>();
     const images = new Set<ImageBitmap>();
     const skeletons = new Set<THREE.Skeleton>();
+    const instances = new Set<THREE.InstancedMesh>();
     for (const root of objects) root.traverse(object => {
         if (!(object instanceof THREE.Mesh || object instanceof THREE.Points || object instanceof THREE.Line || object instanceof THREE.Sprite)) return;
         geometries.add(object.geometry);
@@ -35,7 +41,9 @@ function disposeObjects(objects: Iterable<THREE.Object3D>) {
             Object.values(material).forEach(value => { if (value instanceof THREE.Texture) textures.add(value); });
         });
         if (object instanceof THREE.SkinnedMesh) skeletons.add(object.skeleton);
+        if (object instanceof THREE.InstancedMesh) instances.add(object);
     });
+    instances.forEach(instance => instance.dispose());
     skeletons.forEach(skeleton => skeleton.dispose());
     geometries.forEach(geometry => geometry.dispose());
     materials.forEach(material => material.dispose());
@@ -61,15 +69,15 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
     renderer.toneMappingExposure = .9;
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.domElement.setAttribute('aria-label', '银河中的起居室，长毛猫在房间里散步，窗外是按真实比例呈现的地球和太阳，阳光穿过玻璃照亮家具与地面');
+    renderer.domElement.setAttribute('aria-label', '曙光旋转环城的顶层居所。拖动环顾，WASD 或方向键移动；点击或轻触地面前往，Esc 停止。');
     host.appendChild(renderer.domElement);
     const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(48, 1, .05, 350);
+    const camera = new THREE.PerspectiveCamera(52, 1, .05, 150_000);
     const neutralRoom = new RoomEnvironment();
     const pmrem = new THREE.PMREMGenerator(renderer);
     const environment = pmrem.fromScene(neutralRoom, .04);
     scene.environment = environment.texture;
-    scene.environmentIntensity = .09;
+    scene.environmentIntensity = .16;
     neutralRoom.dispose();
     pmrem.dispose();
 
@@ -82,17 +90,19 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
         shader.fragmentShader = shader.fragmentShader.replace('#include <roughnessmap_fragment>', '#include <roughnessmap_fragment>\nroughnessFactor = .48 + .25 * roughnessFactor;');
     };
     marble.customProgramCacheKey = () => 'honed-marble-v1';
-    const fabric = new THREE.MeshPhysicalMaterial({ color: '#858b99', roughness: 1, normalScale: new THREE.Vector2(.55, .55), sheen: .65, sheenColor: '#b1b4bf', sheenRoughness: .9 });
+    const fabric = new THREE.MeshPhysicalMaterial({ color: '#aaa394', roughness: 1, normalScale: new THREE.Vector2(.55, .55), sheen: .65, sheenColor: '#d3c4af', sheenRoughness: .9 });
     const dark = new THREE.MeshStandardMaterial({ color: '#292e32', roughness: .48, metalness: .25 });
-    const plaster = new THREE.MeshStandardMaterial({ color: '#444955', roughness: .94 });
+    const plaster = new THREE.MeshStandardMaterial({ color: '#72747a', roughness: .94 });
     const rug = new THREE.MeshStandardMaterial({ color: '#777d8a', roughness: 1, normalScale: new THREE.Vector2(.7, .7) });
     const warmLight = new THREE.MeshStandardMaterial({ color: '#fff0d1', emissive: '#ffca82', emissiveIntensity: 1.6 });
     let meshParent: THREE.Object3D = scene;
+    const roomMeshes: THREE.Mesh<THREE.BufferGeometry, THREE.Material>[] = [];
+    const walkableSurfaces = new Set<THREE.Object3D>();
     const mesh = (geometry: THREE.BufferGeometry, material: THREE.Material, position: THREE.Vector3Tuple) => {
         const object = new THREE.Mesh(geometry, material);
         object.position.fromArray(position);
         object.castShadow = object.receiveShadow = true;
-        meshParent.add(object); return object;
+        meshParent.add(object); roomMeshes.push(object); return object;
     };
     // BoxGeometry and RoundedBoxGeometry use six face groups in +/- X, Y, Z order.
     // Scale UVs in metres so broad tabletops and narrow legs share a grain size.
@@ -112,13 +122,10 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
     const soft = (size: THREE.Vector3Tuple, position: THREE.Vector3Tuple, material: THREE.Material = fabric, radius = .12) =>
         mesh(scaleFurnitureUVs(new RoundedBoxGeometry(...size, 4, radius), size), material, position);
 
-    // Three glazed sides meet at slim corner posts; the rear wall has a real door opening.
-    box([19, .2, 23], [0, -.14, 0], marble);
-    box([19, .2, 23], [0, 7.2, 0], plaster);
-    for (const side of [-1, 1]) {
-        box([8.4, 7.4, .3], [side * 5.3, 3.5, 11.4], plaster);
-    }
-    box([2.2, 3.9, .3], [0, 5.25, 11.4], plaster);
+    // Four glazed elevations overlook the rotating city; the rear central pier holds the lift.
+    walkableSurfaces.add(box([19, .2, 23], [0, -.14, 0], marble));
+    box([19, .2, 20.5], [0, 5.8, 1.25], plaster);
+    box([2.2, 2.5, .3], [0, 4.55, 11.4], plaster);
     // Closed oak door, recessed into a dark frame, with a restrained warm lintel light.
     box([2.2, 3.3, .12], [0, 1.65, 11.4], dark);
     box([1.98, 3.14, .09], [0, 1.59, 11.3], wood);
@@ -133,21 +140,50 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
     scene.add(doorLight);
     const floorJoint = new THREE.MeshStandardMaterial({ color: '#282c33', roughness: .95 });
     // Large 1.2 × 2.4 m stone tiles with quiet, aligned 4 mm joints.
-    for (let x = -9.5 + 1.2; x < 9.5; x += 1.2) box([.004, .004, 23], [x, -.038, 0], floorJoint);
-    for (let z = -11.5 + 2.4; z < 11.5; z += 2.4) box([19, .004, .004], [0, -.038, z], floorJoint);
-    for (const x of [-9, -5.8, 5.8, 9]) box([.09, 7.1, .16], [x, 3.5, -9], dark);
-    box([18.2, .12, .2], [0, 7, -9], dark);
-    box([18.2, .12, .2], [0, .02, -9], dark);
+    for (let x = -9.5 + 1.2; x < 9.5; x += 1.2) walkableSurfaces.add(box([.004, .004, 23], [x, -.038, 0], floorJoint));
+    for (let z = -11.5 + 2.4; z < 11.5; z += 2.4) walkableSurfaces.add(box([19, .004, .004], [0, -.038, z], floorJoint));
+    const bronze = new THREE.MeshStandardMaterial({ color: '#91816a', metalness: .7, roughness: .36 });
+    for (const x of [-9, -6.7, 6.7, 9]) {
+        box([.12, 5.7, .2], [x, 2.85, -9], dark);
+        box([.025, 5.7, .035], [x + .07, 2.85, -8.88], bronze);
+    }
+    box([18.4, .28, .55], [0, 5.55, -9], dark);
+    box([18.4, .14, .48], [0, .02, -9], dark);
+    // Deep reveals and warm oak soffits make the view read as a room, not a floating window.
+    box([18.6, .14, 1.1], [0, 5.44, -8.8], wood);
+    box([18.4, .28, .55], [0, 5.55, 11.4], dark);
+    box([18.4, .14, .48], [0, .02, 11.4], dark);
+    box([18.6, .14, .6], [0, 5.44, 11.15], wood);
+    for (const x of [-9, -5.1, -1.1, 1.1, 5.1, 9]) {
+        box([.12, 5.7, .2], [x, 2.85, 11.4], dark);
+        box([.025, 5.7, .035], [x + .07, 2.85, 11.28], bronze);
+    }
+    for (const side of [-1, 1]) {
+        box([.75, .2, 20.4], [side * 8.6, 5.45, 1.2], wood);
+        box([.5, .22, 20.4], [side * 9, -.1, 1.2], dark);
+        box([.06, .06, 20.4], [side * 8.72, .01, 1.2], bronze);
+    }
+    // The tower's stepped crown is visible when looking down through the side glazing.
+    box([21, .45, 25], [0, -.5, 0], dark);
+    const towerHeight = -HABITAT_GROUND_Y - .75;
+    const towerY = HABITAT_GROUND_Y + towerHeight / 2;
+    box([17.5, towerHeight, 20], [0, towerY, 1], plaster);
+    box([2.5, towerHeight, 2.5], [0, towerY, 11.5], dark);
+    for (const side of [-1, 1]) box([.18, towerHeight, 20.4], [side * 8.9, towerY, 1], bronze);
     // A faint unlit tint keeps cabin lights from appearing as star-like glass highlights.
     const glass = new THREE.MeshBasicMaterial({ color: '#bacddd', transparent: true, opacity: .015, depthWrite: false, side: THREE.DoubleSide });
-    const frontGlass = mesh(new THREE.PlaneGeometry(18, 7), glass, [0, 3.5, -9]);
+    const frontGlass = mesh(new THREE.PlaneGeometry(18, 5.5), glass, [0, 2.75, -9]);
     frontGlass.castShadow = frontGlass.receiveShadow = false;
     for (const side of [-1, 1]) {
-        const sideGlass = mesh(new THREE.PlaneGeometry(20.4, 7), glass, [side * 9, 3.5, 1.2]);
+        const rearGlass = mesh(new THREE.PlaneGeometry(7.9, 5.5), glass, [side * 5.05, 2.75, 11.4]);
+        rearGlass.castShadow = rearGlass.receiveShadow = false;
+    }
+    for (const side of [-1, 1]) {
+        const sideGlass = mesh(new THREE.PlaneGeometry(20.4, 5.5), glass, [side * 9, 2.75, 1.2]);
         sideGlass.rotation.y = Math.PI / 2;
         sideGlass.castShadow = sideGlass.receiveShadow = false;
-        for (const z of [-3.9, 1.2, 6.3, 11.4]) box([.16, 7.1, .09], [side * 9, 3.5, z], dark);
-        for (const y of [.02, 7]) box([.2, .12, 20.4], [side * 9, y, 1.2], dark);
+        for (const z of [-3.9, 1.2, 6.3, 11.4]) box([.16, 5.7, .09], [side * 9, 2.85, z], dark);
+        for (const y of [.02, 5.55]) box([.2, .12, 20.4], [side * 9, y, 1.2], dark);
     }
 
     const lounge = new THREE.Group();
@@ -155,7 +191,7 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
     scene.add(lounge);
     meshParent = lounge;
     // Covers the full furniture footprint, including the lamp, with a clear border.
-    soft([7.4, .025, 4.8], [-.6, -.012, -.8], rug, .01);
+    walkableSurfaces.add(soft([7.4, .025, 4.8], [-.6, -.012, -.8], rug, .01));
     // Furniture dimensions are metres: 2.2 m sofa with a 42 cm seat.
     soft([2.2, .22, .88], [-2, .22, -1.7], fabric, .06);
     soft([2.2, .62, .2], [-2, .57, -2.04], fabric, .06);
@@ -188,14 +224,19 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
     mesh(new THREE.CylinderGeometry(.18, .3, .32, 48, 1, true), new THREE.MeshStandardMaterial({ color: '#f1dfbf', emissive: '#ffcf8d', emissiveIntensity: .55, side: THREE.DoubleSide, roughness: 1 }), [-3.5, 1.6, -1.9]);
     const readingLight = new THREE.PointLight('#ffd09a', 8, 6, 1.5); readingLight.position.set(-3.5, 1.5, -1.9); lounge.add(readingLight);
     meshParent = scene;
-    box([17.8, .025, .06], [0, 6.95, -8.8], warmLight);
+    // Front strip ends flush with the side strips; side strips meet its inner edge.
+    box([17.66, .025, .06], [0, 5.35, -8.25], warmLight);
+    box([17.66, .025, .06], [0, 5.35, 10.85], warmLight);
     for (const side of [-1, 1]) {
-        box([.06, .025, 20.2], [side * 8.8, 6.95, 1.3], warmLight);
+        box([.06, .025, 20.17], [side * 8.2, 5.34, 1.315], warmLight);
     }
 
-    scene.add(new THREE.HemisphereLight('#9ab8f0', '#302a30', .22));
+    scene.add(new THREE.HemisphereLight('#b4c8ed', '#3b3029', .4));
+    const coveLight = new THREE.PointLight('#ffe0af', 24, 22, 1.4);
+    coveLight.position.set(0, 5, -7.5);
+    scene.add(coveLight);
     const key = new THREE.SpotLight('#bbcfff', 12, 28, Math.PI / 3, .65, 1.4);
-    key.position.set(1, 6.1, LOUNGE_Z + 3.5);
+    key.position.set(1, 4.3, LOUNGE_Z + 3.5);
     key.target.position.set(.5, 0, LOUNGE_Z - .5);
     key.castShadow = true;
     key.shadow.mapSize.set(1024, 1024);
@@ -264,6 +305,8 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
     let cat: THREE.Group | undefined;
 
     const solarSystem = createBridgeSolarSystem(textureLoader, ownedTextures, () => disposed, fail);
+    const city = createOrbitalCity(textureLoader, ownedTextures, () => disposed);
+    scene.add(city.group);
     const composer = new EffectComposer(renderer);
     composer.addPass(new RenderPass(solarSystem.scene, solarSystem.camera));
     const cabinPass = new RenderPass(scene, camera);
@@ -288,7 +331,7 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
     for (const [x, y] of [[205, 230], [431, 301], [381, 166], [166, 377], [555, 324]]) { ctx.beginPath(); ctx.arc(x, y, 4, 0, Math.PI * 2); ctx.fill(); }
     ctx.font = '15px monospace'; ctx.fillText('SOL', 352, 280);
     for (let i = 0; i < 6; i++) { ctx.fillStyle = '#163642'; ctx.fillRect(695, 135 + i * 43, 240, 7); ctx.fillStyle = '#7fc4d1'; ctx.fillRect(695, 135 + i * 43, 75 + random() * 160, 7); }
-    ctx.fillStyle = '#7cb7c0'; ctx.font = '13px monospace'; ctx.fillText('LINK ESTABLISHED', 695, 105); ctx.fillText('2180   /   OBSERVATION DECK', 45, 473);
+    ctx.fillStyle = '#7cb7c0'; ctx.font = '13px monospace'; ctx.fillText('LINK ESTABLISHED', 695, 105); ctx.fillText('2180   /   AURORA RESIDENCE', 45, 473);
     const screenTexture = new THREE.CanvasTexture(screenCanvas); screenTexture.colorSpace = THREE.SRGBColorSpace; ownedTextures.add(screenTexture);
     const screenMaterial = new THREE.MeshBasicMaterial({ map: screenTexture, toneMapped: false, transparent: true, opacity: 0, blending: THREE.AdditiveBlending, depthWrite: false, side: THREE.DoubleSide });
     meshParent = lounge;
@@ -299,7 +342,7 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
     hologram.rotation.x = -Math.PI / 2;
     meshParent = scene;
 
-    void Promise.all([loadModel('/models/cat/cat.glb'), solarSystem.ready, furniturePromise, walkPromise]).then(([catAsset, , , walkClip]) => {
+    void Promise.all([loadModel('/models/cat/cat.glb'), solarSystem.ready, furniturePromise, walkPromise, city.ready]).then(([catAsset, , , walkClip]) => {
         if (disposed || failed) return;
         const catModel = catAsset.scene;
         const bounds = new THREE.Box3().setFromObject(catModel), center = bounds.getCenter(new THREE.Vector3());
@@ -341,55 +384,96 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
     const pointer = new THREE.Vector2();
     const viewOffset = new THREE.Vector2();
     const returnFrom = new THREE.Vector2();
-    const lastPointer = new THREE.Vector2();
-    let dragId: number | undefined;
+    const gesture = createRoomPointer();
     let recenter = -1;
     const walkOffset = new THREE.Vector3(), walkReturnFrom = new THREE.Vector3();
     const walkDirection = new THREE.Vector3(), walkForward = new THREE.Vector3(), walkRight = new THREE.Vector3();
     const movementKeys = new Set<string>();
-    const clearMovement = () => movementKeys.clear();
+    let walkPath: FloorPoint[] = [];
+    const destination = new THREE.Mesh(new THREE.RingGeometry(.16, .2, 48),
+        new THREE.MeshBasicMaterial({ color: '#b9e5de', transparent: true, opacity: .85, depthWrite: false }));
+    destination.name = 'walk-destination';
+    destination.rotation.x = -Math.PI / 2;
+    destination.visible = false;
+    scene.add(destination);
+    const clearWalkPath = () => { walkPath.length = 0; destination.visible = false; };
+    const clearMovement = () => { movementKeys.clear(); clearWalkPath(); };
+    const canWalk = () => active && ready && !failed && !disposed && transition < 0 && recenter < 0;
     const keyDown = (event: KeyboardEvent) => {
-        if (!['KeyW', 'KeyA', 'KeyS', 'KeyD'].includes(event.code)) return;
-        if (!active || !ready || transition >= 0 || recenter >= 0 || event.ctrlKey || event.metaKey || event.altKey) return;
+        if (!isRoomMovementKey(event.code) && event.code !== 'Escape') return;
+        if (!canWalk() || event.ctrlKey || event.metaKey || event.altKey) return;
         if (event.target instanceof Element && event.target.closest('input, textarea, select, button, a, [contenteditable="true"]')) return;
         event.preventDefault();
+        if (event.code === 'Escape') { clearMovement(); return; }
+        clearWalkPath();
         movementKeys.add(event.code);
     };
     const keyUp = (event: KeyboardEvent) => { movementKeys.delete(event.code); };
     window.addEventListener('keydown', keyDown);
     window.addEventListener('keyup', keyUp);
-    window.addEventListener('blur', clearMovement);
     const canvas = renderer.domElement;
     canvas.tabIndex = 0;
     canvas.style.outline = 'none';
     canvas.style.touchAction = 'none';
     canvas.style.cursor = 'grab';
+    const cancelPointer = () => {
+        const id = gesture.pointerId;
+        gesture.cancel();
+        if (id !== undefined && canvas.hasPointerCapture(id)) canvas.releasePointerCapture(id);
+        canvas.style.cursor = 'grab';
+    };
+    const resetInput = () => { clearMovement(); cancelPointer(); };
+    window.addEventListener('blur', resetInput);
+    const picker = new THREE.Raycaster(), pickPosition = new THREE.Vector2();
+    const walkToPointer = (event: PointerEvent) => {
+        if (!canWalk()) return;
+        const rect = canvas.getBoundingClientRect();
+        if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) return;
+        pickPosition.set((event.clientX - rect.left) / rect.width * 2 - 1, 1 - (event.clientY - rect.top) / rect.height * 2);
+        camera.updateMatrixWorld();
+        picker.setFromCamera(pickPosition, camera);
+        // Raycast only the small room, not the many thousands of city instances outside it.
+        roomMeshes.forEach(object => object.updateWorldMatrix(true, false));
+        const hit = picker.intersectObjects(roomMeshes.filter(object => object.visible && object.material.opacity > 0), false)[0];
+        if (!hit || !walkableSurfaces.has(hit.object)) return;
+        const target = { x: hit.point.x, z: hit.point.z };
+        walkPath = findRoomPath({ x: camera.position.x, z: camera.position.z }, target);
+        if (walkPath.length) movementKeys.clear();
+        destination.visible = walkPath.length > 0;
+        destination.position.set(target.x, .025, target.z);
+    };
     const down = (event: PointerEvent) => {
-        if (!active || transition >= 0 || recenter >= 0 || event.button !== 0 || dragId !== undefined) return;
+        if (event.pointerType === 'touch' && !event.isPrimary) { resetInput(); return; }
+        if (!canWalk() || event.button !== 0 || gesture.pointerId !== undefined) return;
+        clearWalkPath();
         canvas.focus({ preventScroll: true });
-        dragId = event.pointerId;
-        lastPointer.set(event.clientX, event.clientY);
+        gesture.begin(event.pointerId, event.clientX, event.clientY);
         canvas.setPointerCapture(event.pointerId);
-        canvas.style.cursor = 'grabbing';
     };
     const move = (event: PointerEvent) => {
-        if (dragId !== event.pointerId || transition >= 0 || recenter >= 0) return;
-        pointer.x -= (event.clientX - lastPointer.x) / Math.max(1, host.clientWidth) * Math.PI;
-        pointer.y = THREE.MathUtils.clamp(pointer.y - (event.clientY - lastPointer.y) / Math.max(1, host.clientHeight) * Math.PI * .5, -Math.PI / 3, Math.PI / 3);
-        lastPointer.set(event.clientX, event.clientY);
+        if (!canWalk()) return;
+        const movement = gesture.move(event.pointerId, event.clientX, event.clientY);
+        if (!movement) return;
+        canvas.style.cursor = 'grabbing';
+        pointer.x -= movement.x / Math.max(1, host.clientWidth) * Math.PI;
+        pointer.y = THREE.MathUtils.clamp(pointer.y - movement.y / Math.max(1, host.clientHeight) * Math.PI * .5, -Math.PI / 3, Math.PI / 3);
     };
     const up = (event: PointerEvent) => {
-        if (event.pointerId !== dragId) return;
-        dragId = undefined;
+        if (event.pointerId !== gesture.pointerId) return;
+        const tap = gesture.end(event.pointerId, event.clientX, event.clientY);
         if (canvas.hasPointerCapture(event.pointerId)) canvas.releasePointerCapture(event.pointerId);
         canvas.style.cursor = 'grab';
+        if (tap) walkToPointer(event);
+    };
+    const cancel = (event: PointerEvent) => {
+        if (event.pointerId === gesture.pointerId) resetInput();
     };
     canvas.addEventListener('pointerdown', down);
     canvas.addEventListener('pointermove', move);
     canvas.addEventListener('pointerup', up);
-    canvas.addEventListener('pointercancel', up);
-    canvas.addEventListener('lostpointercapture', up);
-    const resetFrameTime = () => { lastTime = 0; clearMovement(); };
+    canvas.addEventListener('pointercancel', cancel);
+    canvas.addEventListener('lostpointercapture', cancel);
+    const resetFrameTime = () => { lastTime = 0; resetInput(); };
     document.addEventListener('visibilitychange', resetFrameTime);
     const handleContextLoss = (event: Event) => { event.preventDefault(); fail('图形上下文已中断，请重新进入起居室。'); };
     renderer.domElement.addEventListener('webglcontextlost', handleContextLoss);
@@ -413,32 +497,38 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
             if (transition < 0 && recenter < 0) {
                 viewOffset.lerp(pointer, motionPreference.matches ? 1 : 1 - Math.exp(-delta * 12));
             }
-            // Back away and reframe both subjects in portrait, rather than cropping the console.
-            const portrait = THREE.MathUtils.clamp((1 - camera.aspect) / .55, 0, 1);
-            const portraitDistance = portrait * (1 - THREE.MathUtils.smoothstep(Math.max(0, transition), 0, 3.3));
-            camera.position.x += portraitDistance * .8;
-            camera.position.z += portraitDistance * 2.4;
-            cameraTarget.x += portraitDistance * .6;
-            camera.fov = sample.cameraFov + portrait * 20;
+            // Preserve the panorama's horizontal span on a narrow screen, then ease into the desk.
+            const panoramaFov = THREE.MathUtils.radToDeg(2 * Math.atan(Math.tan(THREE.MathUtils.degToRad(27)) / camera.aspect));
+            camera.fov = THREE.MathUtils.lerp(Math.max(sample.cameraFov, panoramaFov), sample.cameraFov, THREE.MathUtils.smoothstep(Math.max(0, transition), 0, 3.3));
             camera.lookAt(cameraTarget);
-            // Drag to look; WASD walks horizontally in the current viewing direction.
+            // Drag to look; keyboard movement is horizontal and relative to the current view.
             camera.rotateY(viewOffset.x);
             camera.rotateX(viewOffset.y);
-            if (transition < 0 && recenter < 0 && movementKeys.size) {
+            if (canWalk() && movementKeys.size) {
                 camera.getWorldDirection(walkForward);
                 walkForward.y = 0;
                 walkForward.normalize();
                 walkRight.set(-walkForward.z, 0, walkForward.x);
-                const forward = Number(movementKeys.has('KeyW')) - Number(movementKeys.has('KeyS'));
-                const sideways = Number(movementKeys.has('KeyD')) - Number(movementKeys.has('KeyA'));
+                const { forward, sideways } = movementFromKeys(movementKeys);
                 walkDirection.copy(walkForward).multiplyScalar(forward).addScaledVector(walkRight, sideways);
-                if (walkDirection.lengthSq() > 0) walkOffset.addScaledVector(walkDirection.normalize(), delta * 3.6);
-                // Keep the viewpoint inside the glass and rear wall.
-                walkOffset.x = THREE.MathUtils.clamp(camera.position.x + walkOffset.x, -8.5, 8.5) - camera.position.x;
-                walkOffset.z = THREE.MathUtils.clamp(camera.position.z + walkOffset.z, -8.5, 10.8) - camera.position.z;
+                if (walkDirection.lengthSq() > 0) {
+                    walkDirection.normalize().multiplyScalar(delta * ROOM_WALK_SPEED);
+                    const next = moveInRoom(
+                        { x: camera.position.x + walkOffset.x, z: camera.position.z + walkOffset.z },
+                        { x: walkDirection.x, z: walkDirection.z },
+                    );
+                    walkOffset.x = next.x - camera.position.x;
+                    walkOffset.z = next.z - camera.position.z;
+                }
+            } else if (canWalk() && walkPath.length) {
+                const next = stepRoomPath({ x: camera.position.x + walkOffset.x, z: camera.position.z + walkOffset.z }, walkPath, delta);
+                walkOffset.x = next.x - camera.position.x;
+                walkOffset.z = next.z - camera.position.z;
+                destination.visible = walkPath.length > 0;
             }
             camera.position.add(walkOffset);
             camera.updateProjectionMatrix();
+            camera.updateMatrixWorld();
             if (cat) {
                 let animationDelta = delta;
                 if (transition < 0) {
@@ -460,8 +550,9 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
                 }
                 mixer?.update(motionPreference.matches ? 0 : animationDelta);
             }
-            const exteriorDelta = motionPreference.matches ? 0 : delta;
+            const exteriorDelta = !ready || motionPreference.matches ? 0 : wallDelta;
             orbitSeconds += exteriorDelta;
+            city.update(orbitSeconds, camera);
             solarSystem.update(camera, orbitSeconds, exteriorDelta, host.clientHeight, renderer.getPixelRatio());
             sun.position.copy(solarSystem.sunDirection).multiplyScalar(40);
             screenMaterial.opacity = transition < 0 ? 0 : THREE.MathUtils.smoothstep(transition, 3.6, 4.5) * .85;
@@ -481,9 +572,7 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
             if (active === next || disposed) return;
             active = next;
             cancelAnimationFrame(frame);
-            clearMovement(); lastTime = 0;
-            if (dragId !== undefined && canvas.hasPointerCapture(dragId)) canvas.releasePointerCapture(dragId);
-            dragId = undefined;
+            resetInput(); lastTime = 0;
             if (active && !failed) {
                 transition = -1; recenter = -1; lastPhase = undefined;
                 pointer.set(0, 0); viewOffset.set(0, 0); walkOffset.set(0, 0, 0);
@@ -496,25 +585,23 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
         start() {
             if (!ready || disposed || failed || transition >= 0 || recenter >= 0) return;
             setWalking(false);
+            resetInput();
             if (motionPreference.matches) { callbacks.onComplete(); return; }
             // Normalize yaw so returning always takes the shortest path, even after several turns.
             viewOffset.x = THREE.MathUtils.euclideanModulo(viewOffset.x + Math.PI, Math.PI * 2) - Math.PI;
             returnFrom.copy(viewOffset);
             walkReturnFrom.copy(walkOffset);
-            clearMovement();
             recenter = 0;
-            if (dragId !== undefined && canvas.hasPointerCapture(dragId)) canvas.releasePointerCapture(dragId);
-            dragId = undefined;
             canvas.style.cursor = 'default';
         },
         dispose() {
-            disposed = true; cancelAnimationFrame(frame); observer.disconnect();
+            disposed = true; resetInput(); cancelAnimationFrame(frame); observer.disconnect();
             canvas.removeEventListener('pointerdown', down); canvas.removeEventListener('pointermove', move);
-            canvas.removeEventListener('pointerup', up); canvas.removeEventListener('pointercancel', up);
-            canvas.removeEventListener('lostpointercapture', up);
+            canvas.removeEventListener('pointerup', up); canvas.removeEventListener('pointercancel', cancel);
+            canvas.removeEventListener('lostpointercapture', cancel);
             window.removeEventListener('keydown', keyDown);
             window.removeEventListener('keyup', keyUp);
-            window.removeEventListener('blur', clearMovement);
+            window.removeEventListener('blur', resetInput);
             document.removeEventListener('visibilitychange', resetFrameTime);
             renderer.domElement.removeEventListener('webglcontextlost', handleContextLoss);
             mixer?.stopAllAction();
