@@ -1,9 +1,11 @@
+import { MOON_RADIUS_KM, moonPositionFromEarth } from './moonOrbit';
 import * as THREE from 'three';
 import { ASTRONOMICAL_UNIT_KM, EARTH_BODY, SOLAR_BODIES, SOLAR_KM_PER_UNIT } from '../content/solarSystem';
 import { CAMERA_START_POSITION } from './bridgeMotion';
 import { createBridgeSky } from './bridgeSky';
 import { createSolarGlare } from './solarGlare';
-import { EARTH_POSITION, inertialYawFromStation, solarDiameterPixels, solarPositionFromStation } from './stationOrbit';
+import { createEarthAtmosphere } from './earthAtmosphere';
+import { EARTH_POSITION, EARTH_SIDEREAL_DAY_SECONDS, earthPositionFromStation, inertialOrientationFromStation, solarDiameterPixels, solarPositionFromStation } from './stationOrbit';
 
 /** A separate astronomical pass keeps cabin metres out of the solar-system depth range. */
 export function createBridgeSolarSystem(loader: THREE.TextureLoader, ownedTextures: Set<THREE.Texture>, isDisposed: () => boolean, onError: (message: string) => void) {
@@ -14,9 +16,23 @@ export function createBridgeSolarSystem(loader: THREE.TextureLoader, ownedTextur
     scene.add(frame);
     const earthSystem = new THREE.Group();
     frame.add(earthSystem);
+    const moon = new THREE.Group();
+    moon.name = 'moon';
+    frame.add(moon);
+    moonPositionFromEarth(0, moon.position);
     const earthRadius = EARTH_BODY.radiusKm / SOLAR_KM_PER_UNIT;
-    const cloudTime = { value: 0 };
     let earth: THREE.Mesh | undefined, clouds: THREE.Mesh | undefined;
+    const cloudMap = { value: null as THREE.Texture | null };
+    const cloudOffset = { value: 0 };
+    // A restrained artistic exposure lift keeps the crescent's cloud bands readable.
+    // Anchor it in the Earth frame: turning the player's head must not relight the planet.
+    const observationDirection = new THREE.Vector3(.9, .25, .55).normalize();
+    const observationDirectionWorld = { value: observationDirection.clone() };
+    const observationFill = (strength: number) => `
+        vec3 fillDirection = transformDirection(observationDirectionWorld, viewMatrix);
+        float facing = max(dot(nonPerturbedNormal, fillDirection), 0.0);
+        totalEmissiveRadiance += diffuseColor.rgb * (0.005 + ${strength} * pow(facing, 1.5));
+    `;
     const loadTexture = async (url: string, color = true) => {
         const texture = await loader.loadAsync(url);
         if (isDisposed()) { texture.dispose(); return; }
@@ -48,11 +64,25 @@ export function createBridgeSolarSystem(loader: THREE.TextureLoader, ownedTextur
         const texture = await loadTexture(`/textures/solar/${body.texture}.jpg`);
         if (!texture) return;
         const material = new THREE.MeshStandardMaterial({ map: texture, roughness: 1, metalness: 0 });
-        const sphere = new THREE.Mesh(new THREE.SphereGeometry(body.radiusKm / SOLAR_KM_PER_UNIT, 80, 48), material);
+        const sphere = new THREE.Mesh(new THREE.SphereGeometry(body.radiusKm / SOLAR_KM_PER_UNIT, body.id === 'earth' ? 192 : 80, body.id === 'earth' ? 128 : 48), material);
         group.add(sphere);
         if (body.id === 'earth') {
             earth = sphere;
-            sphere.rotation.set(.1, 1.6, .13);
+            texture.anisotropy = 8;
+            material.onBeforeCompile = shader => {
+                shader.uniforms.cloudShadowMap = cloudMap;
+                shader.uniforms.cloudOffset = cloudOffset;
+                shader.uniforms.observationDirectionWorld = observationDirectionWorld;
+                shader.fragmentShader = 'uniform sampler2D cloudShadowMap; uniform float cloudOffset; uniform vec3 observationDirectionWorld;\n' + shader.fragmentShader;
+                shader.fragmentShader = shader.fragmentShader.replace('#include <map_fragment>', `
+                    #include <map_fragment>
+                    float cloudShadow = texture2D(cloudShadowMap, vMapUv + vec2(cloudOffset + 0.0003, 0.0002)).g;
+                    diffuseColor.rgb *= 1.0 - 0.18 * smoothstep(0.08, 0.7, cloudShadow);
+                `);
+                shader.fragmentShader = shader.fragmentShader.replace('#include <emissivemap_fragment>', observationFill(.18));
+            };
+            material.customProgramCacheKey = () => 'earth-fixed-exposure-cloud-shadow-v3';
+            sphere.rotation.set(.1, -1.2, .13);
         }
         if (body.id === 'saturn') {
             sphere.rotation.z = THREE.MathUtils.degToRad(26.73);
@@ -74,63 +104,49 @@ export function createBridgeSolarSystem(loader: THREE.TextureLoader, ownedTextur
         return loadBody(planet);
     });
 
+    const moonPromise = loadTexture('/textures/solar/moon_4k.webp').then(texture => {
+        if (!texture) return;
+        texture.anisotropy = 4;
+        const sphere = new THREE.Mesh(
+            new THREE.SphereGeometry(MOON_RADIUS_KM / SOLAR_KM_PER_UNIT, 96, 64),
+            new THREE.MeshStandardMaterial({ map: texture, roughness: 1, metalness: 0 }),
+        );
+        // Map central longitude toward Earth; rotation follows the orbital frame.
+        sphere.rotation.y = -Math.PI / 2;
+        moon.add(sphere);
+    });
+
     const cloudPromise = loadTexture('/textures/solar/earth_clouds.jpg', false).then(texture => {
         if (!texture) return;
+        cloudMap.value = texture;
         texture.wrapS = THREE.RepeatWrapping;
+        texture.anisotropy = 8;
         const material = new THREE.MeshStandardMaterial({
-            color: '#f0f5ff', alphaMap: texture, transparent: true, opacity: .92,
-            roughness: 1, metalness: 0, depthWrite: false,
+            color: '#ffffff', alphaMap: texture, bumpMap: texture, bumpScale: .0015,
+            transparent: true, opacity: 1, roughness: 1, metalness: 0, depthWrite: false,
         });
         material.onBeforeCompile = shader => {
-            shader.uniforms.cloudTime = cloudTime;
-            shader.fragmentShader = 'uniform float cloudTime;\n' + shader.fragmentShader;
+            shader.uniforms.observationDirectionWorld = observationDirectionWorld;
+            shader.fragmentShader = 'uniform vec3 observationDirectionWorld;\n' + shader.fragmentShader;
             shader.fragmentShader = shader.fragmentShader.replace('#include <alphamap_fragment>', `
                 vec2 cloudUV = vAlphaMapUv;
-                float latitudeFade = sin(cloudUV.y * 3.14159265);
-                cloudUV.x += .0035 * sin(cloudUV.y * 25.0 + cloudTime * .045) * latitudeFade;
-                cloudUV.y += .0025 * sin(cloudUV.x * 37.6991118 + cloudTime * .03) * latitudeFade;
                 float density = texture2D(alphaMap, cloudUV).g;
-                float wisps = texture2D(alphaMap, cloudUV + vec2(cloudTime * .00012, 0.0)).g;
-                diffuseColor.a *= smoothstep(.08, .85, mix(density, wisps, .22));
+                // Optical-depth falloff retains the fine wisps and gives storm cores real opacity.
+                float opticalDepth = 2.8 * pow(density, 1.2);
+                diffuseColor.a *= 1.0 - exp(-opticalDepth);
+                float sunwardDensity = texture2D(alphaMap, cloudUV + vec2(0.0003, 0.0002)).g;
+                diffuseColor.rgb *= 1.0 - 0.14 * smoothstep(0.05, 0.4, sunwardDensity - density);
             `);
+            shader.fragmentShader = shader.fragmentShader.replace('#include <emissivemap_fragment>', observationFill(.32));
         };
-        material.customProgramCacheKey = () => 'earth-drifting-clouds-v1';
-        clouds = new THREE.Mesh(new THREE.SphereGeometry(earthRadius + 10 / SOLAR_KM_PER_UNIT, 80, 48), material);
-        clouds.rotation.set(.1, 1.6, .13);
+        material.customProgramCacheKey = () => 'earth-cloud-optical-depth-v3';
+        clouds = new THREE.Mesh(new THREE.SphereGeometry(earthRadius + 8 / SOLAR_KM_PER_UNIT, 192, 128), material);
+        clouds.name = 'earth-tropospheric-clouds';
+        clouds.rotation.set(.1, -1.2, .13);
+        clouds.renderOrder = 1;
         earthSystem.add(clouds);
     });
-    const atmosphere = new THREE.Mesh(new THREE.SphereGeometry(earthRadius + 100 / SOLAR_KM_PER_UNIT, 64, 40), new THREE.ShaderMaterial({
-        transparent: true, depthWrite: false, side: THREE.BackSide, blending: THREE.AdditiveBlending,
-        uniforms: { sunDirection: { value: sunlight.position.clone().normalize() } },
-        vertexShader: `
-            #include <common>
-            #include <logdepthbuf_pars_vertex>
-            varying vec3 vNormal;
-            varying vec3 vSurfaceNormal;
-            varying vec3 vView;
-            void main() {
-                vec4 p = modelViewMatrix * vec4(position, 1.0);
-                vNormal = normalize(normalMatrix * normal);
-                vSurfaceNormal = normal;
-                vView = -p.xyz;
-                gl_Position = projectionMatrix * p;
-                #include <logdepthbuf_vertex>
-            }`,
-        fragmentShader: `
-            #include <logdepthbuf_pars_fragment>
-            uniform vec3 sunDirection;
-            varying vec3 vNormal;
-            varying vec3 vSurfaceNormal;
-            varying vec3 vView;
-            void main() {
-                #include <logdepthbuf_fragment>
-                float edge = pow(1.0 - abs(dot(normalize(vNormal), normalize(vView))), 3.2);
-                // Both vectors use the Earth frame, so station rotation preserves illumination.
-                float daylight = smoothstep(-0.12, 0.2, dot(normalize(vSurfaceNormal), sunDirection));
-                gl_FragColor = vec4(0.12, 0.48, 1.0, edge * daylight * 0.75);
-            }`,
-    }));
-    earthSystem.add(atmosphere);
+    earthSystem.add(createEarthAtmosphere(earthRadius, sunlight.position.clone().normalize()));
 
     const sky = createBridgeSky(scene, loader, ownedTextures, isDisposed);
     const cabinOrigin = new THREE.Vector3(...CAMERA_START_POSITION);
@@ -138,15 +154,18 @@ export function createBridgeSolarSystem(loader: THREE.TextureLoader, ownedTextur
     const sunDirection = new THREE.Vector3();
     return {
         scene, camera, sunDirection,
-        ready: Promise.all([...mainBodies, cloudPromise, sky.ready]),
+        ready: Promise.all([...mainBodies, moonPromise, cloudPromise, sky.ready]),
         update(cabinCamera: THREE.PerspectiveCamera, seconds: number, delta: number, viewportHeight: number, pixelRatio = 1) {
             camera.position.copy(cabinCamera.position).sub(cabinOrigin).multiplyScalar(1 / (1_000 * SOLAR_KM_PER_UNIT));
             camera.quaternion.copy(cabinCamera.quaternion);
             camera.fov = cabinCamera.fov;
             camera.aspect = cabinCamera.aspect;
             camera.updateProjectionMatrix();
-            const yaw = inertialYawFromStation(seconds);
-            frame.rotation.y = yaw;
+            earthPositionFromStation(seconds, frame.position);
+            inertialOrientationFromStation(seconds, frame.quaternion);
+            observationDirectionWorld.value.copy(observationDirection).applyQuaternion(frame.quaternion);
+            moonPositionFromEarth(seconds, moon.position);
+            moon.rotation.y = Math.atan2(-moon.position.x, -moon.position.z);
             solarPositionFromStation(SOLAR_BODIES[0], seconds, sunDirection).sub(camera.position).normalize();
             for (const planet of planets) {
                 if (planet.body.id === 'sun' || planet.body.id === 'earth') continue;
@@ -159,9 +178,10 @@ export function createBridgeSolarSystem(loader: THREE.TextureLoader, ownedTextur
                 }
             }
             sky.update(seconds, pixelRatio);
-            if (earth) earth.rotation.y += delta * .008;
-            if (clouds) clouds.rotation.y += delta * .0105;
-            cloudTime.value += delta;
+            const earthRotation = 2 * Math.PI / EARTH_SIDEREAL_DAY_SECONDS;
+            if (earth) earth.rotation.y += delta * earthRotation;
+            if (clouds) clouds.rotation.y += delta * earthRotation * 1.015;
+            if (earth && clouds) cloudOffset.value = (clouds.rotation.y - earth.rotation.y) / (Math.PI * 2);
         },
     };
 }

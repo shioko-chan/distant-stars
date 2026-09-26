@@ -2,19 +2,21 @@ import { afterEach, describe, expect, it, vi } from 'vitest';
 import { Euler, Points, Quaternion, Scene, ShaderMaterial, Texture, TextureLoader, Vector3 } from 'three';
 import catalogue from '../content/skyStars.json';
 import { createBridgeSky } from './bridgeSky';
-import { STATION_ORBIT_PERIOD } from './stationOrbit';
+import { HABITAT_ROTATION_PERIOD } from './habitatFrame';
+import { earthPositionFromStation, inertialOrientationFromStation, solarPositionFromStation, STATION_ORBIT_PERIOD } from './stationOrbit';
+import { SOLAR_BODIES } from '../content/solarSystem';
 
 afterEach(() => vi.restoreAllMocks());
 
 describe('layered observation-deck sky', () => {
-    it('keeps stars aligned with the panorama throughout the station orbit', async () => {
+    it('keeps stars aligned with the panorama through spin and Earth-pointing steering', async () => {
         vi.spyOn(TextureLoader.prototype, 'loadAsync').mockImplementation(async () => new Texture());
         const scene = new Scene();
         const sky = createBridgeSky(scene, new TextureLoader(), new Set(), () => false);
         await sky.ready;
         const stars = scene.getObjectByName('catalogue-stars')!;
         const initial = new Quaternion();
-        for (const seconds of [0, STATION_ORBIT_PERIOD / 4, STATION_ORBIT_PERIOD / 2, STATION_ORBIT_PERIOD]) {
+        for (const seconds of [0, HABITAT_ROTATION_PERIOD / 4, STATION_ORBIT_PERIOD * .37, STATION_ORBIT_PERIOD * 2.5, HABITAT_ROTATION_PERIOD]) {
             sky.update(seconds, 1.5);
             if (!seconds) initial.copy(stars.quaternion);
             const rotation = scene.backgroundRotation;
@@ -26,7 +28,28 @@ describe('layered observation-deck sky', () => {
                 expect(sampledDirection.distanceTo(local)).toBeLessThan(1e-7);
             }
         }
-        expect(stars.quaternion.angleTo(initial)).toBeLessThan(1e-7);
+        const afterSpin = stars.quaternion.clone().multiply(initial.clone().invert());
+        expect(afterSpin.angleTo(inertialOrientationFromStation(HABITAT_ROTATION_PERIOD))).toBeLessThan(1e-7);
+        expect(afterSpin.angleTo(new Quaternion())).toBeCloseTo(2 * Math.PI * HABITAT_ROTATION_PERIOD / STATION_ORBIT_PERIOD, 10);
+    });
+
+    it('shares the solar system inertial rotation without inheriting its geocentric translation', async () => {
+        vi.spyOn(TextureLoader.prototype, 'loadAsync').mockImplementation(async () => new Texture());
+        const scene = new Scene();
+        const sky = createBridgeSky(scene, new TextureLoader(), new Set(), () => false);
+        await sky.ready;
+        const stars = scene.getObjectByName('catalogue-stars')!;
+        sky.update(0, 1);
+        const initial = stars.quaternion.clone();
+        const sun = SOLAR_BODIES[0];
+        const initialSun = solarPositionFromStation(sun, 0).sub(earthPositionFromStation(0)).normalize();
+        for (const seconds of [17, HABITAT_ROTATION_PERIOD / 4, STATION_ORBIT_PERIOD / 2]) {
+            sky.update(seconds, 1);
+            const stellarRotation = stars.quaternion.clone().multiply(initial.clone().invert());
+            expect(stellarRotation.angleTo(inertialOrientationFromStation(seconds))).toBeLessThan(1e-7);
+            const actualSun = solarPositionFromStation(sun, seconds).sub(earthPositionFromStation(seconds)).normalize();
+            expect(initialSun.clone().applyQuaternion(stellarRotation).distanceTo(actualSun)).toBeLessThan(1e-12);
+        }
     });
 
     it('uses valid catalogue directions, omits the Sun, and scales point footprints with pixel density', async () => {
