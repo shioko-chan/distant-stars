@@ -1,14 +1,13 @@
 import * as THREE from 'three';
 import catalogue from '../content/skyStars.json';
-import { inertialYawFromStation } from './stationOrbit';
+import { inertialOrientationFromStation } from './stationOrbit';
 
 const SKY_RADIUS = 8_000_000;
 const initialLookup = new THREE.Quaternion().setFromEuler(new THREE.Euler(0, -Math.PI / 2, -.32));
-const orbitAxis = new THREE.Vector3(0, 1, 0);
 
 /** The same lookup rotation drives the diffuse panorama and the independent star directions. */
 export function skyLookupFromStation(seconds: number, target = new THREE.Quaternion()) {
-    return target.setFromAxisAngle(orbitAxis, -inertialYawFromStation(seconds)).premultiply(initialLookup);
+    return inertialOrientationFromStation(seconds, target).invert().premultiply(initialLookup);
 }
 
 export function createBridgeSky(scene: THREE.Scene, loader: THREE.TextureLoader, ownedTextures: Set<THREE.Texture>, isDisposed: () => boolean) {
@@ -40,7 +39,7 @@ export function createBridgeSky(scene: THREE.Scene, loader: THREE.TextureLoader,
             varying float strength;
             void main() {
                 starColor = color;
-                strength = 1.1 * pow(10.0, -0.18 * (magnitude - 2.0));
+                strength = .8 * pow(10.0, -0.18 * (magnitude - 2.0));
                 gl_Position = projectionMatrix * modelViewMatrix * vec4(position, 1.0);
                 gl_PointSize = (3.4 + max(0.0, 3.0 - magnitude) * 0.55) * pixelRatio;
                 #include <logdepthbuf_vertex>
@@ -69,7 +68,7 @@ export function createBridgeSky(scene: THREE.Scene, loader: THREE.TextureLoader,
         texture.colorSpace = THREE.SRGBColorSpace;
         texture.mapping = THREE.EquirectangularReflectionMapping;
         scene.background = texture;
-        scene.backgroundIntensity = .5;
+        scene.backgroundIntensity = .3;
     });
     return {
         ready,

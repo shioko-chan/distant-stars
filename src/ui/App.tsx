@@ -51,7 +51,7 @@ export function App() {
   <header className="masthead">
    <div className="brand"><span className="brand-mark" aria-hidden="true">✧</span><div><b>DISTANT STARS</b><small>遥远群星</small></div></div>
    <div className="bridge-designation"><span className="status-light" />舰桥中控台<small>COMMAND STATION / 01</small></div>
-   <div className="save-actions"><MusicControl control={music}/><button onClick={() => { setSpeed(0); setAtConsole(false); }}>观景甲板</button><button onClick={save}>保存</button><button onClick={load}>读取</button><button onClick={newGame}>新纪元</button>{debugMode && <DebugConsole session={session}/>}<AudioSettings settings={audioSettings}/></div>
+   <div className="save-actions"><MusicControl control={music}/><button onClick={() => { setSpeed(0); setAtConsole(false); }}>返回居所</button><button onClick={save}>保存</button><button onClick={load}>读取</button><button onClick={newGame}>新纪元</button>{debugMode && <DebugConsole session={session}/>}<AudioSettings settings={audioSettings}/></div>
   </header>
   {view.failed && <div role="alert" className="failure">帝国人口低于延续阈值。可读取旧档或开始新纪元。</div>}
   <main className={"workspace " + (panelOpen ? "panel-open" : "")}>
