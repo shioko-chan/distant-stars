@@ -1,0 +1,111 @@
+{
+  "blender_version": "5.1.1",
+  "automatic_script_execution": false,
+  "read_only": true,
+  "loaded_blend": "modular_urban_apartments_facade_8k.blend",
+  "objects": 147,
+  "meshes": 147,
+  "materials": 5,
+  "image_references": [
+    {
+      "name": "modular_urban_apartments_facade_objects_alpha.png",
+      "reference": "//textures/modular_urban_apartments_facade_objects_alpha_8k.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_urban_apartments_facade/textures/modular_urban_apartments_facade_objects_alpha_8k.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "modular_urban_apartments_facade_objects_diff.png",
+      "reference": "//textures/modular_urban_apartments_facade_objects_diff_8k.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_urban_apartments_facade/textures/modular_urban_apartments_facade_objects_diff_8k.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "modular_urban_apartments_facade_objects_metal.png",
+      "reference": "//textures/modular_urban_apartments_facade_objects_metal_8k.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_urban_apartments_facade/textures/modular_urban_apartments_facade_objects_metal_8k.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "modular_urban_apartments_facade_objects_nor_gl.png",
+      "reference": "//textures/modular_urban_apartments_facade_objects_nor_gl_8k.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_urban_apartments_facade/textures/modular_urban_apartments_facade_objects_nor_gl_8k.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "modular_urban_apartments_facade_objects_rough.png",
+      "reference": "//textures/modular_urban_apartments_facade_objects_rough_8k.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_urban_apartments_facade/textures/modular_urban_apartments_facade_objects_rough_8k.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "modular_urban_apartments_facade_plaster_diff.png",
+      "reference": "//textures/modular_urban_apartments_facade_plaster_diff_8k.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_urban_apartments_facade/textures/modular_urban_apartments_facade_plaster_diff_8k.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "modular_urban_apartments_facade_plaster_nor_gl.png",
+      "reference": "//textures/modular_urban_apartments_facade_plaster_nor_gl_8k.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_urban_apartments_facade/textures/modular_urban_apartments_facade_plaster_nor_gl_8k.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "modular_urban_apartments_facade_plaster_rough.png",
+      "reference": "//textures/modular_urban_apartments_facade_plaster_rough_8k.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_urban_apartments_facade/textures/modular_urban_apartments_facade_plaster_rough_8k.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "modular_urban_apartments_facade_trim_01_diff.png",
+      "reference": "//textures/modular_urban_apartments_facade_trim_01_diff_8k.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_urban_apartments_facade/textures/modular_urban_apartments_facade_trim_01_diff_8k.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "modular_urban_apartments_facade_trim_01_nor_gl.png",
+      "reference": "//textures/modular_urban_apartments_facade_trim_01_nor_gl_8k.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_urban_apartments_facade/textures/modular_urban_apartments_facade_trim_01_nor_gl_8k.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "modular_urban_apartments_facade_trim_01_rough.png",
+      "reference": "//textures/modular_urban_apartments_facade_trim_01_rough_8k.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_urban_apartments_facade/textures/modular_urban_apartments_facade_trim_01_rough_8k.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "modular_urban_apartments_facade_trim_02_diff.png",
+      "reference": "//textures/modular_urban_apartments_facade_trim_02_diff_8k.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_urban_apartments_facade/textures/modular_urban_apartments_facade_trim_02_diff_8k.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "modular_urban_apartments_facade_trim_02_nor_gl.png",
+      "reference": "//textures/modular_urban_apartments_facade_trim_02_nor_gl_8k.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_urban_apartments_facade/textures/modular_urban_apartments_facade_trim_02_nor_gl_8k.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "modular_urban_apartments_facade_trim_02_rough.png",
+      "reference": "//textures/modular_urban_apartments_facade_trim_02_rough_8k.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_urban_apartments_facade/textures/modular_urban_apartments_facade_trim_02_rough_8k.png",
+      "packed": false,
+      "exists": true
+    }
+  ],
+  "missing_images": [],
+  "external_libraries": []
+}

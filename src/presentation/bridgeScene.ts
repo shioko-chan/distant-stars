@@ -5,6 +5,7 @@ import catGait from '../content/catGait.json';
 import { CAT_WALK_STRIDE, createCatWander } from './catWander';
 import * as THREE from 'three';
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader.js';
+import { DRACOLoader } from 'three/examples/jsm/loaders/DRACOLoader.js';
 import { RoundedBoxGeometry } from 'three/examples/jsm/geometries/RoundedBoxGeometry.js';
 import { RoomEnvironment } from 'three/examples/jsm/environments/RoomEnvironment.js';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
@@ -13,7 +14,7 @@ import { UnrealBloomPass } from 'three/examples/jsm/postprocessing/UnrealBloomPa
 import { OutputPass } from 'three/examples/jsm/postprocessing/OutputPass.js';
 import { createBridgeSolarSystem } from './bridgeSolarSystem';
 import { createOrbitalCity } from './orbitalCity';
-import { HABITAT_GROUND_Y } from './habitatFrame';
+import { HABITAT_CAP_THICKNESS_M, HABITAT_CAP_Z, HABITAT_GROUND_Y } from './habitatFrame';
 import { addCatFur } from './catFur';
 import { mulberry32 } from '../simulation/rng';
 import { LOUNGE_Z, BRIDGE_MOTION_DURATION, sampleBridgeMotion, type BridgeMotionPhase } from './bridgeMotion';
@@ -68,10 +69,15 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
     renderer.toneMapping = THREE.ACESFilmicToneMapping;
     renderer.toneMappingExposure = .9;
     renderer.shadowMap.enabled = true;
-    renderer.shadowMap.type = THREE.PCFSoftShadowMap;
-    renderer.domElement.setAttribute('aria-label', '曙光旋转环城的顶层居所。拖动环顾，WASD 或方向键移动；点击或轻触地面前往，Esc 停止。');
+    // Filter shadow-map moments before sampling so grazing light does not expose
+    // the depth-map grid as steps along window and carpet shadows.
+    renderer.shadowMap.type = THREE.VSMShadowMap;
+    renderer.domElement.setAttribute('aria-label', '曙光旋转环城端盖旁的悬挑居所：前窗伸出舱壁望向地球，后窗俯瞰圆柱内部的城市。拖动环顾，WASD 或方向键移动；点击或轻触地面前往，Esc 停止。');
     host.appendChild(renderer.domElement);
     const scene = new THREE.Scene();
+    // Kilometres of air inside the habitat: the far side of the ring fades into lamplit haze.
+    // Negligible across the room; exterior hull materials opt out, since they stand in vacuum.
+    scene.fog = new THREE.FogExp2('#27303f', 2.8e-5);
     const camera = new THREE.PerspectiveCamera(52, 1, .05, 150_000);
     const neutralRoom = new RoomEnvironment();
     const pmrem = new THREE.PMREMGenerator(renderer);
@@ -163,13 +169,20 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
         box([.5, .22, 20.4], [side * 9, -.1, 1.2], dark);
         box([.06, .06, 20.4], [side * 8.72, .01, 1.2], bronze);
     }
-    // The tower's stepped crown is visible when looking down through the side glazing.
+    // The tower stands against the endcap; the residence's front half cantilevers through it into space.
     box([21, .45, 25], [0, -.5, 0], dark);
     const towerHeight = -HABITAT_GROUND_Y - .75;
     const towerY = HABITAT_GROUND_Y + towerHeight / 2;
-    box([17.5, towerHeight, 20], [0, towerY, 1], plaster);
+    const towerFront = HABITAT_CAP_Z, towerDepth = 11 - towerFront;
+    box([17.5, towerHeight, towerDepth], [0, towerY, towerFront + towerDepth / 2], plaster);
     box([2.5, towerHeight, 2.5], [0, towerY, 11.5], dark);
-    for (const side of [-1, 1]) box([.18, towerHeight, 20.4], [side * 8.9, towerY, 1], bronze);
+    for (const side of [-1, 1]) box([.18, towerHeight, towerDepth + .4], [side * 8.9, towerY, towerFront + towerDepth / 2], bronze);
+    // Underside of the cantilever, then a pressure collar where the residence passes through the hull.
+    box([19, 2.4, 8.2], [0, -1.9, -8.1], dark);
+    const capMiddle = HABITAT_CAP_Z - HABITAT_CAP_THICKNESS_M / 2, capDepth = HABITAT_CAP_THICKNESS_M + .1;
+    for (const side of [-1, 1]) box([.5, 6.6, capDepth], [side * 9.15, 2.8, capMiddle], dark);
+    box([19.2, .5, capDepth], [0, 6.05, capMiddle], dark);
+    box([21, .6, capDepth], [0, -.55, capMiddle], dark);
     // A faint unlit tint keeps cabin lights from appearing as star-like glass highlights.
     const glass = new THREE.MeshBasicMaterial({ color: '#bacddd', transparent: true, opacity: .015, depthWrite: false, side: THREE.DoubleSide });
     const frontGlass = mesh(new THREE.PlaneGeometry(18, 5.5), glass, [0, 2.75, -9]);
@@ -182,7 +195,7 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
         const sideGlass = mesh(new THREE.PlaneGeometry(20.4, 5.5), glass, [side * 9, 2.75, 1.2]);
         sideGlass.rotation.y = Math.PI / 2;
         sideGlass.castShadow = sideGlass.receiveShadow = false;
-        for (const z of [-3.9, 1.2, 6.3, 11.4]) box([.16, 5.7, .09], [side * 9, 2.85, z], dark);
+        for (const z of [1.2, 6.3, 11.4]) box([.16, 5.7, .09], [side * 9, 2.85, z], dark);
         for (const y of [.02, 5.55]) box([.2, .12, 20.4], [side * 9, y, 1.2], dark);
     }
 
@@ -241,6 +254,8 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
     key.castShadow = true;
     key.shadow.mapSize.set(1024, 1024);
     key.shadow.bias = -.0003;
+    key.shadow.radius = 2;
+    key.shadow.blurSamples = 12;
     scene.add(key, key.target);
     const blueFill = new THREE.PointLight('#87acff', 18, 20, 1.6);
     blueFill.position.set(-4.5, 3.6, -6.5);
@@ -249,7 +264,10 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
     scene.add(blueFill, consoleLight);
     const sun = new THREE.DirectionalLight('#fff5e8', 1.4);
     sun.castShadow = true;
-    sun.shadow.mapSize.set(2048, 2048);
+    sun.shadow.mapSize.set(4096, 4096);
+    // A 3 cm blur radius in the light's 30 m span keeps a narrow, smooth penumbra.
+    sun.shadow.radius = 4;
+    sun.shadow.blurSamples = 12;
     sun.shadow.camera.left = sun.shadow.camera.bottom = -15;
     sun.shadow.camera.right = sun.shadow.camera.top = 15;
     sun.shadow.camera.near = .1;
@@ -261,6 +279,8 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
     const manager = new THREE.LoadingManager();
     manager.onProgress = (_url, loaded, total) => { if (!disposed) callbacks.onProgress(loaded, total); };
     const loader = new GLTFLoader(manager);
+    const draco = new DRACOLoader(manager).setDecoderPath('/models/neo-city/draco/').setWorkerLimit(2);
+    loader.setDRACOLoader(draco);
     const textureLoader = new THREE.TextureLoader(manager);
     const furniturePromise = Promise.all([
         { material: wood, name: 'Wood048', tileSize: .8 },
@@ -305,9 +325,18 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
     let cat: THREE.Group | undefined;
 
     const solarSystem = createBridgeSolarSystem(textureLoader, ownedTextures, () => disposed, fail);
-    const city = createOrbitalCity(textureLoader, ownedTextures, () => disposed);
+    let cityModelSettled = false;
+    const cityModelPromise = loadModel('/models/neo-city/neo-city.gltf').finally(() => {
+        cityModelSettled = true;
+        if (disposed) draco.dispose();
+    });
+    const city = createOrbitalCity(textureLoader, ownedTextures, () => disposed, async () => (await cityModelPromise).scene);
     scene.add(city.group);
     const composer = new EffectComposer(renderer);
+    // The scene renders into the composer's targets, so canvas antialiasing alone
+    // cannot cover thin tile joints or furniture/window edges.
+    const samples = Math.min(4, renderer.capabilities.maxSamples);
+    composer.renderTarget1.samples = composer.renderTarget2.samples = samples;
     composer.addPass(new RenderPass(solarSystem.scene, solarSystem.camera));
     const cabinPass = new RenderPass(scene, camera);
     cabinPass.clear = false;
@@ -608,6 +637,9 @@ export function createBridgeScene(host: HTMLDivElement, callbacks: SceneCallback
             if (mixer) mixer.uncacheRoot(mixer.getRoot());
             disposeObjects([scene, solarSystem.scene, ...assets]);
             ownedTextures.forEach(texture => texture.dispose()); environment.dispose();
+            // Terminating an in-flight Draco decode leaves its promise unresolved. A pending load
+            // cleans up its scene and decoder when it settles, including workers created after unmount.
+            if (cityModelSettled) draco.dispose();
             key.shadow.dispose();
             sun.shadow.dispose();
             bloom.dispose(); output.dispose(); composer.dispose(); renderer.dispose();

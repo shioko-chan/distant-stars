@@ -1,0 +1,1079 @@
+{
+  "materials": {
+    "KB3D_NEC_AirCon": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/AirCon-basecolor-1024.webp",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 109712,
+          "sha256": "a93b8d7f2d6bc79607c163df7092d3b971c9db53dad398164b53e39a3395bb1c",
+          "estimatedGpuBytesWithMipmaps": 5592405
+        },
+        "normal": {
+          "uri": "textures/AirCon-normal-512.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 297036,
+          "sha256": "2f333ad104b704e89d9c925fc4f1364845cc887661a26281e466b94213bbde70",
+          "estimatedGpuBytesWithMipmaps": 1398101
+        },
+        "orm": {
+          "uri": "textures/AirCon-orm-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 92550,
+          "sha256": "5706443fb49ee0b1f5a476e28acd788bed8056413c6c08c8f041fc73e624475f",
+          "estimatedGpuBytesWithMipmaps": 349525
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_AsphaltHexagonRoof": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/AsphaltHexagonRoof-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 13572,
+          "sha256": "8e00e0f50cbf9aae334e267af2374336df9520b2dff35872a023f7b6df763872",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/AsphaltHexagonRoof-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 65886,
+          "sha256": "88cc7f6a009cf19e7c81b2f30c9ac4ddafb57d9b46500778a4ab97df991186f4",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/AsphaltHexagonRoof-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 23052,
+          "sha256": "69f19965f435abfac873d4070957146da9c6dab862e33c6e0543e077be09cb3d",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_BannerA": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/BannerA-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 7054,
+          "sha256": "283f0209dc47bd61462f66d3dea3e4decf8df689d6bb1b4a7e2f1dde4889c3a8",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/BannerA-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 30762,
+          "sha256": "d61c7a8c94a59203e2c2b67b757b98ccf3089699c9d8fe61ab65abdd3858077b",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/BannerA-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 12002,
+          "sha256": "598456ed28dfe7fe6b7879905e874fbafbcbab690881a27f23b001bebd6fde7c",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_ConcreteA": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/ConcreteA-basecolor-2048.webp",
+          "width": 2048,
+          "height": 2048,
+          "bytes": 141872,
+          "sha256": "2e0515fafacd0626549f7fe98eb53403ae351e2f2aad5960fc0b79351de0c290",
+          "estimatedGpuBytesWithMipmaps": 22369621
+        },
+        "normal": {
+          "uri": "textures/ConcreteA-normal-1024.webp",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 184672,
+          "sha256": "2d22de46fe50dd8d91743a15d5b55be9d63782db11e4689edc9f24b6c5409a9d",
+          "estimatedGpuBytesWithMipmaps": 5592405
+        },
+        "orm": {
+          "uri": "textures/ConcreteA-orm-512.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 149512,
+          "sha256": "e49ae816d47b39b996f11d009262a7c9a6b8df94f4f4ea206c5c5bde3d041a62",
+          "estimatedGpuBytesWithMipmaps": 1398101
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_ConcreteAccent": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/ConcreteAccent-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 10358,
+          "sha256": "79cb1f9d84090c60be62f1bed45f953828dbaa56b3c148cac741618f7389b26b",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/ConcreteAccent-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 56400,
+          "sha256": "299d305c37eea42c6de641edad983a37a673537565ab793f75dcbfcf24b110c0",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/ConcreteAccent-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 21392,
+          "sha256": "193e0e045c033fa46e7ad0f341820c5baffd6aae6aa007cb96a7ace138a28364",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_ConcreteB": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/ConcreteB-basecolor-1024.webp",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 298288,
+          "sha256": "0d6b92d8d5894e30d9671569a464369ac4ec1d3866366bdd179c12935a1d45cb",
+          "estimatedGpuBytesWithMipmaps": 5592405
+        },
+        "normal": {
+          "uri": "textures/ConcreteB-normal-512.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 93270,
+          "sha256": "399a41f8eb2768d467e89ea607959992339ae55b74a4995cb32633d260c9f91f",
+          "estimatedGpuBytesWithMipmaps": 1398101
+        },
+        "orm": {
+          "uri": "textures/ConcreteB-orm-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 43710,
+          "sha256": "21bd7f618681e40b6641cb7e880efd857907723b387eebe20a3a31b73a145842",
+          "estimatedGpuBytesWithMipmaps": 349525
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_ConcreteWall": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/ConcreteWall-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 8630,
+          "sha256": "4df9e7180db6ea2f9c598f7ff458c8766f1cb2d92e041d90e5b7377e41984d84",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/ConcreteWall-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 73552,
+          "sha256": "423d042029196fd580a25ab76bed015dd8ea2a77a289fa4884ad7ae415dfc269",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/ConcreteWall-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 10770,
+          "sha256": "e6f4e758431c9ef78087a4634efc23becba7817e259148db489f28fbe26af2fe",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_DarkPanels": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/DarkPanels-basecolor-2048.webp",
+          "width": 2048,
+          "height": 2048,
+          "bytes": 101184,
+          "sha256": "701ec42067242ec29aaa8603f4aeb3994df87db4acc853a4afead4c067ae2373",
+          "estimatedGpuBytesWithMipmaps": 22369621
+        },
+        "normal": {
+          "uri": "textures/DarkPanels-normal-1024.webp",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 340854,
+          "sha256": "7eb88fa352c826dfa78788d1cce7519236a7fd9f73c92412cb5921eba7eb80b7",
+          "estimatedGpuBytesWithMipmaps": 5592405
+        },
+        "orm": {
+          "uri": "textures/DarkPanels-orm-512.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 183052,
+          "sha256": "1f8758a9797a543fc0833c6cdbfe9dfdb150ae9a53be48d50322e6a06798bd37",
+          "estimatedGpuBytesWithMipmaps": 1398101
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_DecorConcreteB": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/DecorConcreteB-basecolor-4096.webp",
+          "width": 4096,
+          "height": 4096,
+          "bytes": 5201516,
+          "sha256": "e19b02f00f3dae081d2536a5965a579fccf6aa98268c339bab5428335f69d733",
+          "estimatedGpuBytesWithMipmaps": 89478485
+        },
+        "normal": {
+          "uri": "textures/DecorConcreteB-normal-4096.webp",
+          "width": 4096,
+          "height": 4096,
+          "bytes": 24283138,
+          "sha256": "6918371a78fe48ae7c13fb114cadfe29da5bfd00c28065db34d519968d6e421d",
+          "estimatedGpuBytesWithMipmaps": 89478485
+        },
+        "orm": {
+          "uri": "textures/DecorConcreteB-orm-512.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 231926,
+          "sha256": "76da5b99ea6e3f7fa42707031ff603c7858019769abda3126d5fbd748250d770",
+          "estimatedGpuBytesWithMipmaps": 1398101
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_DecorConcreteCBeige": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/DecorConcreteCBeige-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 7244,
+          "sha256": "09452ebcaf549270e2be0135f12998ffcc9b056bdd946edd0ded5e262c0b10c0",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/DecorConcreteCBeige-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 105206,
+          "sha256": "af4c39622f4f0d23c0bd711108325c1babe8ffd2df794ebfe9e9799c906b092a",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/DecorConcreteCBeige-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 18996,
+          "sha256": "d9c3ea7c82c74fe08c0e41ffc1fccb52662aa413b904768f7b096f5a51188aba",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_DecorConcreteCWhite": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/DecorConcreteCWhite-basecolor-1024.webp",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 230284,
+          "sha256": "4b223809630ced2daaa916033218a639094e4c4871be3858ab65502549176feb",
+          "estimatedGpuBytesWithMipmaps": 5592405
+        },
+        "normal": {
+          "uri": "textures/DecorConcreteCWhite-normal-512.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 426384,
+          "sha256": "4f157e537e8422b34015a63067c88f0457159e17be825b4b5da37cd711e2cff7",
+          "estimatedGpuBytesWithMipmaps": 1398101
+        },
+        "orm": {
+          "uri": "textures/DecorConcreteCWhite-orm-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 68678,
+          "sha256": "3b126efe7c8aa8c976c0bfc92cd9c9c18052341adb5d70411f86ee63b14b57ce",
+          "estimatedGpuBytesWithMipmaps": 349525
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_GalvanizedSteel": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/GalvanizedSteel-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 12912,
+          "sha256": "bafeac0a56aed880acdd9591daf39f69a0e4a99d0c4e534178c9bcca6cb3869e",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/GalvanizedSteel-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 60578,
+          "sha256": "b7a6e6e7fc5ec20f5a3f0aee75df9d386850ff1ba89b5fdce284f9c8f305543b",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/GalvanizedSteel-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 15238,
+          "sha256": "ff6a5fd5ed565ec6fdbc00945e749f4723ca37f718fb3cc1b27537694c010852",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_GalvanizedSteelDirt": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/GalvanizedSteelDirt-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 11924,
+          "sha256": "db31a2d00c7c65ff0aab9c1414f0f255fabed711a2f4661bde8cfc08f4a8f8b0",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/GalvanizedSteelDirt-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 66004,
+          "sha256": "53c23baaf5d609c2ff4598cd93f48a0a47b0a25c15462cb50a1f36a12bcd5d13",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/GalvanizedSteelDirt-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 18438,
+          "sha256": "7e0ecba0696194da80efca120b2159f5ef32ce07cb4b27bc8f8fb417057dba52",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_GlassBlack": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/GlassBlack-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 178,
+          "sha256": "fb6efcadd46e2faa2717e865e3956936748557ed599fe6047ae50a0e52accc25",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/GlassBlack-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 44,
+          "sha256": "9e1aa90366999b324fde60283bafcd54cf519fd55a16e1a491b03a0b6ddd3e10",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/GlassBlack-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 6726,
+          "sha256": "66686a00867ea19ae56c07fd6260c5e90e72eaab071b64e4cd8ad6ac13109450",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_GlassLamps": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/GlassLamps-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 300,
+          "sha256": "71c1a5e5cfb808add7db706c2abefe0f579e769abdef7e11e497c0792fe8b701",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/GlassLamps-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 12732,
+          "sha256": "c2b8f475393d9a558392d1cbbfd02a8d570c0e393efff7605bb54c59e925d194",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/GlassLamps-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 6444,
+          "sha256": "02ab7010900466e11920a59c2ae8e81b218576d088b3383543313d76dfae19a7",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_GlassTinted": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/GlassTinted-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 182,
+          "sha256": "ef4648b88293e8b3e3ef18553e1b5ed2790bbd71a17089c439932b2b22ca308d",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/GlassTinted-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 44,
+          "sha256": "fd551359ca4db8e1ca3f2b090a822368d228dfcc4ca878c8e8166ef3acd3b061",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/GlassTinted-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 4138,
+          "sha256": "8423033cb2e82bd6899e5fc16df6aef7603efa9f6d29eb1d8cc4ea2eb52c3ac4",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_LeavesBush": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/LeavesBush-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 34052,
+          "sha256": "fdffa3de710e5ef0c0b2755f7a953f9f5e09244548ce58d928a3762209534b31",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/LeavesBush-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 167068,
+          "sha256": "50014ff07179b406ed402009a5568bbeec2062bf00d26a8dc623cd319d3f7717",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/LeavesBush-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 27336,
+          "sha256": "fc728c6055829533b09c7b55b2168c1c5ca235720cb6740cf4d76b042637068a",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_Letters": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/Letters-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 3414,
+          "sha256": "16d9bd5232338ab87d13b274f26ba55cc92fbb49331162065b9d0f952ecb6153",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/Letters-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 23218,
+          "sha256": "db3f0d827641024c5543101d29a93d87a2b072917840aef87612d7c0c1424bce",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/Letters-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 10756,
+          "sha256": "c3c6c6d04d7e1e219fdc62a58dcd09bf2df21e0055a47515c52e5ed8f55d97d4",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_LightsA": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/LightsA-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 590,
+          "sha256": "f012b100b20f211803e07a7e28c3aba1cc31c1bbd84531d21d5126873fe16223",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/LightsA-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 44,
+          "sha256": "fd551359ca4db8e1ca3f2b090a822368d228dfcc4ca878c8e8166ef3acd3b061",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/LightsA-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 50,
+          "sha256": "e7f491886bb760954309d2d33091a717f6ee64c9de49457e4932ce459ef09008",
+          "estimatedGpuBytesWithMipmaps": 87381
+        },
+        "emissive": {
+          "uri": "textures/LightsA-emissive-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 590,
+          "sha256": "f012b100b20f211803e07a7e28c3aba1cc31c1bbd84531d21d5126873fe16223",
+          "estimatedGpuBytesWithMipmaps": 349525
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_MetalAccent": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/MetalAccent-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 624,
+          "sha256": "ad4c8da7f3e4122b84a5d023715cb0a223ac2d1fa694cab37124b318cb6ff8aa",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/MetalAccent-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 98,
+          "sha256": "dc8859c6a42c0ca387e5921e884f3518775a1774c1973be485cb045e34ecd560",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/MetalAccent-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 5908,
+          "sha256": "519ffbaa18860ec28d7b63c6044fc17b1494c8345ed2a5d00fb2d9cb54b23889",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_MetalDarkWorn": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/MetalDarkWorn-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 10364,
+          "sha256": "5dd5d97f4ceb1eaf7535ec3a62861471931372bff77a33f03c8841e884a33bb6",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/MetalDarkWorn-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 80114,
+          "sha256": "7de6c782f500fb0780b3e96b6386f37cd7ec84591a2cf881b1181eb4567cef0b",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/MetalDarkWorn-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 29460,
+          "sha256": "52aec3ce7a0a3b95c318b15540be184686f442c5f4d3b2d71602396fd1cdd312",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_MetalGrating": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/MetalGrating-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 49290,
+          "sha256": "dc0a384dd3495eaf291c8d45435567d13d640f5347b763ea1823fe9760d73b95",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/MetalGrating-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 107120,
+          "sha256": "0fa50223d76471635e312078b3035fc4de0044c21e7c10c4f6ce12a19f0b4843",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/MetalGrating-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 32998,
+          "sha256": "54ed54679d73cafa6d7f31716d5eeecacdbc1fa349babb59b2a1a2e604c7d250",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": true
+    },
+    "KB3D_NEC_MetalLightGreyWorn": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/MetalLightGreyWorn-basecolor-1024.webp",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 119346,
+          "sha256": "9486e5fa36140eb22b68431dc3d2836e9009de227a7629530972c99234c4f7b9",
+          "estimatedGpuBytesWithMipmaps": 5592405
+        },
+        "normal": {
+          "uri": "textures/MetalLightGreyWorn-normal-512.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 111384,
+          "sha256": "4002e74f858a88f759b471ca2a5ecbc2bcc139b781e97d2f04d1ddcde3d2e2a6",
+          "estimatedGpuBytesWithMipmaps": 1398101
+        },
+        "orm": {
+          "uri": "textures/MetalLightGreyWorn-orm-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 75490,
+          "sha256": "729b7390686b45d9aef420dcdaa996b1ad45e14d46247b3cc7ca4fc268f9d40d",
+          "estimatedGpuBytesWithMipmaps": 349525
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_MetalPaintRed": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/MetalPaintRed-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 3344,
+          "sha256": "92961d88cdc064383ff5920985e564cc595c75281b8ef9f6e6ddb8de3c2308e5",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/MetalPaintRed-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 30276,
+          "sha256": "f1d8562582e84c6781d7c5c37d530e1b3e591e7c0cbdaaae68ae9e83208adcfc",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/MetalPaintRed-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 17056,
+          "sha256": "58728f6da023d40d8abc59d2f3be8f7047f1d4c278dc8dc6d5adaa1cf27902a5",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_MetalPaintWhiteWorn": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/MetalPaintWhiteWorn-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 11586,
+          "sha256": "9e0c7c7443128fb11056f548a9457501851d690960ad9ab44002fc97fd5dd666",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/MetalPaintWhiteWorn-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 84404,
+          "sha256": "84c94924fc1fbd160940f8bafbe054a93de5ee6aa0d238744a660eb86cd7665c",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/MetalPaintWhiteWorn-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 26314,
+          "sha256": "0ca7f1b453df4204a442b9afbdcfcd7aa8131b7fa58852dfdfa285a2c0939cc4",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_MetalPaintWorn": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/MetalPaintWorn-basecolor-2048.webp",
+          "width": 2048,
+          "height": 2048,
+          "bytes": 752200,
+          "sha256": "1fd56ae187650fc3a32d0f73c43b102945c5376104180d31da137f3347237df2",
+          "estimatedGpuBytesWithMipmaps": 22369621
+        },
+        "normal": {
+          "uri": "textures/MetalPaintWorn-normal-1024.webp",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 389272,
+          "sha256": "2473244ade56436a5f3273174636f59f269b50a579c70e83ca4d3631dd71813b",
+          "estimatedGpuBytesWithMipmaps": 5592405
+        },
+        "orm": {
+          "uri": "textures/MetalPaintWorn-orm-512.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 302868,
+          "sha256": "799739f5f7cb3ff3902f8600b98419acacdeff73625f26138ea8a90565470f6c",
+          "estimatedGpuBytesWithMipmaps": 1398101
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_MetalPaintYellow": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/MetalPaintYellow-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 3302,
+          "sha256": "d3b9c79987c744fc02f09ecf6684734665e0c5e662e80399cdc44bbe5697d57b",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/MetalPaintYellow-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 64390,
+          "sha256": "cc5193a3ed0dbd41be9c2342fc0e639aa3f1728e74e15f54f147fffc518b5c35",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/MetalPaintYellow-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 12776,
+          "sha256": "206a2482ea957c95bcccee604e3b992cf3d7f70ce97704532ad15305ba1b9b4e",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_OxidizedSteel": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/OxidizedSteel-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 3758,
+          "sha256": "723c406b5b1fec0d0424746a931b87038004fcf12c8b76bee5f997709b43c824",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/OxidizedSteel-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 44,
+          "sha256": "fd551359ca4db8e1ca3f2b090a822368d228dfcc4ca878c8e8166ef3acd3b061",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/OxidizedSteel-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 15856,
+          "sha256": "7af0f5690b84428666ccfbbc61422d1299f1b4b05ae77c666db312e6867a71b1",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_PaintedMetal": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/PaintedMetal-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 1282,
+          "sha256": "ab2f9dae46807ff505b8acdf4892eef43456a8f1c13c9c94689faeadce6998bf",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/PaintedMetal-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 64366,
+          "sha256": "ee615c6993843ebc8cf6eb8f3f5635ef9d2ac469e9100025232f8f7a0eb23c45",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/PaintedMetal-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 12838,
+          "sha256": "ac8fc30301b5bf1d562f84f9cc53ba36d893e9ff3f73aca93756aa486dd3ae1c",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_SatinSteel": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/SatinSteel-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 878,
+          "sha256": "455ea3873ae3c973280736e5442c59e0c60ad962d495aff9ab6144ae06eabe2f",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/SatinSteel-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 9020,
+          "sha256": "7e25f64639d07db1c71bc63bc8393646253e8f133c9ea383f3e50cf9a194d8cf",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/SatinSteel-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 7346,
+          "sha256": "1674fac5882b63d4bcade7c67e9af017800037af44ac365ce7919070d5723166",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_SpeedwayTiles": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/SpeedwayTiles-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 6370,
+          "sha256": "120c436f74851a7a69e998830cbc4aab9d9a6ba7208376858d571c548cff652f",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/SpeedwayTiles-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 70320,
+          "sha256": "6d412193707df403debdb3a8ad4b5b2295473dacae679d022715e5199f15513f",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/SpeedwayTiles-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 19448,
+          "sha256": "a9c153fd5494ac5a7bc8938c168bf050c220c1a0da0cbf277687b9c37739dd40",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_TarpA": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/TarpA-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 11680,
+          "sha256": "db1aab3fb6f967882e92a86ca114c95b930c6734800587f688277e4092635b6d",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/TarpA-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 85960,
+          "sha256": "f86c9373f9a35486643536781e22dc7db2e1d5b1c5d42e66b8db3ffe2cb0da3d",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/TarpA-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 20542,
+          "sha256": "1a81841420d335f97fd94bc4bd5b36b07fed6b126cd4c797aad6370d28f4d4ea",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_WhitePanels": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/WhitePanels-basecolor-2048.webp",
+          "width": 2048,
+          "height": 2048,
+          "bytes": 120858,
+          "sha256": "cfb9a1c5eeb34cb4356fbafa79db81703210ac08a24abda99871149f03259732",
+          "estimatedGpuBytesWithMipmaps": 22369621
+        },
+        "normal": {
+          "uri": "textures/WhitePanels-normal-1024.webp",
+          "width": 1024,
+          "height": 1024,
+          "bytes": 225720,
+          "sha256": "6e5a7c3c9d88cfb2862c9c223ee68bb79a0a64e81b0b6671cd695b54099776e2",
+          "estimatedGpuBytesWithMipmaps": 5592405
+        },
+        "orm": {
+          "uri": "textures/WhitePanels-orm-512.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 134762,
+          "sha256": "1094a23d82a9a624fa2a070d8019ab8dc99006008163b2738fb2ac41a099a98f",
+          "estimatedGpuBytesWithMipmaps": 1398101
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    },
+    "KB3D_NEC_WoodDarkGreyTower": {
+      "maps": {
+        "basecolor": {
+          "uri": "textures/WoodDarkGreyTower-basecolor-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 19628,
+          "sha256": "9ca01c480ce29c38a59c1f0d4041b53f360a284bee7acc81940d5bb24a6d995b",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "normal": {
+          "uri": "textures/WoodDarkGreyTower-normal-256.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 133320,
+          "sha256": "3cc60542415da1ee816e617efc206b576ed188e0a15bfb839b8616bb5088a02a",
+          "estimatedGpuBytesWithMipmaps": 349525
+        },
+        "orm": {
+          "uri": "textures/WoodDarkGreyTower-orm-128.webp",
+          "width": 128,
+          "height": 128,
+          "bytes": 21184,
+          "sha256": "29d1b71f56a3e567e3c388aedf081a76e921e8a502f9ac2dfa8eb8466fa890ad",
+          "estimatedGpuBytesWithMipmaps": 87381
+        }
+      },
+      "normalScale": 1.0,
+      "emissiveStrength": 1.0,
+      "alphaMask": false
+    }
+  },
+  "textureCount": 103,
+  "textureBytes": 36730678,
+  "estimatedGpuBytesWithMipmaps": 347166003,
+  "notes": [
+    "Native 4K source PNGs are unchanged in asset-sources.",
+    "WebP reduces download size, not GPU texture allocation; GPU budget assumes RGBA8 plus mipmaps.",
+    "Normal and packed ORM WebP use lossless encoding. Base colour/emissive use quality 90.",
+    "Offline displacement is represented by the original normal maps. Refractive glass uses its original opaque PBR surface maps without screen-space transmission."
+  ],
+  "validation": {
+    "allWebpDimensionsVerified": true,
+    "verifiedTextureCount": 103
+  }
+}

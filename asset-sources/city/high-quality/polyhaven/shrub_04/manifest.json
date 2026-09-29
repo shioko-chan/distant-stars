@@ -1,0 +1,128 @@
+{
+  "id": "shrub_04",
+  "provider": "Poly Haven",
+  "source": "https://polyhaven.com/a/shrub_04",
+  "license": "CC0-1.0",
+  "license_source": "https://polyhaven.com/license",
+  "downloaded_on": "2026-09-26",
+  "resolution": "4K",
+  "format": "Blender + glTF + native texture dependencies",
+  "integration_status": "source assets only; not loaded by the app",
+  "files": [
+    {
+      "path": "high-quality/polyhaven/shrub_04/shrub_04.bin",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/4k/shrub_04/shrub_04.bin",
+      "bytes": 749084,
+      "md5": "987a672e598f9dc04b6d23cb8f36d697",
+      "source_md5": "987a672e598f9dc04b6d23cb8f36d697",
+      "sha256": "cb442c39682e54cc63f912aa78ab17a03566f947a61adbbbaaa6473166744f01"
+    },
+    {
+      "path": "high-quality/polyhaven/shrub_04/shrub_04_4k.blend",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/blend/4k/shrub_04/shrub_04_4k.blend",
+      "bytes": 1547950,
+      "md5": "ec61672a3781db01de33e42d19cca389",
+      "source_md5": "ec61672a3781db01de33e42d19cca389",
+      "sha256": "2f4dc8a3c8a3977a73b231b8f3e1edfd0b0f41c0110d994d71c5b1a422466b53"
+    },
+    {
+      "path": "high-quality/polyhaven/shrub_04/shrub_04_4k.gltf",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/4k/shrub_04/shrub_04_4k.gltf",
+      "bytes": 2882,
+      "md5": "d7edc8641cdba5050307db55a8798c8a",
+      "source_md5": "d7edc8641cdba5050307db55a8798c8a",
+      "sha256": "76d30cd21394d7cae8fcb8452bb4d1b26236127fc1d66993e7ceb4c6470b381b"
+    },
+    {
+      "path": "high-quality/polyhaven/shrub_04/textures/shrub_04_alpha_4k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/4k/shrub_04/shrub_04_alpha_4k.png",
+      "bytes": 206515,
+      "md5": "59dd61cf3d34a831377770c9ec5bfcc3",
+      "source_md5": "59dd61cf3d34a831377770c9ec5bfcc3",
+      "sha256": "fcd06f9e956b3165163e3ad0f34a954b10b73713b49d67865cbe9c99a8e46606"
+    },
+    {
+      "path": "high-quality/polyhaven/shrub_04/textures/shrub_04_arm_4k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/4k/shrub_04/shrub_04_arm_4k.jpg",
+      "bytes": 3180025,
+      "md5": "a8ff754c499461514d79fd40b022c601",
+      "source_md5": "a8ff754c499461514d79fd40b022c601",
+      "sha256": "b799e606a02fa95c2fe13e44f25a171a898c0f55392b7f3a59c16a1b1895337b"
+    },
+    {
+      "path": "high-quality/polyhaven/shrub_04/textures/shrub_04_diff_4k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/4k/shrub_04/shrub_04_diff_4k.jpg",
+      "bytes": 3774294,
+      "md5": "28b68f1f6b78901f8b97ac13a9716e08",
+      "source_md5": "28b68f1f6b78901f8b97ac13a9716e08",
+      "sha256": "679a0535697744ef515b4fc11269a82a487af293a1cdcf0c22a637b706ecad6b"
+    },
+    {
+      "path": "high-quality/polyhaven/shrub_04/textures/shrub_04_diff_4k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/4k/shrub_04/shrub_04_diff_4k.png",
+      "bytes": 11770098,
+      "md5": "f1ea792fd6f1e87755b99b968aafaea1",
+      "source_md5": "f1ea792fd6f1e87755b99b968aafaea1",
+      "sha256": "287463b67bbd5bf897e09b1ddeea3ed012dddeffe2c146b490601a943cef613f"
+    },
+    {
+      "path": "high-quality/polyhaven/shrub_04/textures/shrub_04_mask_4k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/4k/shrub_04/shrub_04_mask_4k.png",
+      "bytes": 48209,
+      "md5": "2fa0d7b1762096144ef4355f10a7b578",
+      "source_md5": "2fa0d7b1762096144ef4355f10a7b578",
+      "sha256": "9ad9bfa24a2e286b926745943be704a5ba130c825a064d5bee1b4c7e45dc49b9"
+    },
+    {
+      "path": "high-quality/polyhaven/shrub_04/textures/shrub_04_nor_gl_4k.exr",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/4k/shrub_04/shrub_04_nor_gl_4k.exr",
+      "bytes": 9164941,
+      "md5": "237c6320c573d12798385009b4ccedc6",
+      "source_md5": "237c6320c573d12798385009b4ccedc6",
+      "sha256": "edebeef6a00a832ddc80ff7611ebd927a9dafc968714364e43a361b743963928"
+    },
+    {
+      "path": "high-quality/polyhaven/shrub_04/textures/shrub_04_nor_gl_4k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/4k/shrub_04/shrub_04_nor_gl_4k.jpg",
+      "bytes": 4500988,
+      "md5": "faee96955a767460cd4bb481b2430c67",
+      "source_md5": "faee96955a767460cd4bb481b2430c67",
+      "sha256": "ff84a4f93401dd013ed008e8cd4753c44b4c676c69aa100c5d9bcdf0049c090e"
+    },
+    {
+      "path": "high-quality/polyhaven/shrub_04/textures/shrub_04_rough_4k.exr",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/4k/shrub_04/shrub_04_rough_4k.exr",
+      "bytes": 2486347,
+      "md5": "e508151e22a778b264478e6cbbe30a59",
+      "source_md5": "e508151e22a778b264478e6cbbe30a59",
+      "sha256": "5b8c02f6481273e592ddd5bb2117093daf41b583223d66023a11017c1e8febab"
+    }
+  ],
+  "extra_lossless_color_maps": [
+    "textures/shrub_04_diff_4k.png"
+  ],
+  "validation": {
+    "official_sizes_and_md5": "passed",
+    "sha256": "recorded for all downloaded asset files",
+    "gltf_dependencies": {
+      "status": "passed",
+      "count": 4,
+      "uris": [
+        "shrub_04.bin",
+        "textures/shrub_04_nor_gl_4k.jpg",
+        "textures/shrub_04_diff_4k.jpg",
+        "textures/shrub_04_arm_4k.jpg"
+      ]
+    },
+    "blender": {
+      "status": "passed",
+      "blender_version": "5.1.1",
+      "auto_execution_disabled": true,
+      "file_loaded": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/shrub_04/shrub_04_4k.blend",
+      "objects": 12,
+      "meshes": 12,
+      "external_images": 5,
+      "missing_images": []
+    }
+  }
+}

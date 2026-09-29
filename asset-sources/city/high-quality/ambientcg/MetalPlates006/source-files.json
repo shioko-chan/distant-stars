@@ -1,0 +1,84 @@
+{
+  "default": {
+    "title": "default",
+    "downloadFiletypeCategories": {
+      "zip": {
+        "title": "zip",
+        "downloads": [
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=MetalPlates006_1K-JPG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=MetalPlates006_1K-JPG.zip",
+            "fileName": "MetalPlates006_1K-JPG.zip",
+            "size": 5247281,
+            "filetype": "zip",
+            "attribute": "1K-JPG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=MetalPlates006_2K-JPG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=MetalPlates006_2K-JPG.zip",
+            "fileName": "MetalPlates006_2K-JPG.zip",
+            "size": 13089825,
+            "filetype": "zip",
+            "attribute": "2K-JPG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=MetalPlates006_4K-JPG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=MetalPlates006_4K-JPG.zip",
+            "fileName": "MetalPlates006_4K-JPG.zip",
+            "size": 50908382,
+            "filetype": "zip",
+            "attribute": "4K-JPG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=MetalPlates006_8K-JPG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=MetalPlates006_8K-JPG.zip",
+            "fileName": "MetalPlates006_8K-JPG.zip",
+            "size": 277771690,
+            "filetype": "zip",
+            "attribute": "8K-JPG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=MetalPlates006_1K-PNG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=MetalPlates006_1K-PNG.zip",
+            "fileName": "MetalPlates006_1K-PNG.zip",
+            "size": 10841160,
+            "filetype": "zip",
+            "attribute": "1K-PNG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=MetalPlates006_2K-PNG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=MetalPlates006_2K-PNG.zip",
+            "fileName": "MetalPlates006_2K-PNG.zip",
+            "size": 41867149,
+            "filetype": "zip",
+            "attribute": "2K-PNG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=MetalPlates006_4K-PNG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=MetalPlates006_4K-PNG.zip",
+            "fileName": "MetalPlates006_4K-PNG.zip",
+            "size": 172460952,
+            "filetype": "zip",
+            "attribute": "4K-PNG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=MetalPlates006_8K-PNG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=MetalPlates006_8K-PNG.zip",
+            "fileName": "MetalPlates006_8K-PNG.zip",
+            "size": 444958087,
+            "filetype": "zip",
+            "attribute": "8K-PNG",
+            "zipContent": []
+          }
+        ]
+      }
+    }
+  }
+}

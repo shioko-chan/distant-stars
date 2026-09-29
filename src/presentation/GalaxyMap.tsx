@@ -94,7 +94,7 @@ export function GalaxyMap({ state, selectedId, onSelect, selectedShipId, onSelec
             glow.position.copy(star.position);
             scene.add(glow);
             if (system.bodies.some(b=>state.intel[b.id].level === "colonized")) {
-                const ring = new THREE.Mesh(new THREE.RingGeometry(size * 1.8, size * 2.1, 28), new THREE.MeshBasicMaterial({ color: 0x78d5c0, side: THREE.DoubleSide, transparent: true, opacity: 0.85 }));
+                const ring = new THREE.Mesh(new THREE.RingGeometry(size * 1.8, size * 2.1, 28), new THREE.MeshBasicMaterial({ color: 0x7fd6e6, side: THREE.DoubleSide, transparent: true, opacity: 0.85 }));
                 ring.position.copy(star.position);
                 ring.lookAt(camera.position);
                 scene.add(ring);
@@ -132,7 +132,7 @@ export function GalaxyMap({ state, selectedId, onSelect, selectedShipId, onSelec
             return [{ order, start, end, pulse, path }];
         });
         if (selected) {
-            const ring = new THREE.Mesh(new THREE.RingGeometry(0.34, 0.39, 36), new THREE.MeshBasicMaterial({ color: 0xffffff, side: THREE.DoubleSide }));
+            const ring = new THREE.Mesh(new THREE.RingGeometry(0.34, 0.39, 36), new THREE.MeshBasicMaterial({ color: 0xf0b659, side: THREE.DoubleSide }));
             ring.position.set(selected.x, selected.y, selected.z);
             ring.lookAt(camera.position);
             scene.add(ring);

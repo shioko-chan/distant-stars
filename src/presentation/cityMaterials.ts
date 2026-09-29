@@ -7,26 +7,40 @@ const PHOTO_BAYS = 8;
 const LIT_BAYS = 32;
 const ROOF_TILE_METRES = 12;
 
-/** Sparse, subdued room lights sit inside the photographic windows rather than replacing them. */
+/** Apartments share a light temperature, with darker floors and unoccupied rooms between them. */
 function createRoomLights() {
     const size = 1024, cell = size / LIT_BAYS;
     const data = new Uint8Array(size * size * 4);
     const random = mulberry32(21947);
-    const rooms = Array.from({ length: LIT_BAYS * LIT_BAYS }, () => ({
-        occupied: random() > .86,
-        warm: random() > .16,
-        brightness: .18 + random() * .35,
-        blinds: random() > .7,
-    }));
+    const rooms: { occupied: boolean; warm: boolean; brightness: number; blinds: boolean; curtain: boolean }[] = [];
+    for (let floor = 0; floor < LIT_BAYS; floor++) {
+        const occupancy = .22 + random() * .28;
+        for (let bay = 0; bay < LIT_BAYS;) {
+            const apartmentWidth = 1 + Math.floor(random() * 3);
+            const occupied = random() < occupancy;
+            const warm = random() < .88;
+            const brightness = .4 + random() * .43;
+            for (let room = 0; room < apartmentWidth && bay < LIT_BAYS; room++, bay++) {
+                rooms.push({
+                    occupied: occupied && random() > .1,
+                    warm,
+                    brightness: brightness * (.85 + random() * .15),
+                    blinds: random() < .35,
+                    curtain: random() < .24,
+                });
+            }
+        }
+    }
     for (let y = 0; y < size; y++) for (let x = 0; x < size; x++) {
         const room = rooms[Math.floor(y / cell) * LIT_BAYS + Math.floor(x / cell)];
         const px = x % cell, py = y % cell;
         // The photograph has an opaque spandrel at the bottom and a central mullion.
         const pane = px > 2 && px < 29 && py > 7 && py < 31 && px !== 16;
         const illumination = pane && room.occupied
-            ? room.brightness * (.7 + .3 * py / cell) * (room.blinds && py % 4 === 0 ? .4 : 1)
+            ? room.brightness * (.7 + .3 * py / cell)
+                * (room.blinds && py % 4 === 0 ? .4 : 1) * (room.curtain && px < 16 ? .35 : 1)
             : 0;
-        const tint = room.warm ? [243, 203, 147] : [138, 175, 187];
+        const tint = room.warm ? [255, 226, 190] : [220, 233, 242];
         const offset = (y * size + x) * 4;
         for (let channel = 0; channel < 3; channel++) data[offset + channel] = tint[channel] * illumination;
         data[offset + 3] = 255;
@@ -75,16 +89,21 @@ function useFacadeMetres(material: THREE.MeshStandardMaterial) {
                 facadeUv.x += floor(vFacadeSeed * ${PHOTO_BAYS}.0) / ${PHOTO_BAYS}.0;
                 vec2 roomLightUv = facadeMetres / vec2(${WINDOW_BAY * LIT_BAYS}, ${FLOOR_HEIGHT * LIT_BAYS});
                 roomLightUv.x += floor(vFacadeSeed * ${LIT_BAYS}.0) / ${LIT_BAYS}.0;
+                roomLightUv.y += floor(fract(vFacadeSeed * 13.7) * ${LIT_BAYS}.0) / ${LIT_BAYS}.0;
                 vec2 pane = fract(facadeMetres / vec2(${WINDOW_BAY}, ${FLOOR_HEIGHT}));
                 float glassPane = smoothstep(.035, .065, pane.x) * (1.0 - smoothstep(.935, .965, pane.x));
                 glassPane *= smoothstep(.18, .22, pane.y) * (1.0 - smoothstep(.97, .995, pane.y));
                 glassPane *= smoothstep(.008, .019, abs(pane.x - .5));
+                // Once a pane spans less than a couple of pixels, use its average coverage instead of
+                // an unfiltered grid, which otherwise beats against the pixel grid as moiré.
+                vec2 paneCells = facadeMetres / vec2(${WINDOW_BAY}, ${FLOOR_HEIGHT});
+                glassPane = mix(.66, glassPane, 1.0 - smoothstep(.2, .6, max(fwidth(paneCells.x), fwidth(paneCells.y))));
                 ${THREE.ShaderChunk.map_fragment.replaceAll('vMapUv', 'facadeUv')}
                 diffuseColor.rgb = mix(vec3(.033, .038, .041), diffuseColor.rgb, facadeWall);
             `)
             .replace('#include <emissivemap_fragment>', `
                 ${THREE.ShaderChunk.emissivemap_fragment.replaceAll('vEmissiveMapUv', 'roomLightUv')}
-                totalEmissiveRadiance *= facadeWall * glassPane * (.65 + .35 * vFacadeSeed);
+                totalEmissiveRadiance *= facadeWall * glassPane * (.55 + .65 * vFacadeSeed);
             `)
             .replace('#include <roughnessmap_fragment>', `
                 float roughnessFactor = mix(.96, mix(.82, .34 + .055 * vFacadeSeed, glassPane), facadeWall);
@@ -93,7 +112,7 @@ function useFacadeMetres(material: THREE.MeshStandardMaterial) {
                 float metalnessFactor = mix(.18, .02, glassPane) * facadeWall;
             `);
     };
-    material.customProgramCacheKey = () => 'orbital-photographic-facade-v1';
+    material.customProgramCacheKey = () => 'orbital-photographic-facade-v3';
 }
 
 /** The large structure slabs cover the facade's top: treat their top faces as mineral roofing. */
@@ -135,7 +154,7 @@ ${THREE.ShaderChunk.normal_fragment_maps}
 export function createCityMaterials(loader: Pick<THREE.TextureLoader, 'loadAsync'>, ownedTextures: Set<THREE.Texture>, isDisposed: () => boolean) {
     const emission = createRoomLights();
     ownedTextures.add(emission);
-    const facade = new THREE.MeshStandardMaterial({ color: '#ffffff', emissive: '#ffffff', emissiveMap: emission, emissiveIntensity: .27, metalness: .02, roughness: .7 });
+    const facade = new THREE.MeshStandardMaterial({ color: '#ffffff', emissive: '#ffffff', emissiveMap: emission, emissiveIntensity: .38, metalness: .02, roughness: .7 });
     const structure = new THREE.MeshStandardMaterial({ color: '#ffffff', roughness: .94, metalness: 0, bumpScale: .008 });
     useFacadeMetres(facade);
     useRoofMetres(structure);

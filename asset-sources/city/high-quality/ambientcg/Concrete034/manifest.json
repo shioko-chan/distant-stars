@@ -1,0 +1,116 @@
+{
+  "id": "Concrete034",
+  "provider": "ambientCG",
+  "source": "https://ambientcg.com/view?id=Concrete034",
+  "license": "CC0-1.0",
+  "license_source": "https://docs.ambientcg.com/license/",
+  "resolution": "16K",
+  "format": "PNG PBR package",
+  "downloaded_on": "2026-09-27",
+  "files": [
+    {
+      "path": "high-quality/ambientcg/Concrete034/Concrete034_16K-PNG.zip",
+      "url": "https://ambientcg.com/get?file=Concrete034_16K-PNG.zip",
+      "bytes": 431185761,
+      "sha256": "307c0bff60ca2d30e8abfb9995f911fdd2b9fffe585c4582e1904a6cb9673293",
+      "source_bytes": 431185761,
+      "source_size_verified": true
+    }
+  ],
+  "extracted_path": "high-quality/ambientcg/Concrete034/maps",
+  "zip_crc_verified": true,
+  "source_hash_available": false,
+  "extracted_files": [
+    {
+      "path": "high-quality/ambientcg/Concrete034/maps/Concrete034_16K-PNG.usdc",
+      "bytes": 2911,
+      "sha256": "27ee132e7ec7f5117df8b41d77619cee557fcb0ea5d207236924f66a0f07f30a",
+      "zip_crc32": "8a089ceb"
+    },
+    {
+      "path": "high-quality/ambientcg/Concrete034/maps/Concrete034_16K-PNG_Color.png",
+      "bytes": 97704254,
+      "sha256": "d5a5f80f7afad78a6b8c0f1b915d2af78a189eb0816d51f12b5a77bdcf1deb27",
+      "zip_crc32": "d9d446cc",
+      "width": 16384,
+      "height": 8192,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "path": "high-quality/ambientcg/Concrete034/maps/Concrete034_16K-PNG_Displacement.png",
+      "bytes": 44041288,
+      "sha256": "7bbb453855cb94f5abd2910a08f97afc2479b179514be7838d77e8281e80bc9c",
+      "zip_crc32": "576331d6",
+      "width": 16384,
+      "height": 8192,
+      "bit_depth": 16,
+      "color_type": 0
+    },
+    {
+      "path": "high-quality/ambientcg/Concrete034/maps/Concrete034_16K-PNG_NormalDX.png",
+      "bytes": 94223325,
+      "sha256": "9956fff3c720dd06bc6fc389c7ca902cc01f7282d115799fe4664981edaaa5ff",
+      "zip_crc32": "822865d2",
+      "width": 16384,
+      "height": 8192,
+      "bit_depth": 16,
+      "color_type": 2
+    },
+    {
+      "path": "high-quality/ambientcg/Concrete034/maps/Concrete034_16K-PNG_NormalGL.png",
+      "bytes": 94225473,
+      "sha256": "f13abd696d66dd821033c47b6fe04706ab9c2241a5638e8c5099080ef4d4b9d4",
+      "zip_crc32": "06d5ea47",
+      "width": 16384,
+      "height": 8192,
+      "bit_depth": 16,
+      "color_type": 2
+    },
+    {
+      "path": "high-quality/ambientcg/Concrete034/maps/Concrete034_16K-PNG_Roughness.png",
+      "bytes": 99654937,
+      "sha256": "e37d1bab68b111ff5c55195f415a99f4178611f354e73e311da3c42cbcf51793",
+      "zip_crc32": "f566a4dd",
+      "width": 16384,
+      "height": 8192,
+      "bit_depth": 8,
+      "color_type": 0
+    },
+    {
+      "path": "high-quality/ambientcg/Concrete034/maps/Concrete034_16K-PNG.blend",
+      "bytes": 1099204,
+      "sha256": "1274da8b4c939fb1eed43b7509b480c6ff544c278ac5cf761c4fa0ff650fcc1e",
+      "zip_crc32": "372c0369"
+    },
+    {
+      "path": "high-quality/ambientcg/Concrete034/maps/Concrete034_16K-PNG.mtlx",
+      "bytes": 2317,
+      "sha256": "46200b4463af549fc88a5d841e6ecec5c76c02b6d82f3b486be9fe2b048438df",
+      "zip_crc32": "36946bb3"
+    },
+    {
+      "path": "high-quality/ambientcg/Concrete034/maps/Concrete034_16K-PNG.tres",
+      "bytes": 820,
+      "sha256": "1a4b3620b43f2754634fccbcf5c6a3112ed2bc3942e374b65010ccb072e8483c",
+      "zip_crc32": "1cbbff69"
+    },
+    {
+      "path": "high-quality/ambientcg/Concrete034/maps/Concrete034.png",
+      "bytes": 229324,
+      "sha256": "661780a5a4fdcf5615fd7372f7b817e4a993740b96ff49546ce2b4db72ab25f5",
+      "zip_crc32": "dc94289c",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 6
+    }
+  ],
+  "texture_dimensions_verified": true,
+  "material_texture_count": 5,
+  "material_texture_dimensions": {
+    "width": 16384,
+    "height": 8192
+  },
+  "preview_texture_note": "The packaged 512 x 512 PNG is a material preview, not a PBR map."
+}

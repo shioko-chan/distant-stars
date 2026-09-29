@@ -1,0 +1,12 @@
+{
+  "encoder": "Three.js bundled Draco JavaScript encoder",
+  "originalGeometryBytes": 39004072,
+  "compressedGeometryBytes": 5641788,
+  "primitives": 244,
+  "triangles": 579601,
+  "quantization": {
+    "positionBits": 16,
+    "normalBits": 10,
+    "texcoordBits": 14
+  }
+}

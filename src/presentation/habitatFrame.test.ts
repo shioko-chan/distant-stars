@@ -1,12 +1,16 @@
 import { describe, expect, it } from 'vitest';
 import { Vector3 } from 'three';
-import { HABITAT_ANGULAR_SPEED, HABITAT_GRAVITY, HABITAT_GROUND_Y, HABITAT_HALF_WIDTH_M, HABITAT_RADIUS_M, HABITAT_ROTATION_PERIOD, HABITAT_RPM, habitatOrientation, habitatPoint } from './habitatFrame';
+import { HABITAT_ANGULAR_SPEED, HABITAT_AXIAL_MAX, HABITAT_AXIAL_MIN, HABITAT_CAP_Z, HABITAT_GRAVITY, HABITAT_GROUND_Y, HABITAT_HALF_WIDTH_M, HABITAT_RADIUS_M, HABITAT_ROTATION_PERIOD, HABITAT_RPM, habitatOrientation, habitatPoint } from './habitatFrame';
 
 describe('co-rotating cylindrical habitat', () => {
     it('produces standard gravity at the room floor with a derived spin rate', () => {
         expect(HABITAT_ANGULAR_SPEED ** 2 * HABITAT_RADIUS_M).toBeCloseTo(HABITAT_GRAVITY, 12);
         expect(HABITAT_RADIUS_M).toBe(15_000);
         expect(HABITAT_HALF_WIDTH_M * 2).toBe(24_000);
+        // The residence stands just inside the Earth-facing endcap, so the interior extends along +Z.
+        expect(HABITAT_AXIAL_MIN).toBe(HABITAT_CAP_Z);
+        expect(HABITAT_CAP_Z).toBeLessThan(0);
+        expect(HABITAT_AXIAL_MAX - HABITAT_AXIAL_MIN).toBe(24_000);
         expect(HABITAT_ROTATION_PERIOD).toBeCloseTo(245.7339491, 7);
         expect(HABITAT_RPM * HABITAT_ROTATION_PERIOD / 60).toBeCloseTo(1, 12);
         // A lower city floor is farther from the axis, so its apparent gravity is slightly larger.
@@ -17,7 +21,7 @@ describe('co-rotating cylindrical habitat', () => {
 
     it('curves floor coordinates continuously around the complete ring', () => {
         expect(habitatPoint(0, 0, 19).toArray()).toEqual([0, 0, 19]);
-        expect(habitatPoint(0, HABITAT_GROUND_Y, 0).y).toBe(-200);
+        expect(habitatPoint(0, HABITAT_GROUND_Y, 0).y).toBe(-240);
         const radius = HABITAT_RADIUS_M;
         expect(habitatPoint(Math.PI * radius / 2, 0, 19).distanceTo(new Vector3(radius, radius, 19))).toBeLessThan(1e-9);
         expect(habitatPoint(Math.PI * radius, 0, 19).distanceTo(new Vector3(0, radius * 2, 19))).toBeLessThan(1e-9);
