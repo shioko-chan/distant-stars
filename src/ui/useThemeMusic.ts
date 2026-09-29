@@ -12,7 +12,7 @@ export interface ThemeMusicControl {
     next: () => void;
 }
 
-/** One soundtrack session across the deck and command station. */
+/** One soundtrack session across all maps and management panels. */
 export function useThemeMusic(volume = .5): ThemeMusicControl {
     const activeAudio = useRef<HTMLAudioElement | null>(null);
     const volumeRef = useRef(volume);
