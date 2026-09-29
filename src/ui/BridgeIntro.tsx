@@ -1,8 +1,8 @@
 import { AudioSettings, type AudioSettingsControl } from './AudioSettings';
 import { useEffect, useRef, useState } from 'react';
-import { createBridgeScene } from '../presentation/bridgeScene';
+import { createResidence } from '../presentation/native/residence';
 import type { BridgeMotionPhase } from '../presentation/bridgeMotion';
-import { HABITAT_RADIUS_M, HABITAT_ROTATION_PERIOD } from '../presentation/habitatFrame';
+const HABITAT_RADIUS_M = 15000, HABITAT_ROTATION_PERIOD = 2 * Math.PI / Math.sqrt(9.80665 / HABITAT_RADIUS_M);
 import { MusicControl } from './MusicControl';
 import type { ThemeMusicControl } from './useThemeMusic';
 import './bridgeIntro.css';
@@ -21,7 +21,7 @@ export function BridgeIntro({ active, audioSettings, music, simulationReady, sim
     onNewGame: () => void;
 }) {
     const host = useRef<HTMLDivElement>(null);
-    const runtime = useRef<ReturnType<typeof createBridgeScene> | undefined>(undefined);
+    const runtime = useRef<ReturnType<typeof createResidence> | undefined>(undefined);
     const complete = useRef(onEnter); complete.current = onEnter;
     const [ready, setReady] = useState(false), [error, setError] = useState('');
     const [attempt, setAttempt] = useState(0), [departing, setDeparting] = useState(false);
@@ -30,15 +30,14 @@ export function BridgeIntro({ active, audioSettings, music, simulationReady, sim
     useEffect(() => {
         setReady(false); setError(''); setDeparting(false); setProgress({ loaded: 0, total: 0 });
         try {
-            runtime.current = createBridgeScene(host.current!, {
+            runtime.current = createResidence(host.current!, {
                 onReady: () => setReady(true),
                 onError: message => setError(message),
-                onProgress: (loaded, total) => setProgress({ loaded, total }),
                 onPhase: setPhase,
                 onComplete: () => complete.current(),
             });
         } catch {
-            setError('无法启动顶层居所。请确认浏览器支持 WebGL，然后重新接入。');
+            setError('无法启动 Unreal 顶层居所，请重新进入。');
         }
         return () => { runtime.current?.dispose(); runtime.current = undefined; };
     }, [attempt]);

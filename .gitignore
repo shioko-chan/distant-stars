@@ -1,6 +1,18 @@
 node_modules/
 .DS_Store
 dist/
+.unreal-engine/
+
+unreal/Binaries/
+unreal/DerivedDataCache/
+unreal/Intermediate/
+unreal/Saved/
+unreal/.vs/
+unreal/Content/Web/
+unreal/*.sln
 
 src/content/earth/nasa-topography.tif
 src/content/earth/earth_specular_map.tif
+
+unreal/Packaged/
+unreal/Build/*/FileOpenOrder/

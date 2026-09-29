@@ -354,3 +354,9 @@ th { color: var(--muted); font-weight: 500; }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Unreal renders behind the transparent browser widget. Panels retain their own opaque surfaces. */
+:root, html, body, #root, .app, .map-column, .bridge-intro, .system-view { background: transparent; }
+.native-orbits { position: absolute; inset: 0; }
+.native-label { position: absolute; transform: translateX(-50%); z-index: 2; padding: 3px 7px; font-size: 11px; background: #06121bd0; border-color: #91b3c130; white-space: nowrap; }
+.native-error { position: absolute; left: 50%; top: 45%; transform: translate(-50%,-50%); max-width: 480px; padding: 24px; background: #101c2ef5; border: 1px solid #a97b4c; z-index: 30; }

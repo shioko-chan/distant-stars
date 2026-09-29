@@ -1,7 +1,6 @@
 import { describe, expect, it } from 'vitest';
-import * as THREE from 'three';
+import { project as projectPoint, length, surfacePosition, type Camera } from '../presentation/native/math';
 import { EARTH, geographicPoint, geographicUV, terrainSample } from './terrain';
-import { planetPosition } from '../presentation/PlanetTerrain';
 import { roadAccess, settleSurface, surfaceCost, surfacePower, surfaceProfile, validateSurface } from './surface';
 import { createGame } from './world';
 import type { SurfaceDraft, SurfaceProject } from './types';
@@ -10,11 +9,10 @@ const stroke=(lat:number,lon:number,kind: 'road'|'zone'='road'):SurfaceDraft=>({
 const project=(d:SurfaceDraft):SurfaceProject=>({...d,id:'test',cost:surfaceCost(d,EARTH,6371),progress:100,spent:0,status:'已建成'});
 describe('registered Earth geography',()=>{
     it('places east to the right when viewed from space with north up',()=>{
-        const camera=new THREE.PerspectiveCamera(45,1,.1,10);
-        camera.position.set(4,0,0); camera.up.set(0,1,0); camera.lookAt(0,0,0); camera.updateMatrixWorld();
-        const screen=(lat:number,lon:number)=>new THREE.Vector3(...geographicPoint(lat,lon)).project(camera);
+        const camera:Camera={position:[4,0,0],target:[0,0,0],fov:45};
+        const screen=(lat:number,lon:number)=>projectPoint(geographicPoint(lat,lon),camera,1000,1000);
         expect(screen(0,20).x).toBeGreaterThan(screen(0,-20).x);
-        expect(screen(20,0).y).toBeGreaterThan(screen(-20,0).y);
+        expect(screen(20,0).y).toBeLessThan(screen(-20,0).y);
         expect(geographicUV(geographicPoint(0,20))[0]).toBeGreaterThan(geographicUV(geographicPoint(0,-20))[0]);
     });
     it('locates continents, ocean and the Tibetan plateau with the same UV convention',()=>{
@@ -30,7 +28,7 @@ describe('registered Earth geography',()=>{
     });
     it('uses exactly the simulation elevation for rendered geometry',()=>{
         const p=geographicPoint(32,88), height=terrainSample(p,EARTH).height;
-        expect((planetPosition(new THREE.Vector3(...p),0,EARTH).length()-1.8)/1.8*6371000).toBeCloseTo(height,6);
+        expect((length(surfacePosition(p,0,EARTH))-1.8)/1.8*6371000).toBeCloseTo(height,6);
     });
     it('rejects ocean construction and wide coastal footprints',()=>{
         expect(validateSurface([stroke(0,-140)],EARTH)).toContain('海域');

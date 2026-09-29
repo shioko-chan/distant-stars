@@ -1,3 +1,5 @@
+> 本分支使用 Unreal 原生资产。旧 Three.js 压缩与验证工具保留在 `main`/`web`；当前构建和资源重建方法见 [Unreal 客户端](../../unreal/README.md)。以下为原始制作记录。
+
 # Neo City conversion
 
 Prerequisites are the archived Neo City Blender/4K PNG kit, Blender, Node.js,

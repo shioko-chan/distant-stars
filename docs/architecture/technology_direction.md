@@ -1,5 +1,7 @@
 # Distant Stars：技术方向
 
+> **unreal 分支覆盖决定（2026-09-30）**：三维渲染已迁至 Unreal Engine 5.8.3，React 操作面板与模拟 Worker 保留。该分支的当前架构、构建和消息边界见 [Unreal 客户端](../../unreal/README.md)。下文记录分支拆分前的 Web 技术基线，继续适用于 `web`，不作为 Unreal 分支的构建说明。
+
 ## 决策
 
 《Distant Stars》初步可玩版本继续采用 Web 技术栈，并将其视为 PC 正式版本的默认技术方向，不把当前实现当作之后必然废弃的临时 H5 原型。
