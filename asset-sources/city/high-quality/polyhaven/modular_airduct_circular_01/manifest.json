@@ -1,0 +1,120 @@
+{
+  "id": "modular_airduct_circular_01",
+  "provider": "Poly Haven",
+  "source": "https://polyhaven.com/a/modular_airduct_circular_01",
+  "license": "CC0-1.0",
+  "license_source": "https://polyhaven.com/license",
+  "downloaded_on": "2026-09-26",
+  "resolution": "4K",
+  "format": "Blender + glTF + native texture dependencies",
+  "integration_status": "source assets only; not loaded by the app",
+  "files": [
+    {
+      "path": "high-quality/polyhaven/modular_airduct_circular_01/modular_airduct_circular_01.bin",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/4k/modular_airduct_circular_01/modular_airduct_circular_01.bin",
+      "bytes": 485456,
+      "md5": "89ddfff523c9edf478aa7441b69d1491",
+      "source_md5": "89ddfff523c9edf478aa7441b69d1491",
+      "sha256": "80418c8aed92c97b6149b51124d47ccfa0619a77234449687f29377833293f2d"
+    },
+    {
+      "path": "high-quality/polyhaven/modular_airduct_circular_01/modular_airduct_circular_01_4k.blend",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/blend/4k/modular_airduct_circular_01/modular_airduct_circular_01_4k.blend",
+      "bytes": 464386,
+      "md5": "24db2c7133e038cb33eab2eb0361f9d5",
+      "source_md5": "24db2c7133e038cb33eab2eb0361f9d5",
+      "sha256": "80051a719bd0ef402a195850e9797e8d4d6ff6d1d5bb1a2aaafc33f400bf885d"
+    },
+    {
+      "path": "high-quality/polyhaven/modular_airduct_circular_01/modular_airduct_circular_01_4k.gltf",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/gltf/4k/modular_airduct_circular_01/modular_airduct_circular_01_4k.gltf",
+      "bytes": 26467,
+      "md5": "3bfbec966b6e4dc94f69243af66dccfe",
+      "source_md5": "3bfbec966b6e4dc94f69243af66dccfe",
+      "sha256": "775181c2d3af381d65ed7ea53a9ce897a26d49c0cdee24816101fea6faeb86e4"
+    },
+    {
+      "path": "high-quality/polyhaven/modular_airduct_circular_01/textures/modular_airduct_circular_01_arm_4k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/4k/modular_airduct_circular_01/modular_airduct_circular_01_arm_4k.jpg",
+      "bytes": 8469444,
+      "md5": "f1a796fb32cdbfb3a41c569ac5e588ec",
+      "source_md5": "f1a796fb32cdbfb3a41c569ac5e588ec",
+      "sha256": "d912955baa17f02b59884e9bc844e4dd4cc0f648b1e35504a97c4b4c76567402"
+    },
+    {
+      "path": "high-quality/polyhaven/modular_airduct_circular_01/textures/modular_airduct_circular_01_diff_4k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/4k/modular_airduct_circular_01/modular_airduct_circular_01_diff_4k.jpg",
+      "bytes": 7417527,
+      "md5": "ad103f38a484cf7f2ed63c88c2e4467c",
+      "source_md5": "ad103f38a484cf7f2ed63c88c2e4467c",
+      "sha256": "429b99f464b0a758de2dd34aedecfebb5ec46a829e005554acf112df04f35fcd"
+    },
+    {
+      "path": "high-quality/polyhaven/modular_airduct_circular_01/textures/modular_airduct_circular_01_diff_4k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/png/4k/modular_airduct_circular_01/modular_airduct_circular_01_diff_4k.png",
+      "bytes": 44834798,
+      "md5": "36f99abcaf54983723f07109007e12f9",
+      "source_md5": "36f99abcaf54983723f07109007e12f9",
+      "sha256": "04525092f0736603d67050978425d43cd6ea1f4b41c10d4c3117735c57b0d892"
+    },
+    {
+      "path": "high-quality/polyhaven/modular_airduct_circular_01/textures/modular_airduct_circular_01_metal_4k.exr",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/4k/modular_airduct_circular_01/modular_airduct_circular_01_metal_4k.exr",
+      "bytes": 145971,
+      "md5": "0503da79e8167d27c86cfd173ed00799",
+      "source_md5": "0503da79e8167d27c86cfd173ed00799",
+      "sha256": "74839593c06b2fa972ca2ea8911af1272455e89683ed0a93ad66916f373c8b10"
+    },
+    {
+      "path": "high-quality/polyhaven/modular_airduct_circular_01/textures/modular_airduct_circular_01_nor_gl_4k.exr",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/4k/modular_airduct_circular_01/modular_airduct_circular_01_nor_gl_4k.exr",
+      "bytes": 9902083,
+      "md5": "4713759630145075f4e3b8cf8bc1f393",
+      "source_md5": "4713759630145075f4e3b8cf8bc1f393",
+      "sha256": "a0dfff3c2897b04ec1cc5e4cc190464952a765a8064711ac3d5362cf76908670"
+    },
+    {
+      "path": "high-quality/polyhaven/modular_airduct_circular_01/textures/modular_airduct_circular_01_nor_gl_4k.jpg",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/jpg/4k/modular_airduct_circular_01/modular_airduct_circular_01_nor_gl_4k.jpg",
+      "bytes": 4688940,
+      "md5": "a2aa1ffccb620a25bd90c582ff517bc5",
+      "source_md5": "a2aa1ffccb620a25bd90c582ff517bc5",
+      "sha256": "2ae575b4610514b6979fe07a1e8b1a9e9c32d3d790117833b4b5dbe91b0b9b86"
+    },
+    {
+      "path": "high-quality/polyhaven/modular_airduct_circular_01/textures/modular_airduct_circular_01_rough_4k.exr",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Models/exr/4k/modular_airduct_circular_01/modular_airduct_circular_01_rough_4k.exr",
+      "bytes": 9187087,
+      "md5": "841d051afc3233fd694024685b4f2cdc",
+      "source_md5": "841d051afc3233fd694024685b4f2cdc",
+      "sha256": "774a8907a5bf591e664666b3584cb55770cd0cc01a046a3b39116ff52e8efd53"
+    }
+  ],
+  "extra_lossless_color_maps": [
+    "textures/modular_airduct_circular_01_diff_4k.png"
+  ],
+  "validation": {
+    "official_sizes_and_md5": "passed",
+    "sha256": "recorded for all downloaded asset files",
+    "gltf_dependencies": {
+      "status": "passed",
+      "count": 4,
+      "uris": [
+        "modular_airduct_circular_01.bin",
+        "textures/modular_airduct_circular_01_nor_gl_4k.jpg",
+        "textures/modular_airduct_circular_01_diff_4k.jpg",
+        "textures/modular_airduct_circular_01_arm_4k.jpg"
+      ]
+    },
+    "blender": {
+      "status": "passed",
+      "blender_version": "5.1.1",
+      "auto_execution_disabled": true,
+      "file_loaded": "/home/kurage/Projects/distant-stars/asset-sources/city/high-quality/polyhaven/modular_airduct_circular_01/modular_airduct_circular_01_4k.blend",
+      "objects": 16,
+      "meshes": 16,
+      "external_images": 4,
+      "missing_images": []
+    }
+  }
+}

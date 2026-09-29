@@ -1,0 +1,25 @@
+{
+  "requested_url": "https://ambientcg.com/get?file=MetalPlates006_8K-PNG.zip",
+  "final_url": "https://acg-download.struffelproductions.com/file/ambientCG-Web/download/MetalPlates006_RzVulJpA/MetalPlates006_8K-PNG.zip",
+  "headers": {
+    "Date": "Sat, 26 Sep 2026 15:31:33 GMT",
+    "Content-Type": "application/zip",
+    "Content-Length": "444958087",
+    "Connection": "close",
+    "Strict-Transport-Security": "max-age=63072000",
+    "x-bz-file-name": "download/MetalPlates006_RzVulJpA/MetalPlates006_8K-PNG.zip",
+    "x-bz-file-id": "4_z753f349018de0fd087a8061b_f2141c8a82116d074_d20251103_m001648_c003_v0312023_t0041_u01762129008211",
+    "x-bz-content-sha1": "none",
+    "X-Bz-Upload-Timestamp": "1762129008211",
+    "Accept-Ranges": "bytes",
+    "x-bz-info-src_last_modified_millis": "1759985406000",
+    "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=bfkjhj3%2B6bMvDvzawn8hw4Fedo3bQUZgKxkw2plNVrKo%2BjYim5ou1JaTHDBwLePE6h20An66Bjs0mVm9c7PjUJU%2B2Yqul7CIJvaLU8lpxgRLP3WI%2BA1hnsEjK7AJK3%2B12tokR9gpkaN1hOQ20U%2FHuF4zYOx%2FAw%3D%3D\"}]}",
+    "last-modified": "Sat, 26 Sep 2026 15:31:33 GMT",
+    "Cache-Control": "max-age=57600",
+    "cf-cache-status": "EXPIRED",
+    "Server-Timing": "cfEdge;dur=350,cfOrigin;dur=313",
+    "Server": "cloudflare",
+    "CF-RAY": "a41350f04d9a74a1-SYD"
+  }
+}

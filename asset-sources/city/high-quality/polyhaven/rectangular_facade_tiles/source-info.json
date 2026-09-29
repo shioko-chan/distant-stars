@@ -1,0 +1,47 @@
+{
+  "type": 1,
+  "name": "Rectangular Facade Tiles",
+  "categories": [
+    "wall",
+    "tiles"
+  ],
+  "tags": [
+    "tiles",
+    "rectangular",
+    "building facade",
+    "wall",
+    "walling",
+    "urban design",
+    "exterior",
+    "concrete",
+    "aggregate"
+  ],
+  "authors": {
+    "Charlotte Baglioni": "All"
+  },
+  "max_resolution": [
+    8192,
+    8192
+  ],
+  "dimensions": [
+    2000,
+    2000
+  ],
+  "date_published": 1740614400,
+  "staging": null,
+  "files_hash": "3cc65e2d2b0313b37a9f917171974ade92887290",
+  "description": "Free 8K material of dark concrete rectangular facade tiles, narrow vertical striations, rough aggregate surface with shallow grout lines and low sheen.",
+  "category_id": "2e5d701e-c1e8-538e-b4c9-04cfc35c747c",
+  "category": "Brick & Block/Concrete Block & Paver/Facade Panels",
+  "attributes": {
+    "surface_use": "wall",
+    "origin": "man_made",
+    "setting": "outdoor",
+    "condition": [
+      "clean"
+    ]
+  },
+  "img_version": "dbd30dc7",
+  "download_count": 5665,
+  "thumbnail_url": "https://cdn.polyhaven.com/asset_img/thumbs/rectangular_facade_tiles.png?width=256&height=256&v=dbd30dc7"
+}

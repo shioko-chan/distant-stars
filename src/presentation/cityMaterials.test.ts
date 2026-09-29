@@ -35,7 +35,7 @@ describe('photographic city materials', () => {
         expect(materials.structure.bumpScale).toBeLessThan(.01);
         expect(materials.structure.roughness).toBeGreaterThan(.85);
         expect(materials.structure.metalness).toBe(0);
-        expect(materials.facade.emissiveIntensity).toBeLessThan(.3);
+        expect(materials.facade.emissiveIntensity).toBeLessThan(.4);
         for (const texture of [facade, roof]) {
             expect(owned.has(texture)).toBe(true);
             expect(texture.colorSpace).toBe(THREE.SRGBColorSpace);

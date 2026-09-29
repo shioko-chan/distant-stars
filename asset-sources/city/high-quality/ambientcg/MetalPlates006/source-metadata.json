@@ -1,0 +1,14 @@
+{
+  "source_url": "https://ambientcg.com/api/v2/full_json?id=Concrete034,MetalPlates006&include=downloadData,dimensionsData,mapData",
+  "retrieved_at": "2026-09-26T15:31:31.522978+00:00",
+  "selected_download": {
+    "fullDownloadPath": "https://ambientcg.com/get?file=MetalPlates006_8K-PNG.zip",
+    "downloadLink": "https://ambientcg.com/get?file=MetalPlates006_8K-PNG.zip",
+    "fileName": "MetalPlates006_8K-PNG.zip",
+    "size": 444958087,
+    "filetype": "zip",
+    "attribute": "8K-PNG",
+    "zipContent": []
+  },
+  "source_hash": "No hash supplied by this official API response."
+}

@@ -1,0 +1,83 @@
+{
+  "id": "rectangular_facade_tiles",
+  "provider": "Poly Haven",
+  "source": "https://polyhaven.com/a/rectangular_facade_tiles",
+  "license": "CC0-1.0",
+  "license_source": "https://polyhaven.com/license",
+  "downloaded_on": "2026-09-27",
+  "resolution": "8K",
+  "format": "PNG PBR maps",
+  "files": [
+    {
+      "path": "high-quality/polyhaven/rectangular_facade_tiles/rectangular_facade_tiles_ao_8k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/rectangular_facade_tiles/rectangular_facade_tiles_ao_8k.png",
+      "bytes": 74825085,
+      "sha256": "347fc12217c677d77f506585fe7d4a72853a786fe80d6a5efccf856196d2cd6d",
+      "channel": "AO",
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 16,
+      "source_md5": "8a1227b700ce6af0d70a71cb77c7b03c"
+    },
+    {
+      "path": "high-quality/polyhaven/rectangular_facade_tiles/rectangular_facade_tiles_arm_8k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/rectangular_facade_tiles/rectangular_facade_tiles_arm_8k.png",
+      "bytes": 194917513,
+      "sha256": "b18e956ba2ae5840b2a6f0e11224fdbb490a768eb19eaa59bea37b7431167fd9",
+      "channel": "arm",
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 16,
+      "source_md5": "58d9f7f1890e441943e0c7dc3f969697"
+    },
+    {
+      "path": "high-quality/polyhaven/rectangular_facade_tiles/rectangular_facade_tiles_diff_8k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/rectangular_facade_tiles/rectangular_facade_tiles_diff_8k.png",
+      "bytes": 254219528,
+      "sha256": "4404918f6589166100c0f6f4a1e3ed0fa5debb76eb13d7249817eba24aff6334",
+      "channel": "Diffuse",
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 16,
+      "source_md5": "1a01eed816d25d53054d37515a0b26d5"
+    },
+    {
+      "path": "high-quality/polyhaven/rectangular_facade_tiles/rectangular_facade_tiles_disp_8k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/rectangular_facade_tiles/rectangular_facade_tiles_disp_8k.png",
+      "bytes": 43212274,
+      "sha256": "33d600a346f87d592e7004210a0d8c18ac26a56fecd6c147d1c4d69b9a147190",
+      "channel": "Displacement",
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 16,
+      "source_md5": "ff33f3b252a9628183b428e3cd2fac94"
+    },
+    {
+      "path": "high-quality/polyhaven/rectangular_facade_tiles/rectangular_facade_tiles_nor_gl_8k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/rectangular_facade_tiles/rectangular_facade_tiles_nor_gl_8k.png",
+      "bytes": 432677919,
+      "sha256": "e76b2a357a724318c937ab76616541b3c565c871a5a6bbf6146f26ddcb372822",
+      "channel": "nor_gl",
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 16,
+      "source_md5": "14ab7b1a6f2b20ca5c6392838301eb59"
+    },
+    {
+      "path": "high-quality/polyhaven/rectangular_facade_tiles/rectangular_facade_tiles_rough_8k.png",
+      "url": "https://dl.polyhaven.org/file/ph-assets/Textures/png/8k/rectangular_facade_tiles/rectangular_facade_tiles_rough_8k.png",
+      "bytes": 96604501,
+      "sha256": "c66212891f997f7f5732b87aaa1964083b655bb59dd0fc607eaa1b607d8e67b6",
+      "channel": "Rough",
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 16,
+      "source_md5": "85adb590bb98aa3f8947224a23063e45"
+    }
+  ],
+  "validation": {
+    "official_size_and_md5_verified": true,
+    "png_dimensions_verified": true
+  },
+  "integration_status": "source assets only; not loaded by the app"
+}

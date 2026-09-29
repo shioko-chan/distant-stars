@@ -1,0 +1,4603 @@
+{
+  "asset": "KitBash3D Neo City",
+  "validated_at": "2026-09-26T15:44:32.745963+00:00",
+  "blender_version": "5.1.1",
+  "file": "blender/kb3d_neocity-native.blend",
+  "safety": {
+    "automatic_script_execution": false,
+    "factory_startup": true,
+    "read_only": true,
+    "image_pixels_loaded_for_validation": false,
+    "original_blend_unchanged": true,
+    "blend_sha256_before": "9937319c33970f441a490bb533cb21f72eaba74c4ef811777dc4c523a5a5cd2f",
+    "blend_sha256_after": "9937319c33970f441a490bb533cb21f72eaba74c4ef811777dc4c523a5a5cd2f"
+  },
+  "counts": {
+    "objects": 59,
+    "object_types": {
+      "CAMERA": 1,
+      "MESH": 48,
+      "EMPTY": 9,
+      "LIGHT": 1
+    },
+    "mesh_datablocks": 48,
+    "materials": 64,
+    "collections": 1,
+    "external_image_references": 322,
+    "distinct_external_image_paths": 322,
+    "missing_images": 0
+  },
+  "geometry": {
+    "unique_mesh_vertices": 1335440,
+    "unique_mesh_polygons": 1080804,
+    "unique_mesh_triangles_estimated": 2140989,
+    "mesh_instance_triangles_estimated": 2140989,
+    "all_mesh_world_bounds_blender_units": {
+      "min": [
+        -119.04183959960938,
+        -49.69219970703125,
+        -1.0
+      ],
+      "max": [
+        81.9537124633789,
+        67.65611267089844,
+        201.05862426757812
+      ],
+      "dimensions": [
+        200.99555206298828,
+        117.34831237792969,
+        202.05862426757812
+      ]
+    },
+    "units": {
+      "system": "METRIC",
+      "scale_length": 1.0
+    },
+    "method": "Original mesh polygons estimated as max(0, polygon corner count - 2); no triangulation, modifier evaluation, conversion or optimization. World bounds use original object bound_box transformed by matrix_world."
+  },
+  "image_references": [
+    {
+      "name": "KB3D_NEC_AirCon_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_AirCon_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_AirCon_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_AirCon_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_AirCon_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_AirCon_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_AirCon_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_AirCon_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_AirCon_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_AirCon_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_AirCon_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_AirCon_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_AirCon_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_AirCon_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_AirCon_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_AsphaltHexagonRoof_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_AsphaltHexagonRoof_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_AsphaltHexagonRoof_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_AsphaltHexagonRoof_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_AsphaltHexagonRoof_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_BannerA_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_BannerA_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_BannerA_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_BannerA_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_BannerA_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_BannerA_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_BannerA_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_BannerA_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_BannerA_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_BannerA_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_BannerA_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_BannerA_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_BannerA_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_BannerA_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_BannerA_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_BlackCloth_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_BlackCloth_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_BlackCloth_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_BlackCloth_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_BlackCloth_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_BlackCloth_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_BlackCloth_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_BlackCloth_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_BlackCloth_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_BlackCloth_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_BlackCloth_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_BlackCloth_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_BlackCloth_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_BlackCloth_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_BlackCloth_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Brass_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Brass_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Brass_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Brass_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Brass_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Brass_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Brass_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Brass_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Brass_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Brass_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Brass_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Brass_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Brass_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Brass_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Brass_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Cardboard_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Cardboard_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Cardboard_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Cardboard_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Cardboard_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Cardboard_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Cardboard_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Cardboard_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Cardboard_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Cardboard_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Cardboard_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Cardboard_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Cardboard_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Cardboard_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Cardboard_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Concrete_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Concrete_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Concrete_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Concrete_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Concrete_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Concrete_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Concrete_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Concrete_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Concrete_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Concrete_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Concrete_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Concrete_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Concrete_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Concrete_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Concrete_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteA_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteA_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteA_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteA_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteA_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteA_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteA_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteA_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteA_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteA_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteA_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteA_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteA_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteA_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteA_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteAccent_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteAccent_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteAccent_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteAccent_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteAccent_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteAccent_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteAccent_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteAccent_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteAccent_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteAccent_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteAccent_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteAccent_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteAccent_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteAccent_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteAccent_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteB_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteB_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteB_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteB_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteB_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteB_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteB_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteB_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteB_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteB_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteB_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteB_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteB_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteB_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteB_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteTiles_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteTiles_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteTiles_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteTiles_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteTiles_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteTiles_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteTiles_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteTiles_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteTiles_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteTiles_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteTiles_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteTiles_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteTiles_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteTiles_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteTiles_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteWall_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteWall_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteWall_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteWall_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteWall_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteWall_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteWall_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteWall_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteWall_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteWall_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteWall_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteWall_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_ConcreteWall_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_ConcreteWall_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_ConcreteWall_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DarkPanels_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DarkPanels_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DarkPanels_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DarkPanels_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DarkPanels_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DarkPanels_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DarkPanels_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DarkPanels_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DarkPanels_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DarkPanels_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DarkPanels_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DarkPanels_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DarkPanels_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DarkPanels_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DarkPanels_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecalSheet_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecalSheet_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecalSheet_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecalSheet_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecalSheet_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecalSheet_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecalSheet_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecalSheet_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecalSheet_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecalSheet_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecalSheet_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecalSheet_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecalSheet_opacity.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecalSheet_opacity.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecalSheet_opacity.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecalSheet_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecalSheet_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecalSheet_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteB_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteB_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteB_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteB_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteB_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteB_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteB_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteB_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteB_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteB_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteB_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteB_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteB_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteB_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteB_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteCBeige_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteCBeige_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteCBeige_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteCBeige_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteCBeige_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteCWhite_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteCWhite_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteCWhite_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteCWhite_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_DecorConcreteCWhite_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GalvanizedSteel_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GalvanizedSteel_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GalvanizedSteel_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GalvanizedSteel_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GalvanizedSteel_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GalvanizedSteelDirt_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GalvanizedSteelDirt_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GalvanizedSteelDirt_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GalvanizedSteelDirt_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GalvanizedSteelDirt_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassBlack_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassBlack_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassBlack_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassBlack_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassBlack_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassBlack_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassBlack_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassBlack_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassBlack_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassBlack_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassBlack_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassBlack_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassBlack_refraction.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassBlack_refraction.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassBlack_refraction.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassBlack_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassBlack_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassBlack_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassBottle_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassBottle_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassBottle_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassBottle_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassBottle_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassBottle_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassBottle_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassBottle_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassBottle_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassBottle_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassBottle_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassBottle_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassBottle_refraction.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassBottle_refraction.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassBottle_refraction.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassBottle_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassBottle_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassBottle_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassLamps_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassLamps_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassLamps_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassLamps_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassLamps_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassLamps_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassLamps_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassLamps_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassLamps_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassLamps_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassLamps_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassLamps_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassLamps_refraction.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassLamps_refraction.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassLamps_refraction.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassLamps_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassLamps_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassLamps_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassTinted_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassTinted_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassTinted_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassTinted_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassTinted_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassTinted_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassTinted_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassTinted_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassTinted_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassTinted_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassTinted_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassTinted_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassTinted_refraction.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassTinted_refraction.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassTinted_refraction.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_GlassTinted_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_GlassTinted_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_GlassTinted_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LeavesBush_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LeavesBush_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LeavesBush_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LeavesBush_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LeavesBush_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LeavesBush_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LeavesBush_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LeavesBush_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LeavesBush_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LeavesBush_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LeavesBush_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LeavesBush_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LeavesBush_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LeavesBush_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LeavesBush_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Letters_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Letters_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Letters_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Letters_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Letters_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Letters_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Letters_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Letters_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Letters_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Letters_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Letters_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Letters_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Letters_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Letters_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Letters_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightBlue_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightBlue_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightBlue_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightBlue_emissive.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightBlue_emissive.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightBlue_emissive.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightBlue_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightBlue_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightBlue_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightBlue_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightBlue_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightBlue_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightBlue_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightBlue_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightBlue_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightBlue_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightBlue_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightBlue_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightRed_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightRed_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightRed_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightRed_emissive.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightRed_emissive.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightRed_emissive.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightRed_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightRed_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightRed_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightRed_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightRed_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightRed_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightRed_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightRed_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightRed_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightRed_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightRed_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightRed_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightsA_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightsA_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightsA_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightsA_emissive.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightsA_emissive.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightsA_emissive.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightsA_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightsA_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightsA_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightsA_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightsA_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightsA_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightsA_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightsA_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightsA_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightsA_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightsA_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightsA_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightWhite_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightWhite_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightWhite_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightWhite_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightWhite_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightWhite_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightWhite_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightWhite_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightWhite_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightWhite_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightWhite_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightWhite_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightWhite_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightWhite_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightWhite_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightYellow_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightYellow_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightYellow_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightYellow_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightYellow_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightYellow_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightYellow_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightYellow_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightYellow_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightYellow_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightYellow_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightYellow_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_LightYellow_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_LightYellow_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_LightYellow_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalAccent_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalAccent_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalAccent_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalAccent_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalAccent_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalAccent_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalAccent_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalAccent_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalAccent_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalAccent_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalAccent_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalAccent_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalAccent_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalAccent_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalAccent_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalDarkWorn_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalDarkWorn_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalDarkWorn_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalDarkWorn_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalDarkWorn_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalGrating_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalGrating_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalGrating_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalGrating_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalGrating_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalGrating_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalGrating_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalGrating_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalGrating_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalGrating_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalGrating_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalGrating_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalGrating_opacity.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalGrating_opacity.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalGrating_opacity.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalGrating_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalGrating_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalGrating_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalLightGreyWorn_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalLightGreyWorn_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalLightGreyWorn_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalLightGreyWorn_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalLightGreyWorn_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintRed_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintRed_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintRed_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintRed_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintRed_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintRed_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintRed_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintRed_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintRed_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintRed_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintRed_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintRed_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintRed_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintRed_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintRed_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintWhiteWorn_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintWhiteWorn_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintWhiteWorn_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintWhiteWorn_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintWhiteWorn_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintWorn_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintWorn_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintWorn_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintWorn_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintWorn_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintYellow_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintYellow_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintYellow_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintYellow_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_MetalPaintYellow_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_OxidizedSteel_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_OxidizedSteel_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_OxidizedSteel_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_OxidizedSteel_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_OxidizedSteel_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_OxidizedSteel_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_OxidizedSteel_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_OxidizedSteel_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_OxidizedSteel_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_OxidizedSteel_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_OxidizedSteel_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_OxidizedSteel_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_OxidizedSteel_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_OxidizedSteel_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_OxidizedSteel_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintBlack_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintBlack_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintBlack_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintBlack_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintBlack_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintBlack_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintBlack_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintBlack_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintBlack_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintBlack_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintBlack_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintBlack_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintBlack_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintBlack_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintBlack_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintBlue_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintBlue_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintBlue_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintBlue_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintBlue_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintBlue_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintBlue_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintBlue_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintBlue_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintBlue_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintBlue_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintBlue_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintBlue_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintBlue_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintBlue_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintedMetal_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintedMetal_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintedMetal_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintedMetal_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintedMetal_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintedMetal_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintedMetal_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintedMetal_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintedMetal_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintedMetal_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintedMetal_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintedMetal_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintedMetal_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintedMetal_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintedMetal_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintRed_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintRed_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintRed_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintRed_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintRed_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintRed_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintRed_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintRed_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintRed_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintRed_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintRed_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintRed_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintRed_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintRed_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintRed_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintWhiteRusty_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintWhiteRusty_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintWhiteRusty_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintWhiteRusty_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintWhiteRusty_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintWhiteRusty_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintWhiteRusty_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintWhiteRusty_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintWhiteRusty_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintWhiteRusty_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintWhiteRusty_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintWhiteRusty_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaintWhiteRusty_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaintWhiteRusty_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaintWhiteRusty_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaperWhite_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaperWhite_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaperWhite_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaperWhite_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaperWhite_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaperWhite_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaperWhite_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaperWhite_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaperWhite_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaperWhite_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaperWhite_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaperWhite_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PaperWhite_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PaperWhite_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PaperWhite_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticBlack_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticBlack_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticBlack_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticBlack_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticBlack_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticBlack_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticBlack_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticBlack_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticBlack_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticBlack_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticBlack_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticBlack_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticBlack_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticBlack_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticBlack_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticWhite_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticWhite_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticWhite_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticWhite_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticWhite_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticWhite_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticWhite_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticWhite_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticWhite_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticWhite_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticWhite_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticWhite_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticWhite_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticWhite_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticWhite_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticYellow_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticYellow_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticYellow_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticYellow_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticYellow_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticYellow_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticYellow_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticYellow_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticYellow_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticYellow_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticYellow_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticYellow_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_PlasticYellow_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_PlasticYellow_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_PlasticYellow_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_RedWhiteStripes_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_RedWhiteStripes_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_RedWhiteStripes_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_RedWhiteStripes_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_RedWhiteStripes_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_RedWhiteStripes_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_RedWhiteStripes_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_RedWhiteStripes_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_RedWhiteStripes_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_RedWhiteStripes_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_RedWhiteStripes_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_RedWhiteStripes_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_RedWhiteStripes_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_RedWhiteStripes_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_RedWhiteStripes_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Rubber_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Rubber_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Rubber_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Rubber_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Rubber_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Rubber_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Rubber_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Rubber_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Rubber_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Rubber_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Rubber_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Rubber_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Rubber_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Rubber_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Rubber_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SatinSteel_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SatinSteel_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SatinSteel_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SatinSteel_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SatinSteel_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SatinSteel_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SatinSteel_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SatinSteel_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SatinSteel_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SatinSteel_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SatinSteel_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SatinSteel_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SatinSteel_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SatinSteel_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SatinSteel_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Screens_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Screens_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Screens_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Screens_emissive.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Screens_emissive.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Screens_emissive.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Screens_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Screens_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Screens_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Screens_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Screens_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Screens_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Screens_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Screens_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Screens_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Screens_opacity.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Screens_opacity.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Screens_opacity.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Screens_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Screens_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Screens_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SpeedwayTiles_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SpeedwayTiles_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SpeedwayTiles_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SpeedwayTiles_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SpeedwayTiles_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SteelRaw_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SteelRaw_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SteelRaw_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SteelRaw_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SteelRaw_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SteelRaw_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SteelRaw_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SteelRaw_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SteelRaw_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SteelRaw_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SteelRaw_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SteelRaw_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_SteelRaw_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_SteelRaw_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_SteelRaw_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_StreetTiles_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_StreetTiles_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_StreetTiles_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_StreetTiles_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_StreetTiles_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_StreetTiles_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_StreetTiles_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_StreetTiles_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_StreetTiles_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_StreetTiles_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_StreetTiles_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_StreetTiles_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_StreetTiles_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_StreetTiles_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_StreetTiles_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TarpA_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TarpA_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TarpA_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TarpA_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TarpA_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TarpA_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TarpA_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TarpA_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TarpA_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TarpA_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TarpA_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TarpA_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TarpA_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TarpA_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TarpA_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TreeWalnutBark_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TreeWalnutBark_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TreeWalnutBark_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TreeWalnutBark_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TreeWalnutBark_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TreeWalnutBark_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TreeWalnutBark_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TreeWalnutBark_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TreeWalnutBark_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TreeWalnutBark_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TreeWalnutBark_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TreeWalnutBark_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TreeWalnutBark_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TreeWalnutBark_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TreeWalnutBark_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TreeWlnutLeaf_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TreeWlnutLeaf_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TreeWlnutLeaf_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TreeWlnutLeaf_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TreeWlnutLeaf_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TreeWlnutLeaf_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TreeWlnutLeaf_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TreeWlnutLeaf_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TreeWlnutLeaf_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TreeWlnutLeaf_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TreeWlnutLeaf_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TreeWlnutLeaf_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TreeWlnutLeaf_opacity.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TreeWlnutLeaf_opacity.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TreeWlnutLeaf_opacity.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_TreeWlnutLeaf_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_TreeWlnutLeaf_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_TreeWlnutLeaf_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WhitePanels_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WhitePanels_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WhitePanels_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WhitePanels_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WhitePanels_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WhitePanels_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WhitePanels_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WhitePanels_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WhitePanels_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WhitePanels_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WhitePanels_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WhitePanels_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WhitePanels_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WhitePanels_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WhitePanels_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Wood_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Wood_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Wood_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Wood_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Wood_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Wood_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Wood_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Wood_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Wood_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Wood_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Wood_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Wood_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_Wood_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_Wood_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_Wood_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WoodDarkGreyTower_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WoodDarkGreyTower_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WoodDarkGreyTower_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WoodDarkGreyTower_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WoodDarkGreyTower_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_roughness.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WoodLacquered_basecolor.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WoodLacquered_basecolor.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WoodLacquered_basecolor.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WoodLacquered_height.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WoodLacquered_height.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WoodLacquered_height.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WoodLacquered_metallic.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WoodLacquered_metallic.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WoodLacquered_metallic.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WoodLacquered_normal.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WoodLacquered_normal.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WoodLacquered_normal.png",
+      "packed": false,
+      "exists": true
+    },
+    {
+      "name": "KB3D_NEC_WoodLacquered_roughness.png",
+      "source": "FILE",
+      "reference": "//KB3DTextures/4k/KB3D_NEC_WoodLacquered_roughness.png",
+      "resolved_path": "/home/kurage/Projects/distant-stars/asset-sources/city/kitbash3d/neo-city/blender/KB3DTextures/4k/KB3D_NEC_WoodLacquered_roughness.png",
+      "packed": false,
+      "exists": true
+    }
+  ],
+  "missing_images": [],
+  "external_libraries": [],
+  "mesh_datablocks": {
+    "Cube": {
+      "vertices": 8,
+      "polygons": 6,
+      "triangles_estimated": 12,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_A_Base": {
+      "vertices": 112,
+      "polygons": 93,
+      "triangles_estimated": 186,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_A_BuildingA": {
+      "vertices": 18421,
+      "polygons": 14672,
+      "triangles_estimated": 29128,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_A_BuildingB": {
+      "vertices": 28049,
+      "polygons": 22017,
+      "triangles_estimated": 43938,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_A_BuildingC": {
+      "vertices": 75760,
+      "polygons": 62064,
+      "triangles_estimated": 124128,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_A_BuildingD": {
+      "vertices": 14794,
+      "polygons": 12605,
+      "triangles_estimated": 24890,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_A_Main": {
+      "vertices": 74140,
+      "polygons": 55353,
+      "triangles_estimated": 110514,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_A_Tree": {
+      "vertices": 100911,
+      "polygons": 63343,
+      "triangles_estimated": 116820,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_B_AntennaA": {
+      "vertices": 1311,
+      "polygons": 1256,
+      "triangles_estimated": 2512,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_B_Main": {
+      "vertices": 127641,
+      "polygons": 100838,
+      "triangles_estimated": 200852,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_C_AntennaA": {
+      "vertices": 436,
+      "polygons": 482,
+      "triangles_estimated": 964,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_C_AntennaB": {
+      "vertices": 1580,
+      "polygons": 1755,
+      "triangles_estimated": 3504,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_C_AntennaC": {
+      "vertices": 646,
+      "polygons": 712,
+      "triangles_estimated": 1424,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_C_AntennaD": {
+      "vertices": 1580,
+      "polygons": 1755,
+      "triangles_estimated": 3504,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_C_Base": {
+      "vertices": 23255,
+      "polygons": 21650,
+      "triangles_estimated": 43024,
+      "users": 1
+    },
+    "KB3D_NEC_BldgLG_C_Main": {
+      "vertices": 235376,
+      "polygons": 198412,
+      "triangles_estimated": 391978,
+      "users": 1
+    },
+    "KB3D_NEC_BldgMD_A_AntennaA": {
+      "vertices": 1580,
+      "polygons": 1755,
+      "triangles_estimated": 3504,
+      "users": 1
+    },
+    "KB3D_NEC_BldgMD_A_Banners": {
+      "vertices": 566,
+      "polygons": 480,
+      "triangles_estimated": 960,
+      "users": 1
+    },
+    "KB3D_NEC_BldgMD_A_Base": {
+      "vertices": 8122,
+      "polygons": 7546,
+      "triangles_estimated": 15000,
+      "users": 1
+    },
+    "KB3D_NEC_BldgMD_A_Main": {
+      "vertices": 73567,
+      "polygons": 57995,
+      "triangles_estimated": 115394,
+      "users": 1
+    },
+    "KB3D_NEC_BldgMD_B_Main": {
+      "vertices": 147332,
+      "polygons": 90148,
+      "triangles_estimated": 179804,
+      "users": 1
+    },
+    "KB3D_NEC_BldgMD_C_AntennaA": {
+      "vertices": 1580,
+      "polygons": 1755,
+      "triangles_estimated": 3504,
+      "users": 1
+    },
+    "KB3D_NEC_BldgMD_C_Banners": {
+      "vertices": 3048,
+      "polygons": 2880,
+      "triangles_estimated": 5760,
+      "users": 1
+    },
+    "KB3D_NEC_BldgMD_C_Base": {
+      "vertices": 9996,
+      "polygons": 9547,
+      "triangles_estimated": 19094,
+      "users": 1
+    },
+    "KB3D_NEC_BldgMD_C_BuildingA": {
+      "vertices": 1736,
+      "polygons": 1549,
+      "triangles_estimated": 3098,
+      "users": 1
+    },
+    "KB3D_NEC_BldgMD_C_Main": {
+      "vertices": 145525,
+      "polygons": 117071,
+      "triangles_estimated": 231592,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_A_ConcreteBarrier": {
+      "vertices": 2646,
+      "polygons": 2577,
+      "triangles_estimated": 5154,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_A_Main": {
+      "vertices": 15836,
+      "polygons": 15474,
+      "triangles_estimated": 30948,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_B_Bbq": {
+      "vertices": 21117,
+      "polygons": 20865,
+      "triangles_estimated": 41730,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_B_Cart": {
+      "vertices": 24100,
+      "polygons": 23733,
+      "triangles_estimated": 47359,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_B_Computers": {
+      "vertices": 5120,
+      "polygons": 5006,
+      "triangles_estimated": 10012,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_B_FridgeA": {
+      "vertices": 4569,
+      "polygons": 4399,
+      "triangles_estimated": 8790,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_B_FridgeB": {
+      "vertices": 6868,
+      "polygons": 6432,
+      "triangles_estimated": 12860,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_B_Main": {
+      "vertices": 41408,
+      "polygons": 40877,
+      "triangles_estimated": 81708,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_B_Umbrella": {
+      "vertices": 10378,
+      "polygons": 10184,
+      "triangles_estimated": 20304,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_C_AC": {
+      "vertices": 4982,
+      "polygons": 4928,
+      "triangles_estimated": 9856,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_C_Boxes": {
+      "vertices": 442,
+      "polygons": 368,
+      "triangles_estimated": 736,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_C_Containers": {
+      "vertices": 4056,
+      "polygons": 4032,
+      "triangles_estimated": 8064,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_C_CratesA": {
+      "vertices": 1480,
+      "polygons": 1310,
+      "triangles_estimated": 2620,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_C_CratesB": {
+      "vertices": 320,
+      "polygons": 240,
+      "triangles_estimated": 480,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_C_Fan": {
+      "vertices": 3576,
+      "polygons": 3536,
+      "triangles_estimated": 7072,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_C_Main": {
+      "vertices": 54993,
+      "polygons": 53616,
+      "triangles_estimated": 107232,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_C_NeonSignA": {
+      "vertices": 3340,
+      "polygons": 3173,
+      "triangles_estimated": 6346,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_C_NeonSignB": {
+      "vertices": 627,
+      "polygons": 600,
+      "triangles_estimated": 1200,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_C_NeonSignC": {
+      "vertices": 3426,
+      "polygons": 3311,
+      "triangles_estimated": 6622,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_C_Pipes": {
+      "vertices": 2206,
+      "polygons": 2046,
+      "triangles_estimated": 4092,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_C_Shelf": {
+      "vertices": 25962,
+      "polygons": 25470,
+      "triangles_estimated": 50940,
+      "users": 1
+    },
+    "KB3D_NEC_BldgSM_C_Stool": {
+      "vertices": 916,
+      "polygons": 888,
+      "triangles_estimated": 1776,
+      "users": 1
+    }
+  },
+  "objects": [
+    {
+      "name": "Camera",
+      "type": "CAMERA",
+      "parent": null,
+      "collections": [
+        "Collection"
+      ]
+    },
+    {
+      "name": "Cube",
+      "type": "MESH",
+      "parent": null,
+      "collections": [
+        "Collection"
+      ],
+      "mesh": "Cube",
+      "world_bounds_blender_units": {
+        "min": [
+          -1.0,
+          -1.0,
+          -1.0
+        ],
+        "max": [
+          1.0,
+          1.0,
+          1.0
+        ],
+        "dimensions": [
+          2.0,
+          2.0,
+          2.0
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 8,
+      "polygons": 6,
+      "triangles_estimated": 12,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_A_Base",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_A_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_A_Base",
+      "world_bounds_blender_units": {
+        "min": [
+          -119.04183959960938,
+          -42.157264709472656,
+          6.318092346191406e-06
+        ],
+        "max": [
+          -40.9543342590332,
+          17.437522888183594,
+          0.6001371145248413
+        ],
+        "dimensions": [
+          78.08750534057617,
+          59.59478759765625,
+          0.6001307964324951
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 112,
+      "polygons": 93,
+      "triangles_estimated": 186,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_A_BuildingA",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_A_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_A_BuildingA",
+      "world_bounds_blender_units": {
+        "min": [
+          -59.953392028808594,
+          -38.32837677001953,
+          0.6000289916992188
+        ],
+        "max": [
+          -46.89354705810547,
+          -20.440555572509766,
+          42.285728454589844
+        ],
+        "dimensions": [
+          13.059844970703125,
+          17.887821197509766,
+          41.685699462890625
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 18421,
+      "polygons": 14672,
+      "triangles_estimated": 29128,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_A_BuildingB",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_A_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_A_BuildingB",
+      "world_bounds_blender_units": {
+        "min": [
+          -94.04126739501953,
+          -28.598119735717773,
+          0.6000213623046875
+        ],
+        "max": [
+          -71.3703384399414,
+          -3.4867286682128906,
+          73.2305679321289
+        ],
+        "dimensions": [
+          22.670928955078125,
+          25.111391067504883,
+          72.63054656982422
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 28049,
+      "polygons": 22017,
+      "triangles_estimated": 43938,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_A_BuildingC",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_A_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_A_BuildingC",
+      "world_bounds_blender_units": {
+        "min": [
+          -74.55694580078125,
+          -39.44385528564453,
+          0.6000289916992188
+        ],
+        "max": [
+          -63.28984069824219,
+          -28.05609703063965,
+          24.112791061401367
+        ],
+        "dimensions": [
+          11.267105102539062,
+          11.387758255004883,
+          23.51276206970215
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 75760,
+      "polygons": 62064,
+      "triangles_estimated": 124128,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_A_BuildingD",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_A_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_A_BuildingD",
+      "world_bounds_blender_units": {
+        "min": [
+          -113.7745590209961,
+          -38.452701568603516,
+          0.600006103515625
+        ],
+        "max": [
+          -93.75281524658203,
+          -24.59063720703125,
+          20.384384155273438
+        ],
+        "dimensions": [
+          20.021743774414062,
+          13.862064361572266,
+          19.784378051757812
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 14794,
+      "polygons": 12605,
+      "triangles_estimated": 24890,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_A_grp",
+      "type": "EMPTY",
+      "parent": null,
+      "collections": [
+        "Scene Collection"
+      ]
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_A_Main",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_A_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_A_Main",
+      "world_bounds_blender_units": {
+        "min": [
+          -75.03425598144531,
+          -17.79462432861328,
+          0.6000213623046875
+        ],
+        "max": [
+          -45.170284271240234,
+          11.199517250061035,
+          67.80213928222656
+        ],
+        "dimensions": [
+          29.863971710205078,
+          28.994141578674316,
+          67.20211791992188
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 74140,
+      "polygons": 55353,
+      "triangles_estimated": 110514,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_A_Tree",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_A_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_A_Tree",
+      "world_bounds_blender_units": {
+        "min": [
+          -94.63174438476562,
+          -40.426883697509766,
+          0.4895591735839844
+        ],
+        "max": [
+          -74.4670639038086,
+          -24.464618682861328,
+          11.951635360717773
+        ],
+        "dimensions": [
+          20.16468048095703,
+          15.962265014648438,
+          11.462076187133789
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 100911,
+      "polygons": 63343,
+      "triangles_estimated": 116820,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_B_AntennaA",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_B_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_B_AntennaA",
+      "world_bounds_blender_units": {
+        "min": [
+          -10.722206115722656,
+          57.30516052246094,
+          156.0384979248047
+        ],
+        "max": [
+          -4.799415588378906,
+          64.49636840820312,
+          197.2848358154297
+        ],
+        "dimensions": [
+          5.92279052734375,
+          7.1912078857421875,
+          41.246337890625
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 1311,
+      "polygons": 1256,
+      "triangles_estimated": 2512,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_B_grp",
+      "type": "EMPTY",
+      "parent": null,
+      "collections": [
+        "Scene Collection"
+      ]
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_B_Main",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_B_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_B_Main",
+      "world_bounds_blender_units": {
+        "min": [
+          -47.88048553466797,
+          22.278438568115234,
+          -6.866455078125e-05
+        ],
+        "max": [
+          6.692695617675781,
+          67.65611267089844,
+          201.05862426757812
+        ],
+        "dimensions": [
+          54.57318115234375,
+          45.3776741027832,
+          201.0586929321289
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 127641,
+      "polygons": 100838,
+      "triangles_estimated": 200852,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_C_AntennaA",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_C_AntennaA",
+      "world_bounds_blender_units": {
+        "min": [
+          41.05290222167969,
+          36.931922912597656,
+          136.8653106689453
+        ],
+        "max": [
+          42.10533142089844,
+          38.15077590942383,
+          167.93472290039062
+        ],
+        "dimensions": [
+          1.05242919921875,
+          1.2188529968261719,
+          31.069412231445312
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 436,
+      "polygons": 482,
+      "triangles_estimated": 964,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_C_AntennaB",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_C_AntennaB",
+      "world_bounds_blender_units": {
+        "min": [
+          49.39434814453125,
+          20.554534912109375,
+          130.4744873046875
+        ],
+        "max": [
+          49.923858642578125,
+          21.202173233032227,
+          144.24554443359375
+        ],
+        "dimensions": [
+          0.529510498046875,
+          0.6476383209228516,
+          13.77105712890625
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 1580,
+      "polygons": 1755,
+      "triangles_estimated": 3504,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_C_AntennaC",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_C_AntennaC",
+      "world_bounds_blender_units": {
+        "min": [
+          38.54643249511719,
+          39.349056243896484,
+          136.38621520996094
+        ],
+        "max": [
+          39.09178161621094,
+          39.768638610839844,
+          150.17376708984375
+        ],
+        "dimensions": [
+          0.54534912109375,
+          0.4195823669433594,
+          13.787551879882812
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 646,
+      "polygons": 712,
+      "triangles_estimated": 1424,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_C_AntennaD",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_C_AntennaD",
+      "world_bounds_blender_units": {
+        "min": [
+          35.520263671875,
+          34.69050979614258,
+          137.52655029296875
+        ],
+        "max": [
+          36.31797790527344,
+          35.66621017456055,
+          158.27345275878906
+        ],
+        "dimensions": [
+          0.7977142333984375,
+          0.9757003784179688,
+          20.746902465820312
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 1580,
+      "polygons": 1755,
+      "triangles_estimated": 3504,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_C_Base",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_C_Base",
+      "world_bounds_blender_units": {
+        "min": [
+          20.023632049560547,
+          13.231893539428711,
+          0.047499656677246094
+        ],
+        "max": [
+          56.573970794677734,
+          51.45398712158203,
+          7.260199546813965
+        ],
+        "dimensions": [
+          36.55033874511719,
+          38.22209358215332,
+          7.212699890136719
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 23255,
+      "polygons": 21650,
+      "triangles_estimated": 43024,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_C_grp",
+      "type": "EMPTY",
+      "parent": null,
+      "collections": [
+        "Scene Collection"
+      ]
+    },
+    {
+      "name": "KB3D_NEC_BldgLG_C_Main",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgLG_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgLG_C_Main",
+      "world_bounds_blender_units": {
+        "min": [
+          20.46324348449707,
+          16.08489418029785,
+          0.1260528564453125
+        ],
+        "max": [
+          55.69023895263672,
+          49.941986083984375,
+          142.7571563720703
+        ],
+        "dimensions": [
+          35.22699546813965,
+          33.85709190368652,
+          142.631103515625
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 235376,
+      "polygons": 198412,
+      "triangles_estimated": 391978,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgMD_A_AntennaA",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgMD_A_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgMD_A_AntennaA",
+      "world_bounds_blender_units": {
+        "min": [
+          59.84859848022461,
+          -35.567169189453125,
+          0.037311553955078125
+        ],
+        "max": [
+          61.12063217163086,
+          -34.527191162109375,
+          27.085309982299805
+        ],
+        "dimensions": [
+          1.27203369140625,
+          1.03997802734375,
+          27.047998428344727
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 1580,
+      "polygons": 1755,
+      "triangles_estimated": 3504,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgMD_A_Banners",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgMD_A_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgMD_A_Banners",
+      "world_bounds_blender_units": {
+        "min": [
+          42.67131042480469,
+          -47.955902099609375,
+          0.7446906566619873
+        ],
+        "max": [
+          44.85790252685547,
+          -47.618560791015625,
+          4.897932529449463
+        ],
+        "dimensions": [
+          2.1865921020507812,
+          0.33734130859375,
+          4.153241872787476
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 566,
+      "polygons": 480,
+      "triangles_estimated": 960,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgMD_A_Base",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgMD_A_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgMD_A_Base",
+      "world_bounds_blender_units": {
+        "min": [
+          30.498214721679688,
+          -49.69219970703125,
+          0.006252765655517578
+        ],
+        "max": [
+          62.28459930419922,
+          -33.2421875,
+          7.11550235748291
+        ],
+        "dimensions": [
+          31.78638458251953,
+          16.45001220703125,
+          7.109249591827393
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 8122,
+      "polygons": 7546,
+      "triangles_estimated": 15000,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgMD_A_grp",
+      "type": "EMPTY",
+      "parent": null,
+      "collections": [
+        "Scene Collection"
+      ]
+    },
+    {
+      "name": "KB3D_NEC_BldgMD_A_Main",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgMD_A_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgMD_A_Main",
+      "world_bounds_blender_units": {
+        "min": [
+          31.92388153076172,
+          -48.60823059082031,
+          -0.04070138931274414
+        ],
+        "max": [
+          60.367530822753906,
+          -33.99517822265625,
+          13.286294937133789
+        ],
+        "dimensions": [
+          28.443649291992188,
+          14.613052368164062,
+          13.326996326446533
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 73567,
+      "polygons": 57995,
+      "triangles_estimated": 115394,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgMD_B_grp",
+      "type": "EMPTY",
+      "parent": null,
+      "collections": [
+        "Scene Collection"
+      ]
+    },
+    {
+      "name": "KB3D_NEC_BldgMD_B_Main",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgMD_B_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgMD_B_Main",
+      "world_bounds_blender_units": {
+        "min": [
+          -27.73495101928711,
+          -26.31639862060547,
+          1.52587890625e-05
+        ],
+        "max": [
+          -0.954014778137207,
+          -3.50479793548584,
+          57.33558654785156
+        ],
+        "dimensions": [
+          26.780936241149902,
+          22.81160068511963,
+          57.3355712890625
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 147332,
+      "polygons": 90148,
+      "triangles_estimated": 179804,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgMD_C_AntennaA",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgMD_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgMD_C_AntennaA",
+      "world_bounds_blender_units": {
+        "min": [
+          30.192176818847656,
+          -6.107483386993408,
+          10.884387969970703
+        ],
+        "max": [
+          31.464210510253906,
+          -5.067467212677002,
+          37.93239212036133
+        ],
+        "dimensions": [
+          1.27203369140625,
+          1.0400161743164062,
+          27.048004150390625
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 1580,
+      "polygons": 1755,
+      "triangles_estimated": 3504,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgMD_C_Banners",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgMD_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgMD_C_Banners",
+      "world_bounds_blender_units": {
+        "min": [
+          75.57953643798828,
+          -23.92822265625,
+          1.3682799339294434
+        ],
+        "max": [
+          79.9969253540039,
+          -0.9967422485351562,
+          9.758671760559082
+        ],
+        "dimensions": [
+          4.417388916015625,
+          22.931480407714844,
+          8.390391826629639
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 3048,
+      "polygons": 2880,
+      "triangles_estimated": 5760,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgMD_C_Base",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgMD_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgMD_C_Base",
+      "world_bounds_blender_units": {
+        "min": [
+          13.302742004394531,
+          -25.5693359375,
+          0.12556183338165283
+        ],
+        "max": [
+          81.9537124633789,
+          1.0782470703125,
+          2.166456699371338
+        ],
+        "dimensions": [
+          68.65097045898438,
+          26.6475830078125,
+          2.040894865989685
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 9996,
+      "polygons": 9547,
+      "triangles_estimated": 19094,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgMD_C_BuildingA",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgMD_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgMD_C_BuildingA",
+      "world_bounds_blender_units": {
+        "min": [
+          15.245338439941406,
+          -6.766433238983154,
+          1.3953437805175781
+        ],
+        "max": [
+          21.12787628173828,
+          -3.2118070125579834,
+          16.77468490600586
+        ],
+        "dimensions": [
+          5.882537841796875,
+          3.554626226425171,
+          15.379341125488281
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 1736,
+      "polygons": 1549,
+      "triangles_estimated": 3098,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgMD_C_grp",
+      "type": "EMPTY",
+      "parent": null,
+      "collections": [
+        "Scene Collection"
+      ]
+    },
+    {
+      "name": "KB3D_NEC_BldgMD_C_Main",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgMD_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgMD_C_Main",
+      "world_bounds_blender_units": {
+        "min": [
+          24.39533233642578,
+          -25.088302612304688,
+          1.325613021850586
+        ],
+        "max": [
+          73.50385284423828,
+          -1.8895654678344727,
+          59.185272216796875
+        ],
+        "dimensions": [
+          49.1085205078125,
+          23.198737144470215,
+          57.85965919494629
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 145525,
+      "polygons": 117071,
+      "triangles_estimated": 231592,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_A_ConcreteBarrier",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_A_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_A_ConcreteBarrier",
+      "world_bounds_blender_units": {
+        "min": [
+          -4.924860000610352,
+          -42.438438415527344,
+          -5.960464477539063e-08
+        ],
+        "max": [
+          -4.5542192459106445,
+          -40.474647521972656,
+          1.1268577575683594
+        ],
+        "dimensions": [
+          0.37064075469970703,
+          1.9637908935546875,
+          1.1268578171730042
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 2646,
+      "polygons": 2577,
+      "triangles_estimated": 5154,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_A_grp",
+      "type": "EMPTY",
+      "parent": null,
+      "collections": [
+        "Scene Collection"
+      ]
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_A_Main",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_A_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_A_Main",
+      "world_bounds_blender_units": {
+        "min": [
+          -5.877775192260742,
+          -41.875335693359375,
+          0.0012226104736328125
+        ],
+        "max": [
+          -2.257065773010254,
+          -41.18498229980469,
+          6.013941764831543
+        ],
+        "dimensions": [
+          3.6207094192504883,
+          0.6903533935546875,
+          6.01271915435791
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 15836,
+      "polygons": 15474,
+      "triangles_estimated": 30948,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_B_Bbq",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_B_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_B_Bbq",
+      "world_bounds_blender_units": {
+        "min": [
+          1.9619410037994385,
+          -42.51451873779297,
+          0.0
+        ],
+        "max": [
+          3.2867774963378906,
+          -41.26030731201172,
+          1.5892409086227417
+        ],
+        "dimensions": [
+          1.3248364925384521,
+          1.25421142578125,
+          1.5892409086227417
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 21117,
+      "polygons": 20865,
+      "triangles_estimated": 41730,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_B_Cart",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_B_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_B_Cart",
+      "world_bounds_blender_units": {
+        "min": [
+          4.846920013427734,
+          -43.42381286621094,
+          -0.0014569759368896484
+        ],
+        "max": [
+          7.869876861572266,
+          -40.5693359375,
+          2.784234046936035
+        ],
+        "dimensions": [
+          3.0229568481445312,
+          2.8544769287109375,
+          2.785691022872925
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 24100,
+      "polygons": 23733,
+      "triangles_estimated": 47359,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_B_Computers",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_B_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_B_Computers",
+      "world_bounds_blender_units": {
+        "min": [
+          2.31311297416687,
+          -40.687191009521484,
+          0.005901336669921875
+        ],
+        "max": [
+          4.851681709289551,
+          -39.75246047973633,
+          2.7843613624572754
+        ],
+        "dimensions": [
+          2.5385687351226807,
+          0.9347305297851562,
+          2.7784600257873535
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 5120,
+      "polygons": 5006,
+      "triangles_estimated": 10012,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_B_FridgeA",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_B_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_B_FridgeA",
+      "world_bounds_blender_units": {
+        "min": [
+          2.732851266860962,
+          -43.11166000366211,
+          -0.012529134750366211
+        ],
+        "max": [
+          5.109403610229492,
+          -42.08012771606445,
+          1.059807538986206
+        ],
+        "dimensions": [
+          2.3765523433685303,
+          1.0315322875976562,
+          1.0723366737365723
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 4569,
+      "polygons": 4399,
+      "triangles_estimated": 8790,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_B_FridgeB",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_B_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_B_FridgeB",
+      "world_bounds_blender_units": {
+        "min": [
+          5.645505428314209,
+          -41.5660285949707,
+          -0.012529134750366211
+        ],
+        "max": [
+          7.423372268676758,
+          -39.94057846069336,
+          3.1219422817230225
+        ],
+        "dimensions": [
+          1.7778668403625488,
+          1.6254501342773438,
+          3.1344714164733887
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 6868,
+      "polygons": 6432,
+      "triangles_estimated": 12860,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_B_grp",
+      "type": "EMPTY",
+      "parent": null,
+      "collections": [
+        "Scene Collection"
+      ]
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_B_Main",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_B_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_B_Main",
+      "world_bounds_blender_units": {
+        "min": [
+          2.154170513153076,
+          -41.171607971191406,
+          2.384185791015625e-07
+        ],
+        "max": [
+          5.687839984893799,
+          -39.619789123535156,
+          3.11989688873291
+        ],
+        "dimensions": [
+          3.5336694717407227,
+          1.55181884765625,
+          3.119896650314331
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 41408,
+      "polygons": 40877,
+      "triangles_estimated": 81708,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_B_Umbrella",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_B_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_B_Umbrella",
+      "world_bounds_blender_units": {
+        "min": [
+          3.206946849822998,
+          -42.28839111328125,
+          0.0
+        ],
+        "max": [
+          6.553947925567627,
+          -38.94139099121094,
+          3.445965528488159
+        ],
+        "dimensions": [
+          3.347001075744629,
+          3.3470001220703125,
+          3.445965528488159
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 10378,
+      "polygons": 10184,
+      "triangles_estimated": 20304,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_C_AC",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_C_AC",
+      "world_bounds_blender_units": {
+        "min": [
+          15.078205108642578,
+          -39.994728088378906,
+          1.7611440420150757
+        ],
+        "max": [
+          19.76754379272461,
+          -39.421417236328125,
+          3.590041399002075
+        ],
+        "dimensions": [
+          4.689338684082031,
+          0.5733108520507812,
+          1.8288973569869995
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 4982,
+      "polygons": 4928,
+      "triangles_estimated": 9856,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_C_Boxes",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_C_Boxes",
+      "world_bounds_blender_units": {
+        "min": [
+          18.465320587158203,
+          -42.18939971923828,
+          0.15686985850334167
+        ],
+        "max": [
+          20.044275283813477,
+          -40.267578125,
+          0.9100840091705322
+        ],
+        "dimensions": [
+          1.5789546966552734,
+          1.9218215942382812,
+          0.7532141506671906
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 442,
+      "polygons": 368,
+      "triangles_estimated": 736,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_C_Containers",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_C_Containers",
+      "world_bounds_blender_units": {
+        "min": [
+          19.44333839416504,
+          -43.456756591796875,
+          0.16116592288017273
+        ],
+        "max": [
+          20.10062026977539,
+          -41.59203338623047,
+          0.7888171672821045
+        ],
+        "dimensions": [
+          0.6572818756103516,
+          1.8647232055664062,
+          0.6276512444019318
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 4056,
+      "polygons": 4032,
+      "triangles_estimated": 8064,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_C_CratesA",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_C_CratesA",
+      "world_bounds_blender_units": {
+        "min": [
+          15.215057373046875,
+          -39.91441345214844,
+          -0.00404810905456543
+        ],
+        "max": [
+          18.861312866210938,
+          -38.44628143310547,
+          1.763777732849121
+        ],
+        "dimensions": [
+          3.6462554931640625,
+          1.4681320190429688,
+          1.7678258419036865
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 1480,
+      "polygons": 1310,
+      "triangles_estimated": 2620,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_C_CratesB",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_C_CratesB",
+      "world_bounds_blender_units": {
+        "min": [
+          16.64366912841797,
+          -43.682861328125,
+          3.524658679962158
+        ],
+        "max": [
+          19.48088836669922,
+          -42.187721252441406,
+          4.605129241943359
+        ],
+        "dimensions": [
+          2.83721923828125,
+          1.4951400756835938,
+          1.0804705619812012
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 320,
+      "polygons": 240,
+      "triangles_estimated": 480,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_C_Fan",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_C_Fan",
+      "world_bounds_blender_units": {
+        "min": [
+          20.423534393310547,
+          -43.963348388671875,
+          -0.0001220703125
+        ],
+        "max": [
+          21.127017974853516,
+          -43.23032760620117,
+          2.7529027462005615
+        ],
+        "dimensions": [
+          0.7034835815429688,
+          0.7330207824707031,
+          2.7530248165130615
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 3576,
+      "polygons": 3536,
+      "triangles_estimated": 7072,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_C_grp",
+      "type": "EMPTY",
+      "parent": null,
+      "collections": [
+        "Scene Collection"
+      ]
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_C_Main",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_C_Main",
+      "world_bounds_blender_units": {
+        "min": [
+          14.205926895141602,
+          -43.872684478759766,
+          -0.0031998157501220703
+        ],
+        "max": [
+          20.821861267089844,
+          -39.546817779541016,
+          3.830336570739746
+        ],
+        "dimensions": [
+          6.615934371948242,
+          4.32586669921875,
+          3.833536386489868
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 54993,
+      "polygons": 53616,
+      "triangles_estimated": 107232,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_C_NeonSignA",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_C_NeonSignA",
+      "world_bounds_blender_units": {
+        "min": [
+          16.780134201049805,
+          -44.095733642578125,
+          2.439600944519043
+        ],
+        "max": [
+          20.507936477661133,
+          -43.24047088623047,
+          4.3985748291015625
+        ],
+        "dimensions": [
+          3.727802276611328,
+          0.8552627563476562,
+          1.9589738845825195
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 3340,
+      "polygons": 3173,
+      "triangles_estimated": 6346,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_C_NeonSignB",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_C_NeonSignB",
+      "world_bounds_blender_units": {
+        "min": [
+          14.922327041625977,
+          -41.79557800292969,
+          2.6070327758789062
+        ],
+        "max": [
+          15.887868881225586,
+          -41.65017318725586,
+          3.5725555419921875
+        ],
+        "dimensions": [
+          0.9655418395996094,
+          0.14540481567382812,
+          0.9655227661132812
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 627,
+      "polygons": 600,
+      "triangles_estimated": 1200,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_C_NeonSignC",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_C_NeonSignC",
+      "world_bounds_blender_units": {
+        "min": [
+          19.715709686279297,
+          -44.44093322753906,
+          0.07764029502868652
+        ],
+        "max": [
+          20.489749908447266,
+          -43.38599395751953,
+          3.3479716777801514
+        ],
+        "dimensions": [
+          0.7740402221679688,
+          1.0549392700195312,
+          3.270331382751465
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 3426,
+      "polygons": 3311,
+      "triangles_estimated": 6622,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_C_Pipes",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_C_Pipes",
+      "world_bounds_blender_units": {
+        "min": [
+          19.417251586914062,
+          -39.943084716796875,
+          -2.384185791015625e-07
+        ],
+        "max": [
+          20.22064208984375,
+          -39.18256378173828,
+          2.609259605407715
+        ],
+        "dimensions": [
+          0.8033905029296875,
+          0.7605209350585938,
+          2.609259843826294
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 2206,
+      "polygons": 2046,
+      "triangles_estimated": 4092,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_C_Shelf",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_C_Shelf",
+      "world_bounds_blender_units": {
+        "min": [
+          16.370868682861328,
+          -41.96149444580078,
+          0.16161060333251953
+        ],
+        "max": [
+          18.640621185302734,
+          -41.022216796875,
+          2.1953024864196777
+        ],
+        "dimensions": [
+          2.2697525024414062,
+          0.9392776489257812,
+          2.033691883087158
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 25962,
+      "polygons": 25470,
+      "triangles_estimated": 50940,
+      "users": 1
+    },
+    {
+      "name": "KB3D_NEC_BldgSM_C_Stool",
+      "type": "MESH",
+      "parent": "KB3D_NEC_BldgSM_C_grp",
+      "collections": [
+        "Scene Collection"
+      ],
+      "mesh": "KB3D_NEC_BldgSM_C_Stool",
+      "world_bounds_blender_units": {
+        "min": [
+          16.169631958007812,
+          -43.65913772583008,
+          0.15348170697689056
+        ],
+        "max": [
+          16.886568069458008,
+          -42.94926834106445,
+          0.5898306369781494
+        ],
+        "dimensions": [
+          0.7169361114501953,
+          0.709869384765625,
+          0.43634893000125885
+        ]
+      },
+      "modifiers": [
+        "SUBSURF"
+      ],
+      "vertices": 916,
+      "polygons": 888,
+      "triangles_estimated": 1776,
+      "users": 1
+    },
+    {
+      "name": "Light",
+      "type": "LIGHT",
+      "parent": null,
+      "collections": [
+        "Collection"
+      ]
+    }
+  ],
+  "status": "passed"
+}

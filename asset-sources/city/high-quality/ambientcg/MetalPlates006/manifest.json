@@ -1,0 +1,126 @@
+{
+  "id": "MetalPlates006",
+  "provider": "ambientCG",
+  "source": "https://ambientcg.com/view?id=MetalPlates006",
+  "license": "CC0-1.0",
+  "license_source": "https://docs.ambientcg.com/license/",
+  "resolution": "8K",
+  "format": "PNG PBR package",
+  "downloaded_on": "2026-09-27",
+  "files": [
+    {
+      "path": "high-quality/ambientcg/MetalPlates006/MetalPlates006_8K-PNG.zip",
+      "url": "https://ambientcg.com/get?file=MetalPlates006_8K-PNG.zip",
+      "bytes": 444958087,
+      "sha256": "7bbc8a4a3088dfb9b104f2c10b4d7bb38167c99008bdcc6d7af46f385949abf8",
+      "source_bytes": 444958087,
+      "source_size_verified": true
+    }
+  ],
+  "extracted_path": "high-quality/ambientcg/MetalPlates006/maps",
+  "zip_crc_verified": true,
+  "source_hash_available": false,
+  "extracted_files": [
+    {
+      "path": "high-quality/ambientcg/MetalPlates006/maps/MetalPlates006_8K-PNG.usdc",
+      "bytes": 2985,
+      "sha256": "8248a25717dcfd1de5c8e97ee0180603a8d8442718728c89b62dce23a052c1f7",
+      "zip_crc32": "3562054b"
+    },
+    {
+      "path": "high-quality/ambientcg/MetalPlates006/maps/MetalPlates006_8K-PNG_Color.png",
+      "bytes": 38530511,
+      "sha256": "98225e722dc48b97446a313cad0217ca0e4b5fbd2e75c4b30d09d13f8a0624f4",
+      "zip_crc32": "3de88df1",
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 8,
+      "color_type": 2
+    },
+    {
+      "path": "high-quality/ambientcg/MetalPlates006/maps/MetalPlates006_8K-PNG_Displacement.png",
+      "bytes": 54883571,
+      "sha256": "59477efa39ede16efd0626982dbbab34f28323353d17d6d6ebd791436dc97caf",
+      "zip_crc32": "e5d67123",
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 16,
+      "color_type": 0
+    },
+    {
+      "path": "high-quality/ambientcg/MetalPlates006/maps/MetalPlates006_8K-PNG_Metalness.png",
+      "bytes": 60172,
+      "sha256": "08e6cb526f4a27f00fd09980e22ea30a12f69b2c12b137cabdb5b48eaf021aa2",
+      "zip_crc32": "a466f8c1",
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 1,
+      "color_type": 0
+    },
+    {
+      "path": "high-quality/ambientcg/MetalPlates006/maps/MetalPlates006_8K-PNG_NormalDX.png",
+      "bytes": 163155532,
+      "sha256": "1afe75a4c9db18a5be1428e3a6726b07909b37007eb12b4f3c20727b23521b68",
+      "zip_crc32": "81df3132",
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 16,
+      "color_type": 2
+    },
+    {
+      "path": "high-quality/ambientcg/MetalPlates006/maps/MetalPlates006_8K-PNG_NormalGL.png",
+      "bytes": 163257940,
+      "sha256": "74a114e17e09d81930e0d15f44694059bd1ab12cb402712c0a778638afdd5937",
+      "zip_crc32": "ad5fa571",
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 16,
+      "color_type": 2
+    },
+    {
+      "path": "high-quality/ambientcg/MetalPlates006/maps/MetalPlates006_8K-PNG_Roughness.png",
+      "bytes": 23725140,
+      "sha256": "a8f7f574ea3e90ed6f26e4c300ed67d0eb705cd2118467b7698d17ebcc11939c",
+      "zip_crc32": "950df2e0",
+      "width": 8192,
+      "height": 8192,
+      "bit_depth": 8,
+      "color_type": 0
+    },
+    {
+      "path": "high-quality/ambientcg/MetalPlates006/maps/MetalPlates006_8K-PNG.blend",
+      "bytes": 1109588,
+      "sha256": "154396c63bedfad9190133ef184e25b9410be49bea37ecdab593f84bd729663e",
+      "zip_crc32": "780f4f6d"
+    },
+    {
+      "path": "high-quality/ambientcg/MetalPlates006/maps/MetalPlates006_8K-PNG.mtlx",
+      "bytes": 2703,
+      "sha256": "92a48af40c66e2e3dff182104702ab43ca686232dd5bb0d1f1e68fa3af86d744",
+      "zip_crc32": "c73b3487"
+    },
+    {
+      "path": "high-quality/ambientcg/MetalPlates006/maps/MetalPlates006_8K-PNG.tres",
+      "bytes": 1033,
+      "sha256": "479107bbf04b556d6a89c8829e047e93c9c2da50ec437686d8e6e37927a95cf3",
+      "zip_crc32": "36c542ff"
+    },
+    {
+      "path": "high-quality/ambientcg/MetalPlates006/maps/MetalPlates006.png",
+      "bytes": 226584,
+      "sha256": "ef730b203c4ce50d1dbd40919cae587931efbabb79aa8d4903cb56f345df842a",
+      "zip_crc32": "e36a538e",
+      "width": 512,
+      "height": 512,
+      "bit_depth": 8,
+      "color_type": 6
+    }
+  ],
+  "texture_dimensions_verified": true,
+  "material_texture_count": 6,
+  "material_texture_dimensions": {
+    "width": 8192,
+    "height": 8192
+  },
+  "preview_texture_note": "The packaged 512 x 512 PNG is a material preview, not a PBR map."
+}

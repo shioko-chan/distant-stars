@@ -1,0 +1,654 @@
+{
+  "source": "asset-sources/city/kitbash3d/neo-city/blender/kb3d_neocity-native.blend",
+  "sourceSha256": "9937319c33970f441a490bb533cb21f72eaba74c4ef811777dc4c523a5a5cd2f",
+  "originalUnchanged": true,
+  "blenderVersion": "5.1.1",
+  "buildings": [
+    {
+      "id": "lg-a-core",
+      "sourceObjects": [
+        "KB3D_NEC_BldgLG_A_Main"
+      ],
+      "size": {
+        "width": 29.863971710205078,
+        "height": 67.20211791992188,
+        "depth": 28.994141578674316
+      },
+      "sourceTriangles": 110514,
+      "lods": {
+        "high": {
+          "node": "lg-a-core-high",
+          "triangles": 74999
+        },
+        "medium": {
+          "node": "lg-a-core-medium",
+          "triangles": 6588
+        }
+      }
+    },
+    {
+      "id": "lg-a-a",
+      "sourceObjects": [
+        "KB3D_NEC_BldgLG_A_BuildingA"
+      ],
+      "size": {
+        "width": 13.059844970703125,
+        "height": 41.685699462890625,
+        "depth": 17.887821197509766
+      },
+      "sourceTriangles": 29128,
+      "lods": {
+        "high": {
+          "node": "lg-a-a-high",
+          "triangles": 29128
+        },
+        "medium": {
+          "node": "lg-a-a-medium",
+          "triangles": 2458
+        }
+      }
+    },
+    {
+      "id": "lg-a-b",
+      "sourceObjects": [
+        "KB3D_NEC_BldgLG_A_BuildingB"
+      ],
+      "size": {
+        "width": 22.670928955078125,
+        "height": 72.63054656982422,
+        "depth": 25.111391067504883
+      },
+      "sourceTriangles": 43938,
+      "lods": {
+        "high": {
+          "node": "lg-a-b-high",
+          "triangles": 43938
+        },
+        "medium": {
+          "node": "lg-a-b-medium",
+          "triangles": 3704
+        }
+      }
+    },
+    {
+      "id": "lg-b",
+      "sourceObjects": [
+        "KB3D_NEC_BldgLG_B_Main",
+        "KB3D_NEC_BldgLG_B_AntennaA"
+      ],
+      "size": {
+        "width": 54.57318115234375,
+        "height": 201.0586929321289,
+        "depth": 45.3776741027832
+      },
+      "sourceTriangles": 203364,
+      "lods": {
+        "high": {
+          "node": "lg-b-high",
+          "triangles": 74983
+        },
+        "medium": {
+          "node": "lg-b-medium",
+          "triangles": 7444
+        }
+      }
+    },
+    {
+      "id": "lg-c",
+      "sourceObjects": [
+        "KB3D_NEC_BldgLG_C_Main",
+        "KB3D_NEC_BldgLG_C_Base",
+        "KB3D_NEC_BldgLG_C_AntennaA",
+        "KB3D_NEC_BldgLG_C_AntennaB",
+        "KB3D_NEC_BldgLG_C_AntennaC",
+        "KB3D_NEC_BldgLG_C_AntennaD"
+      ],
+      "size": {
+        "width": 36.55033874511719,
+        "height": 167.88722324371338,
+        "depth": 38.22209358215332
+      },
+      "sourceTriangles": 444398,
+      "lods": {
+        "high": {
+          "node": "lg-c-high",
+          "triangles": 76318
+        },
+        "medium": {
+          "node": "lg-c-medium",
+          "triangles": 15216
+        }
+      }
+    },
+    {
+      "id": "md-a",
+      "sourceObjects": [
+        "KB3D_NEC_BldgMD_A_Main",
+        "KB3D_NEC_BldgMD_A_Base",
+        "KB3D_NEC_BldgMD_A_Banners",
+        "KB3D_NEC_BldgMD_A_AntennaA"
+      ],
+      "size": {
+        "width": 31.78638458251953,
+        "height": 27.12601137161255,
+        "depth": 16.45001220703125
+      },
+      "sourceTriangles": 134858,
+      "lods": {
+        "high": {
+          "node": "md-a-high",
+          "triangles": 74998
+        },
+        "medium": {
+          "node": "md-a-medium",
+          "triangles": 8241
+        }
+      }
+    },
+    {
+      "id": "md-b",
+      "sourceObjects": [
+        "KB3D_NEC_BldgMD_B_Main"
+      ],
+      "size": {
+        "width": 26.780936241149902,
+        "height": 57.3355712890625,
+        "depth": 22.81160068511963
+      },
+      "sourceTriangles": 179804,
+      "lods": {
+        "high": {
+          "node": "md-b-high",
+          "triangles": 75000
+        },
+        "medium": {
+          "node": "md-b-medium",
+          "triangles": 4365
+        }
+      }
+    },
+    {
+      "id": "md-c",
+      "sourceObjects": [
+        "KB3D_NEC_BldgMD_C_Main",
+        "KB3D_NEC_BldgMD_C_Base",
+        "KB3D_NEC_BldgMD_C_BuildingA",
+        "KB3D_NEC_BldgMD_C_Banners",
+        "KB3D_NEC_BldgMD_C_AntennaA"
+      ],
+      "size": {
+        "width": 68.65097045898438,
+        "height": 59.05971038341522,
+        "depth": 26.6475830078125
+      },
+      "sourceTriangles": 263048,
+      "lods": {
+        "high": {
+          "node": "md-c-high",
+          "triangles": 75077
+        },
+        "medium": {
+          "node": "md-c-medium",
+          "triangles": 7144
+        }
+      }
+    }
+  ],
+  "materials": {
+    "KB3D_NEC_TarpA": {
+      "name": "KB3D_NEC_TarpA",
+      "surface_area": 3243.2653902238817,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_TarpA_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_TarpA_basecolor.png",
+        "KB3D_NEC_TarpA_metallic.png": "//KB3DTextures/4k/KB3D_NEC_TarpA_metallic.png",
+        "KB3D_NEC_TarpA_roughness.png": "//KB3DTextures/4k/KB3D_NEC_TarpA_roughness.png",
+        "KB3D_NEC_TarpA_normal.png": "//KB3DTextures/4k/KB3D_NEC_TarpA_normal.png",
+        "KB3D_NEC_TarpA_height.png": "//KB3DTextures/4k/KB3D_NEC_TarpA_height.png"
+      }
+    },
+    "KB3D_NEC_GalvanizedSteelDirt": {
+      "name": "KB3D_NEC_GalvanizedSteelDirt",
+      "surface_area": 2953.6767704007507,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_GalvanizedSteelDirt_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_basecolor.png",
+        "KB3D_NEC_GalvanizedSteelDirt_metallic.png": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_metallic.png",
+        "KB3D_NEC_GalvanizedSteelDirt_roughness.png": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_roughness.png",
+        "KB3D_NEC_GalvanizedSteelDirt_normal.png": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_normal.png",
+        "KB3D_NEC_GalvanizedSteelDirt_height.png": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteelDirt_height.png"
+      }
+    },
+    "KB3D_NEC_MetalLightGreyWorn": {
+      "name": "KB3D_NEC_MetalLightGreyWorn",
+      "surface_area": 4746.086361658003,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_MetalLightGreyWorn_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_basecolor.png",
+        "KB3D_NEC_MetalLightGreyWorn_metallic.png": "//KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_metallic.png",
+        "KB3D_NEC_MetalLightGreyWorn_roughness.png": "//KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_roughness.png",
+        "KB3D_NEC_MetalLightGreyWorn_normal.png": "//KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_normal.png",
+        "KB3D_NEC_MetalLightGreyWorn_height.png": "//KB3DTextures/4k/KB3D_NEC_MetalLightGreyWorn_height.png"
+      }
+    },
+    "KB3D_NEC_AirCon": {
+      "name": "KB3D_NEC_AirCon",
+      "surface_area": 2302.362989173169,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_AirCon_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_AirCon_basecolor.png",
+        "KB3D_NEC_AirCon_metallic.png": "//KB3DTextures/4k/KB3D_NEC_AirCon_metallic.png",
+        "KB3D_NEC_AirCon_roughness.png": "//KB3DTextures/4k/KB3D_NEC_AirCon_roughness.png",
+        "KB3D_NEC_AirCon_normal.png": "//KB3DTextures/4k/KB3D_NEC_AirCon_normal.png",
+        "KB3D_NEC_AirCon_height.png": "//KB3DTextures/4k/KB3D_NEC_AirCon_height.png"
+      }
+    },
+    "KB3D_NEC_MetalPaintWorn": {
+      "name": "KB3D_NEC_MetalPaintWorn",
+      "surface_area": 19732.855770787835,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_MetalPaintWorn_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_basecolor.png",
+        "KB3D_NEC_MetalPaintWorn_metallic.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_metallic.png",
+        "KB3D_NEC_MetalPaintWorn_roughness.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_roughness.png",
+        "KB3D_NEC_MetalPaintWorn_normal.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_normal.png",
+        "KB3D_NEC_MetalPaintWorn_height.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWorn_height.png"
+      }
+    },
+    "KB3D_NEC_MetalPaintWhiteWorn": {
+      "name": "KB3D_NEC_MetalPaintWhiteWorn",
+      "surface_area": 920.763989010462,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_MetalPaintWhiteWorn_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_basecolor.png",
+        "KB3D_NEC_MetalPaintWhiteWorn_metallic.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_metallic.png",
+        "KB3D_NEC_MetalPaintWhiteWorn_roughness.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_roughness.png",
+        "KB3D_NEC_MetalPaintWhiteWorn_normal.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_normal.png",
+        "KB3D_NEC_MetalPaintWhiteWorn_height.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintWhiteWorn_height.png"
+      }
+    },
+    "KB3D_NEC_MetalDarkWorn": {
+      "name": "KB3D_NEC_MetalDarkWorn",
+      "surface_area": 92.813803273355,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_MetalDarkWorn_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_basecolor.png",
+        "KB3D_NEC_MetalDarkWorn_metallic.png": "//KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_metallic.png",
+        "KB3D_NEC_MetalDarkWorn_roughness.png": "//KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_roughness.png",
+        "KB3D_NEC_MetalDarkWorn_normal.png": "//KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_normal.png",
+        "KB3D_NEC_MetalDarkWorn_height.png": "//KB3DTextures/4k/KB3D_NEC_MetalDarkWorn_height.png"
+      }
+    },
+    "KB3D_NEC_WoodDarkGreyTower": {
+      "name": "KB3D_NEC_WoodDarkGreyTower",
+      "surface_area": 76.69495514035225,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_WoodDarkGreyTower_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_basecolor.png",
+        "KB3D_NEC_WoodDarkGreyTower_metallic.png": "//KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_metallic.png",
+        "KB3D_NEC_WoodDarkGreyTower_roughness.png": "//KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_roughness.png",
+        "KB3D_NEC_WoodDarkGreyTower_normal.png": "//KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_normal.png",
+        "KB3D_NEC_WoodDarkGreyTower_height.png": "//KB3DTextures/4k/KB3D_NEC_WoodDarkGreyTower_height.png"
+      }
+    },
+    "KB3D_NEC_WhitePanels": {
+      "name": "KB3D_NEC_WhitePanels",
+      "surface_area": 9823.646126017673,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_WhitePanels_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_WhitePanels_basecolor.png",
+        "KB3D_NEC_WhitePanels_metallic.png": "//KB3DTextures/4k/KB3D_NEC_WhitePanels_metallic.png",
+        "KB3D_NEC_WhitePanels_roughness.png": "//KB3DTextures/4k/KB3D_NEC_WhitePanels_roughness.png",
+        "KB3D_NEC_WhitePanels_normal.png": "//KB3DTextures/4k/KB3D_NEC_WhitePanels_normal.png",
+        "KB3D_NEC_WhitePanels_height.png": "//KB3DTextures/4k/KB3D_NEC_WhitePanels_height.png"
+      }
+    },
+    "KB3D_NEC_GlassLamps": {
+      "name": "KB3D_NEC_GlassLamps",
+      "surface_area": 0.2474371932912618,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_GlassLamps_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_GlassLamps_basecolor.png",
+        "KB3D_NEC_GlassLamps_metallic.png": "//KB3DTextures/4k/KB3D_NEC_GlassLamps_metallic.png",
+        "KB3D_NEC_GlassLamps_roughness.png": "//KB3DTextures/4k/KB3D_NEC_GlassLamps_roughness.png",
+        "KB3D_NEC_GlassLamps_normal.png": "//KB3DTextures/4k/KB3D_NEC_GlassLamps_normal.png",
+        "KB3D_NEC_GlassLamps_refraction.png": "//KB3DTextures/4k/KB3D_NEC_GlassLamps_refraction.png",
+        "KB3D_NEC_GlassLamps_height.png": "//KB3DTextures/4k/KB3D_NEC_GlassLamps_height.png"
+      }
+    },
+    "KB3D_NEC_MetalPaintRed": {
+      "name": "KB3D_NEC_MetalPaintRed",
+      "surface_area": 20.87028882279992,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_MetalPaintRed_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintRed_basecolor.png",
+        "KB3D_NEC_MetalPaintRed_metallic.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintRed_metallic.png",
+        "KB3D_NEC_MetalPaintRed_roughness.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintRed_roughness.png",
+        "KB3D_NEC_MetalPaintRed_normal.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintRed_normal.png",
+        "KB3D_NEC_MetalPaintRed_height.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintRed_height.png"
+      }
+    },
+    "KB3D_NEC_MetalPaintYellow": {
+      "name": "KB3D_NEC_MetalPaintYellow",
+      "surface_area": 6.278804632049287,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_MetalPaintYellow_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_basecolor.png",
+        "KB3D_NEC_MetalPaintYellow_metallic.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_metallic.png",
+        "KB3D_NEC_MetalPaintYellow_roughness.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_roughness.png",
+        "KB3D_NEC_MetalPaintYellow_normal.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_normal.png",
+        "KB3D_NEC_MetalPaintYellow_height.png": "//KB3DTextures/4k/KB3D_NEC_MetalPaintYellow_height.png"
+      }
+    },
+    "KB3D_NEC_GlassTinted": {
+      "name": "KB3D_NEC_GlassTinted",
+      "surface_area": 25488.457895613275,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_GlassTinted_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_GlassTinted_basecolor.png",
+        "KB3D_NEC_GlassTinted_metallic.png": "//KB3DTextures/4k/KB3D_NEC_GlassTinted_metallic.png",
+        "KB3D_NEC_GlassTinted_roughness.png": "//KB3DTextures/4k/KB3D_NEC_GlassTinted_roughness.png",
+        "KB3D_NEC_GlassTinted_normal.png": "//KB3DTextures/4k/KB3D_NEC_GlassTinted_normal.png",
+        "KB3D_NEC_GlassTinted_refraction.png": "//KB3DTextures/4k/KB3D_NEC_GlassTinted_refraction.png",
+        "KB3D_NEC_GlassTinted_height.png": "//KB3DTextures/4k/KB3D_NEC_GlassTinted_height.png"
+      }
+    },
+    "KB3D_NEC_DarkPanels": {
+      "name": "KB3D_NEC_DarkPanels",
+      "surface_area": 19596.618045888375,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_DarkPanels_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_DarkPanels_basecolor.png",
+        "KB3D_NEC_DarkPanels_metallic.png": "//KB3DTextures/4k/KB3D_NEC_DarkPanels_metallic.png",
+        "KB3D_NEC_DarkPanels_roughness.png": "//KB3DTextures/4k/KB3D_NEC_DarkPanels_roughness.png",
+        "KB3D_NEC_DarkPanels_normal.png": "//KB3DTextures/4k/KB3D_NEC_DarkPanels_normal.png",
+        "KB3D_NEC_DarkPanels_height.png": "//KB3DTextures/4k/KB3D_NEC_DarkPanels_height.png"
+      }
+    },
+    "KB3D_NEC_ConcreteWall": {
+      "name": "KB3D_NEC_ConcreteWall",
+      "surface_area": 470.9491221010685,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_ConcreteWall_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteWall_basecolor.png",
+        "KB3D_NEC_ConcreteWall_metallic.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteWall_metallic.png",
+        "KB3D_NEC_ConcreteWall_roughness.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteWall_roughness.png",
+        "KB3D_NEC_ConcreteWall_normal.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteWall_normal.png",
+        "KB3D_NEC_ConcreteWall_height.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteWall_height.png"
+      }
+    },
+    "KB3D_NEC_GlassBlack": {
+      "name": "KB3D_NEC_GlassBlack",
+      "surface_area": 18660.571253136528,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_GlassBlack_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_GlassBlack_basecolor.png",
+        "KB3D_NEC_GlassBlack_metallic.png": "//KB3DTextures/4k/KB3D_NEC_GlassBlack_metallic.png",
+        "KB3D_NEC_GlassBlack_roughness.png": "//KB3DTextures/4k/KB3D_NEC_GlassBlack_roughness.png",
+        "KB3D_NEC_GlassBlack_normal.png": "//KB3DTextures/4k/KB3D_NEC_GlassBlack_normal.png",
+        "KB3D_NEC_GlassBlack_refraction.png": "//KB3DTextures/4k/KB3D_NEC_GlassBlack_refraction.png",
+        "KB3D_NEC_GlassBlack_height.png": "//KB3DTextures/4k/KB3D_NEC_GlassBlack_height.png"
+      }
+    },
+    "KB3D_NEC_DecorConcreteB": {
+      "name": "KB3D_NEC_DecorConcreteB",
+      "surface_area": 26977.87776750326,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_DecorConcreteB_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteB_basecolor.png",
+        "KB3D_NEC_DecorConcreteB_metallic.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteB_metallic.png",
+        "KB3D_NEC_DecorConcreteB_roughness.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteB_roughness.png",
+        "KB3D_NEC_DecorConcreteB_normal.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteB_normal.png",
+        "KB3D_NEC_DecorConcreteB_height.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteB_height.png"
+      }
+    },
+    "KB3D_NEC_SatinSteel": {
+      "name": "KB3D_NEC_SatinSteel",
+      "surface_area": 2864.4923545982106,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_SatinSteel_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_SatinSteel_basecolor.png",
+        "KB3D_NEC_SatinSteel_metallic.png": "//KB3DTextures/4k/KB3D_NEC_SatinSteel_metallic.png",
+        "KB3D_NEC_SatinSteel_roughness.png": "//KB3DTextures/4k/KB3D_NEC_SatinSteel_roughness.png",
+        "KB3D_NEC_SatinSteel_normal.png": "//KB3DTextures/4k/KB3D_NEC_SatinSteel_normal.png",
+        "KB3D_NEC_SatinSteel_height.png": "//KB3DTextures/4k/KB3D_NEC_SatinSteel_height.png"
+      }
+    },
+    "KB3D_NEC_ConcreteAccent": {
+      "name": "KB3D_NEC_ConcreteAccent",
+      "surface_area": 219.10596634307876,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_ConcreteAccent_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteAccent_basecolor.png",
+        "KB3D_NEC_ConcreteAccent_metallic.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteAccent_metallic.png",
+        "KB3D_NEC_ConcreteAccent_roughness.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteAccent_roughness.png",
+        "KB3D_NEC_ConcreteAccent_normal.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteAccent_normal.png",
+        "KB3D_NEC_ConcreteAccent_height.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteAccent_height.png"
+      }
+    },
+    "KB3D_NEC_PaintedMetal": {
+      "name": "KB3D_NEC_PaintedMetal",
+      "surface_area": 96.33208702130582,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_PaintedMetal_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_PaintedMetal_basecolor.png",
+        "KB3D_NEC_PaintedMetal_metallic.png": "//KB3DTextures/4k/KB3D_NEC_PaintedMetal_metallic.png",
+        "KB3D_NEC_PaintedMetal_roughness.png": "//KB3DTextures/4k/KB3D_NEC_PaintedMetal_roughness.png",
+        "KB3D_NEC_PaintedMetal_normal.png": "//KB3DTextures/4k/KB3D_NEC_PaintedMetal_normal.png",
+        "KB3D_NEC_PaintedMetal_height.png": "//KB3DTextures/4k/KB3D_NEC_PaintedMetal_height.png"
+      }
+    },
+    "KB3D_NEC_GalvanizedSteel": {
+      "name": "KB3D_NEC_GalvanizedSteel",
+      "surface_area": 3829.8125184534583,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_GalvanizedSteel_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_basecolor.png",
+        "KB3D_NEC_GalvanizedSteel_metallic.png": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_metallic.png",
+        "KB3D_NEC_GalvanizedSteel_roughness.png": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_roughness.png",
+        "KB3D_NEC_GalvanizedSteel_normal.png": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_normal.png",
+        "KB3D_NEC_GalvanizedSteel_height.png": "//KB3DTextures/4k/KB3D_NEC_GalvanizedSteel_height.png"
+      }
+    },
+    "KB3D_NEC_OxidizedSteel": {
+      "name": "KB3D_NEC_OxidizedSteel",
+      "surface_area": 590.6353284045665,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_OxidizedSteel_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_OxidizedSteel_basecolor.png",
+        "KB3D_NEC_OxidizedSteel_metallic.png": "//KB3DTextures/4k/KB3D_NEC_OxidizedSteel_metallic.png",
+        "KB3D_NEC_OxidizedSteel_roughness.png": "//KB3DTextures/4k/KB3D_NEC_OxidizedSteel_roughness.png",
+        "KB3D_NEC_OxidizedSteel_normal.png": "//KB3DTextures/4k/KB3D_NEC_OxidizedSteel_normal.png",
+        "KB3D_NEC_OxidizedSteel_height.png": "//KB3DTextures/4k/KB3D_NEC_OxidizedSteel_height.png"
+      }
+    },
+    "KB3D_NEC_ConcreteA": {
+      "name": "KB3D_NEC_ConcreteA",
+      "surface_area": 15463.006909361327,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_ConcreteA_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteA_basecolor.png",
+        "KB3D_NEC_ConcreteA_metallic.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteA_metallic.png",
+        "KB3D_NEC_ConcreteA_roughness.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteA_roughness.png",
+        "KB3D_NEC_ConcreteA_normal.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteA_normal.png",
+        "KB3D_NEC_ConcreteA_height.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteA_height.png"
+      }
+    },
+    "KB3D_NEC_ConcreteB": {
+      "name": "KB3D_NEC_ConcreteB",
+      "surface_area": 11685.085925591178,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_ConcreteB_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteB_basecolor.png",
+        "KB3D_NEC_ConcreteB_metallic.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteB_metallic.png",
+        "KB3D_NEC_ConcreteB_roughness.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteB_roughness.png",
+        "KB3D_NEC_ConcreteB_normal.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteB_normal.png",
+        "KB3D_NEC_ConcreteB_height.png": "//KB3DTextures/4k/KB3D_NEC_ConcreteB_height.png"
+      }
+    },
+    "KB3D_NEC_MetalAccent": {
+      "name": "KB3D_NEC_MetalAccent",
+      "surface_area": 1727.5282737910748,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_MetalAccent_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_MetalAccent_basecolor.png",
+        "KB3D_NEC_MetalAccent_metallic.png": "//KB3DTextures/4k/KB3D_NEC_MetalAccent_metallic.png",
+        "KB3D_NEC_MetalAccent_roughness.png": "//KB3DTextures/4k/KB3D_NEC_MetalAccent_roughness.png",
+        "KB3D_NEC_MetalAccent_normal.png": "//KB3DTextures/4k/KB3D_NEC_MetalAccent_normal.png",
+        "KB3D_NEC_MetalAccent_height.png": "//KB3DTextures/4k/KB3D_NEC_MetalAccent_height.png"
+      }
+    },
+    "KB3D_NEC_AsphaltHexagonRoof": {
+      "name": "KB3D_NEC_AsphaltHexagonRoof",
+      "surface_area": 1956.356472659856,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_AsphaltHexagonRoof_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_basecolor.png",
+        "KB3D_NEC_AsphaltHexagonRoof_metallic.png": "//KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_metallic.png",
+        "KB3D_NEC_AsphaltHexagonRoof_roughness.png": "//KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_roughness.png",
+        "KB3D_NEC_AsphaltHexagonRoof_normal.png": "//KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_normal.png",
+        "KB3D_NEC_AsphaltHexagonRoof_height.png": "//KB3DTextures/4k/KB3D_NEC_AsphaltHexagonRoof_height.png"
+      }
+    },
+    "KB3D_NEC_BannerA": {
+      "name": "KB3D_NEC_BannerA",
+      "surface_area": 616.8003603396355,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_BannerA_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_BannerA_basecolor.png",
+        "KB3D_NEC_BannerA_metallic.png": "//KB3DTextures/4k/KB3D_NEC_BannerA_metallic.png",
+        "KB3D_NEC_BannerA_roughness.png": "//KB3DTextures/4k/KB3D_NEC_BannerA_roughness.png",
+        "KB3D_NEC_BannerA_normal.png": "//KB3DTextures/4k/KB3D_NEC_BannerA_normal.png",
+        "KB3D_NEC_BannerA_height.png": "//KB3DTextures/4k/KB3D_NEC_BannerA_height.png"
+      }
+    },
+    "KB3D_NEC_LightsA": {
+      "name": "KB3D_NEC_LightsA",
+      "surface_area": 26.206854521804985,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_LightsA_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_LightsA_basecolor.png",
+        "KB3D_NEC_LightsA_emissive.png": "//KB3DTextures/4k/KB3D_NEC_LightsA_emissive.png",
+        "KB3D_NEC_LightsA_metallic.png": "//KB3DTextures/4k/KB3D_NEC_LightsA_metallic.png",
+        "KB3D_NEC_LightsA_roughness.png": "//KB3DTextures/4k/KB3D_NEC_LightsA_roughness.png",
+        "KB3D_NEC_LightsA_normal.png": "//KB3DTextures/4k/KB3D_NEC_LightsA_normal.png",
+        "KB3D_NEC_LightsA_height.png": "//KB3DTextures/4k/KB3D_NEC_LightsA_height.png"
+      }
+    },
+    "KB3D_NEC_MetalGrating": {
+      "name": "KB3D_NEC_MetalGrating",
+      "surface_area": 73.8548299074173,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_MetalGrating_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_MetalGrating_basecolor.png",
+        "KB3D_NEC_MetalGrating_metallic.png": "//KB3DTextures/4k/KB3D_NEC_MetalGrating_metallic.png",
+        "KB3D_NEC_MetalGrating_roughness.png": "//KB3DTextures/4k/KB3D_NEC_MetalGrating_roughness.png",
+        "KB3D_NEC_MetalGrating_normal.png": "//KB3DTextures/4k/KB3D_NEC_MetalGrating_normal.png",
+        "KB3D_NEC_MetalGrating_opacity.png": "//KB3DTextures/4k/KB3D_NEC_MetalGrating_opacity.png",
+        "KB3D_NEC_MetalGrating_height.png": "//KB3DTextures/4k/KB3D_NEC_MetalGrating_height.png"
+      }
+    },
+    "KB3D_NEC_SpeedwayTiles": {
+      "name": "KB3D_NEC_SpeedwayTiles",
+      "surface_area": 3701.337315559387,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_SpeedwayTiles_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_basecolor.png",
+        "KB3D_NEC_SpeedwayTiles_metallic.png": "//KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_metallic.png",
+        "KB3D_NEC_SpeedwayTiles_roughness.png": "//KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_roughness.png",
+        "KB3D_NEC_SpeedwayTiles_normal.png": "//KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_normal.png",
+        "KB3D_NEC_SpeedwayTiles_height.png": "//KB3DTextures/4k/KB3D_NEC_SpeedwayTiles_height.png"
+      }
+    },
+    "KB3D_NEC_DecorConcreteCBeige": {
+      "name": "KB3D_NEC_DecorConcreteCBeige",
+      "surface_area": 1417.6519585251808,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_DecorConcreteCBeige_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_basecolor.png",
+        "KB3D_NEC_DecorConcreteCBeige_metallic.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_metallic.png",
+        "KB3D_NEC_DecorConcreteCBeige_roughness.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_roughness.png",
+        "KB3D_NEC_DecorConcreteCBeige_normal.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_normal.png",
+        "KB3D_NEC_DecorConcreteCBeige_height.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCBeige_height.png"
+      }
+    },
+    "KB3D_NEC_DecorConcreteCWhite": {
+      "name": "KB3D_NEC_DecorConcreteCWhite",
+      "surface_area": 3797.2085480690002,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_DecorConcreteCWhite_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_basecolor.png",
+        "KB3D_NEC_DecorConcreteCWhite_metallic.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_metallic.png",
+        "KB3D_NEC_DecorConcreteCWhite_roughness.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_roughness.png",
+        "KB3D_NEC_DecorConcreteCWhite_normal.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_normal.png",
+        "KB3D_NEC_DecorConcreteCWhite_height.png": "//KB3DTextures/4k/KB3D_NEC_DecorConcreteCWhite_height.png"
+      }
+    },
+    "KB3D_NEC_LeavesBush": {
+      "name": "KB3D_NEC_LeavesBush",
+      "surface_area": 42.7491569519043,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_LeavesBush_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_LeavesBush_basecolor.png",
+        "KB3D_NEC_LeavesBush_metallic.png": "//KB3DTextures/4k/KB3D_NEC_LeavesBush_metallic.png",
+        "KB3D_NEC_LeavesBush_roughness.png": "//KB3DTextures/4k/KB3D_NEC_LeavesBush_roughness.png",
+        "KB3D_NEC_LeavesBush_normal.png": "//KB3DTextures/4k/KB3D_NEC_LeavesBush_normal.png",
+        "KB3D_NEC_LeavesBush_height.png": "//KB3DTextures/4k/KB3D_NEC_LeavesBush_height.png"
+      }
+    },
+    "KB3D_NEC_Letters": {
+      "name": "KB3D_NEC_Letters",
+      "surface_area": 22.40880623027154,
+      "normal_scale": 1.0,
+      "emissive_strength": 1.0,
+      "images": {
+        "KB3D_NEC_Letters_basecolor.png": "//KB3DTextures/4k/KB3D_NEC_Letters_basecolor.png",
+        "KB3D_NEC_Letters_metallic.png": "//KB3DTextures/4k/KB3D_NEC_Letters_metallic.png",
+        "KB3D_NEC_Letters_roughness.png": "//KB3DTextures/4k/KB3D_NEC_Letters_roughness.png",
+        "KB3D_NEC_Letters_normal.png": "//KB3DTextures/4k/KB3D_NEC_Letters_normal.png",
+        "KB3D_NEC_Letters_height.png": "//KB3DTextures/4k/KB3D_NEC_Letters_height.png"
+      }
+    }
+  },
+  "geometryBytes": 39004072,
+  "coordinateSystem": "Y-up, metres, local XZ centre and Y=0 at building base",
+  "notes": [
+    "High and medium are alternatives; render one LOD per placement.",
+    "Geometry LOD is derived from copies. Original source geometry and 4K PNGs remain untouched.",
+    "Medium LOD removes disconnected fittings with maximum axis extent under 3m and more than 12 source triangles, except components using Glass, Light, Banner or Letters materials; then triangulates and collapses copies. Small roof fittings may disappear at the LOD switch.",
+    "Draco omits unreferenced vertices and degenerate triangles; final primitive-specific accessor counts and bounds are reconstructed by decoding, not copied from original whole-mesh ranges."
+  ]
+}

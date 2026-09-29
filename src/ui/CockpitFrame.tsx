@@ -1,15 +1,4 @@
-/** Decorative hull and glass markings; all navigation remains in the live scene. */
-export function CockpitFrame() {
-    return <div className="cockpit-frame" aria-hidden="true">
-        <div className="window-caption"><span />CENTRAL COMMAND DISPLAY<span /></div>
-        <div className="glass-reflection" />
-        <div className="window-brace port" /><div className="window-brace starboard" />
-        <div className="window-scale port"><span>＋</span><i /><span>＋</span></div>
-        <div className="window-scale starboard"><span>＋</span><i /><span>＋</span></div>
-        <div className="window-sill"><span>DS — 01</span><i /><span>指挥中控</span></div>
-    </div>;
-}
-
+/** Department icons for the command rail. */
 const instrumentPaths = {
     overview: 'M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z M15 12a3 3 0 1 1-6 0 3 3 0 0 1 6 0',
     economy: 'M4 8h16v12H4Z M8 8V4h8v4 M4 12h16 M10 12v3h4v-3',

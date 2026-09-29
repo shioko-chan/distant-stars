@@ -1,0 +1,25 @@
+{
+  "requested_url": "https://ambientcg.com/get?file=Concrete034_16K-PNG.zip",
+  "final_url": "https://acg-download.struffelproductions.com/file/ambientCG-Web/download/Concrete034_jUQtDlJO/Concrete034_16K-PNG.zip",
+  "headers": {
+    "Date": "Sat, 26 Sep 2026 15:31:33 GMT",
+    "Content-Type": "application/zip",
+    "Content-Length": "431185761",
+    "Connection": "close",
+    "Strict-Transport-Security": "max-age=63072000",
+    "x-bz-file-name": "download/Concrete034_jUQtDlJO/Concrete034_16K-PNG.zip",
+    "x-bz-file-id": "4_z753f349018de0fd087a8061b_f246a5676bf27f29a_d20251104_m061059_c003_v0312034_t0051_u01762236659372",
+    "x-bz-content-sha1": "none",
+    "X-Bz-Upload-Timestamp": "1762236659372",
+    "Accept-Ranges": "bytes",
+    "x-bz-info-src_last_modified_millis": "1759983258000",
+    "Nel": "{\"report_to\":\"cf-nel\",\"success_fraction\":0.0,\"max_age\":604800}",
+    "Report-To": "{\"group\":\"cf-nel\",\"max_age\":604800,\"endpoints\":[{\"url\":\"https://a.nel.cloudflare.com/report/v4?s=jM2Uu1J6WTUWaH9JkafV2fzlwc7tXQaXkf2wn3%2F3a9ryRa6N4F%2Bqvia0tZgBrG77CvKfNVe1Zoq9fre6OKIfTY8xzigBh%2BUXs08Pzfg0F9cY%2BulnpUCsphnTSab4VQwNoUeJvaJ%2FswGpP7bdCwz8mtdQ40OG0Q%3D%3D\"}]}",
+    "last-modified": "Sat, 26 Sep 2026 15:31:33 GMT",
+    "Cache-Control": "max-age=57600",
+    "cf-cache-status": "EXPIRED",
+    "Server-Timing": "cfEdge;dur=711,cfOrigin;dur=350",
+    "Server": "cloudflare",
+    "CF-RAY": "a41350f0494e8134-SYD"
+  }
+}

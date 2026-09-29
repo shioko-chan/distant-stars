@@ -1,0 +1,120 @@
+{
+  "default": {
+    "title": "default",
+    "downloadFiletypeCategories": {
+      "zip": {
+        "title": "zip",
+        "downloads": [
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=Concrete034_1K-JPG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=Concrete034_1K-JPG.zip",
+            "fileName": "Concrete034_1K-JPG.zip",
+            "size": 3657575,
+            "filetype": "zip",
+            "attribute": "1K-JPG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=Concrete034_2K-JPG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=Concrete034_2K-JPG.zip",
+            "fileName": "Concrete034_2K-JPG.zip",
+            "size": 10598720,
+            "filetype": "zip",
+            "attribute": "2K-JPG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=Concrete034_4K-JPG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=Concrete034_4K-JPG.zip",
+            "fileName": "Concrete034_4K-JPG.zip",
+            "size": 39352652,
+            "filetype": "zip",
+            "attribute": "4K-JPG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=Concrete034_8K-JPG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=Concrete034_8K-JPG.zip",
+            "fileName": "Concrete034_8K-JPG.zip",
+            "size": 170138366,
+            "filetype": "zip",
+            "attribute": "8K-JPG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=Concrete034_12K-JPG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=Concrete034_12K-JPG.zip",
+            "fileName": "Concrete034_12K-JPG.zip",
+            "size": 414302144,
+            "filetype": "zip",
+            "attribute": "12K-JPG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=Concrete034_16K-JPG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=Concrete034_16K-JPG.zip",
+            "fileName": "Concrete034_16K-JPG.zip",
+            "size": 802721807,
+            "filetype": "zip",
+            "attribute": "16K-JPG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=Concrete034_1K-PNG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=Concrete034_1K-PNG.zip",
+            "fileName": "Concrete034_1K-PNG.zip",
+            "size": 8081290,
+            "filetype": "zip",
+            "attribute": "1K-PNG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=Concrete034_2K-PNG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=Concrete034_2K-PNG.zip",
+            "fileName": "Concrete034_2K-PNG.zip",
+            "size": 28322068,
+            "filetype": "zip",
+            "attribute": "2K-PNG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=Concrete034_4K-PNG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=Concrete034_4K-PNG.zip",
+            "fileName": "Concrete034_4K-PNG.zip",
+            "size": 111926466,
+            "filetype": "zip",
+            "attribute": "4K-PNG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=Concrete034_8K-PNG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=Concrete034_8K-PNG.zip",
+            "fileName": "Concrete034_8K-PNG.zip",
+            "size": 458863166,
+            "filetype": "zip",
+            "attribute": "8K-PNG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=Concrete034_12K-PNG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=Concrete034_12K-PNG.zip",
+            "fileName": "Concrete034_12K-PNG.zip",
+            "size": 1042511522,
+            "filetype": "zip",
+            "attribute": "12K-PNG",
+            "zipContent": []
+          },
+          {
+            "fullDownloadPath": "https://ambientcg.com/get?file=Concrete034_16K-PNG.zip",
+            "downloadLink": "https://ambientcg.com/get?file=Concrete034_16K-PNG.zip",
+            "fileName": "Concrete034_16K-PNG.zip",
+            "size": 431185761,
+            "filetype": "zip",
+            "attribute": "16K-PNG",
+            "zipContent": []
+          }
+        ]
+      }
+    }
+  }
+}

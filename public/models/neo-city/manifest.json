@@ -1,0 +1,229 @@
+{
+  "version": 1,
+  "source": "KitBash3D Neo City",
+  "url": "/models/neo-city/neo-city.gltf",
+  "decoderPath": "/models/neo-city/draco/",
+  "coordinateSystem": "Y-up, metres, local XZ centre and Y=0 at building base",
+  "buildings": [
+    {
+      "id": "lg-a-core",
+      "sourceObjects": [
+        "KB3D_NEC_BldgLG_A_Main"
+      ],
+      "size": {
+        "width": 29.863971710205078,
+        "height": 67.20211791992188,
+        "depth": 28.994141578674316
+      },
+      "sourceTriangles": 110514,
+      "lods": {
+        "high": {
+          "node": "lg-a-core-high",
+          "triangles": 74999,
+          "primitives": 14
+        },
+        "medium": {
+          "node": "lg-a-core-medium",
+          "triangles": 6588,
+          "primitives": 9
+        }
+      }
+    },
+    {
+      "id": "lg-a-a",
+      "sourceObjects": [
+        "KB3D_NEC_BldgLG_A_BuildingA"
+      ],
+      "size": {
+        "width": 13.059844970703125,
+        "height": 41.685699462890625,
+        "depth": 17.887821197509766
+      },
+      "sourceTriangles": 29128,
+      "lods": {
+        "high": {
+          "node": "lg-a-a-high",
+          "triangles": 29128,
+          "primitives": 12
+        },
+        "medium": {
+          "node": "lg-a-a-medium",
+          "triangles": 2458,
+          "primitives": 10
+        }
+      }
+    },
+    {
+      "id": "lg-a-b",
+      "sourceObjects": [
+        "KB3D_NEC_BldgLG_A_BuildingB"
+      ],
+      "size": {
+        "width": 22.670928955078125,
+        "height": 72.63054656982422,
+        "depth": 25.111391067504883
+      },
+      "sourceTriangles": 43938,
+      "lods": {
+        "high": {
+          "node": "lg-a-b-high",
+          "triangles": 43938,
+          "primitives": 12
+        },
+        "medium": {
+          "node": "lg-a-b-medium",
+          "triangles": 3704,
+          "primitives": 10
+        }
+      }
+    },
+    {
+      "id": "lg-b",
+      "sourceObjects": [
+        "KB3D_NEC_BldgLG_B_Main",
+        "KB3D_NEC_BldgLG_B_AntennaA"
+      ],
+      "size": {
+        "width": 54.57318115234375,
+        "height": 201.0586929321289,
+        "depth": 45.3776741027832
+      },
+      "sourceTriangles": 203364,
+      "lods": {
+        "high": {
+          "node": "lg-b-high",
+          "triangles": 74983,
+          "primitives": 14
+        },
+        "medium": {
+          "node": "lg-b-medium",
+          "triangles": 7444,
+          "primitives": 10
+        }
+      }
+    },
+    {
+      "id": "lg-c",
+      "sourceObjects": [
+        "KB3D_NEC_BldgLG_C_Main",
+        "KB3D_NEC_BldgLG_C_Base",
+        "KB3D_NEC_BldgLG_C_AntennaA",
+        "KB3D_NEC_BldgLG_C_AntennaB",
+        "KB3D_NEC_BldgLG_C_AntennaC",
+        "KB3D_NEC_BldgLG_C_AntennaD"
+      ],
+      "size": {
+        "width": 36.55033874511719,
+        "height": 167.88722324371338,
+        "depth": 38.22209358215332
+      },
+      "sourceTriangles": 444398,
+      "lods": {
+        "high": {
+          "node": "lg-c-high",
+          "triangles": 76294,
+          "primitives": 24
+        },
+        "medium": {
+          "node": "lg-c-medium",
+          "triangles": 15192,
+          "primitives": 20
+        }
+      }
+    },
+    {
+      "id": "md-a",
+      "sourceObjects": [
+        "KB3D_NEC_BldgMD_A_Main",
+        "KB3D_NEC_BldgMD_A_Base",
+        "KB3D_NEC_BldgMD_A_Banners",
+        "KB3D_NEC_BldgMD_A_AntennaA"
+      ],
+      "size": {
+        "width": 31.78638458251953,
+        "height": 27.12601137161255,
+        "depth": 16.45001220703125
+      },
+      "sourceTriangles": 134858,
+      "lods": {
+        "high": {
+          "node": "md-a-high",
+          "triangles": 74934,
+          "primitives": 24
+        },
+        "medium": {
+          "node": "md-a-medium",
+          "triangles": 8241,
+          "primitives": 20
+        }
+      }
+    },
+    {
+      "id": "md-b",
+      "sourceObjects": [
+        "KB3D_NEC_BldgMD_B_Main"
+      ],
+      "size": {
+        "width": 26.780936241149902,
+        "height": 57.3355712890625,
+        "depth": 22.81160068511963
+      },
+      "sourceTriangles": 179804,
+      "lods": {
+        "high": {
+          "node": "md-b-high",
+          "triangles": 75000,
+          "primitives": 14
+        },
+        "medium": {
+          "node": "md-b-medium",
+          "triangles": 4365,
+          "primitives": 9
+        }
+      }
+    },
+    {
+      "id": "md-c",
+      "sourceObjects": [
+        "KB3D_NEC_BldgMD_C_Main",
+        "KB3D_NEC_BldgMD_C_Base",
+        "KB3D_NEC_BldgMD_C_BuildingA",
+        "KB3D_NEC_BldgMD_C_Banners",
+        "KB3D_NEC_BldgMD_C_AntennaA"
+      ],
+      "size": {
+        "width": 68.65097045898438,
+        "height": 59.05971038341522,
+        "depth": 26.6475830078125
+      },
+      "sourceTriangles": 263048,
+      "lods": {
+        "high": {
+          "node": "md-c-high",
+          "triangles": 74819,
+          "primitives": 23
+        },
+        "medium": {
+          "node": "md-c-medium",
+          "triangles": 7144,
+          "primitives": 19
+        }
+      }
+    }
+  ],
+  "textures": {
+    "count": 103,
+    "downloadBytes": 36730678,
+    "estimatedGpuBytesWithMipmaps": 347166003
+  },
+  "geometry": {
+    "downloadBytes": 5641788,
+    "triangles": 579231
+  },
+  "license": {
+    "provider": "KitBash3D",
+    "sourceAssetsRedistributable": false
+  },
+  "validation": "All compressed primitives independently decoded; indices, finite attributes, material/UV references, dependencies and local high-LOD bounds verified.",
+  "runtimeBytes": 43343613
+}

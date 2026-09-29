@@ -27,8 +27,13 @@ export function buildingMasses(b: CityBuilding): BuildingMass[] {
             });
         }
         case 'needle': {
-            const podium = h * (.12 + random() * .12);
-            return [mass(0, 0, w, d, 0, podium), mass(-w * .06, d * .05, w * .51, d * .57, podium, h - podium)];
+            // Podium, shaft and a slimmer crown: megatowers step back as they climb.
+            const podium = h * (.08 + random() * .1), shaft = h * (.62 + random() * .14);
+            return [
+                mass(0, 0, w, d, 0, podium),
+                mass(-w * .06, d * .05, w * .56, d * .6, podium, shaft - podium),
+                mass(-w * .04, d * .03, w * .36, d * .4, shaft, h - shaft),
+            ];
         }
         case 'offset':
             return [mass(-w * .2, 0, w * .6, d, 0, h * .7), mass(w * .3, -d * .22, w * .4, d * .56, 0, h)];

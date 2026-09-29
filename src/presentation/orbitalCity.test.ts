@@ -1,7 +1,11 @@
 import { afterAll, beforeAll, describe, expect, it } from 'vitest';
 import * as THREE from 'three';
-import { createOrbitalCity, CITY_NEAR_LOD_METRES, CITY_FAR_LOD_METRES } from './orbitalCity';
+import { createOrbitalCity, CITY_NEAR_LOD_METRES } from './orbitalCity';
 import { HABITAT_GROUND_Y, HABITAT_RADIUS_M } from './habitatFrame';
+import { CITY_LOCAL_BOUNDS, createCityLayout } from './cityLayout';
+import { buildingMasses } from './cityMassing';
+import { planNeoCity } from './neoCity';
+import { createNeoCityFixture, NEO_CITY_FIXTURE_MODELS } from './neoCityFixture';
 
 let city: ReturnType<typeof createOrbitalCity>;
 const camera = new THREE.PerspectiveCamera(52, 16 / 9, .05, 150000);
@@ -11,7 +15,7 @@ const placeCamera = (position: THREE.Vector3, target: THREE.Vector3) => {
 const sector = (arc: number, axial: number) => city.group.getObjectByName(`urban-sector-${arc}-${axial}`) as THREE.LOD;
 
 beforeAll(async () => {
-    city = createOrbitalCity({ loadAsync: async () => new THREE.Texture() }, new Set(), () => false);
+    city = createOrbitalCity({ loadAsync: async () => new THREE.Texture() }, new Set(), () => false, async () => createNeoCityFixture());
     await city.ready;
 });
 afterAll(() => {
@@ -29,26 +33,28 @@ afterAll(() => {
 });
 
 describe('continuous orbital city', () => {
-    it('joins the full circumference and axial sector boundaries without gaps', () => {
-        const vertex = (lod: THREE.LOD, index: number) => {
-            const mesh = lod.levels[2].object as THREE.Mesh;
-            return new THREE.Vector3().fromBufferAttribute(mesh.geometry.getAttribute('position'), index).applyMatrix4(lod.matrixWorld);
+    const chunk = (arc: number, axial: number) => city.group.getObjectByName(`urban-massing-${arc}-${axial}`) as THREE.Group;
+
+    it('joins the full circumference and axial chunk boundaries without gaps', () => {
+        city.group.updateMatrixWorld(true);
+        const vertex = (group: THREE.Group, index: number) => {
+            const ground = group.getObjectByName('urban-ground') as THREE.Mesh;
+            return new THREE.Vector3().fromBufferAttribute(ground.geometry.getAttribute('position'), index).applyMatrix4(ground.matrixWorld);
         };
-        expect(vertex(sector(0, 5), 0).distanceTo(vertex(sector(31, 5), 12))).toBeLessThan(.01);
-        expect(vertex(sector(15, 4), 26).distanceTo(vertex(sector(15, 5), 0))).toBeLessThan(.01);
-        for (const [arc, axial] of [[0, 0], [8, 5], [15, 4], [24, 9]]) {
-            const lod = sector(arc, axial);
-            for (const index of [0, 6, 12, 26, 38]) {
-                const position = vertex(lod, index);
+        // 48 arc steps and 2 axial steps: 49 vertices per row.
+        expect(vertex(chunk(0, 1), 0).distanceTo(vertex(chunk(7, 1), 48))).toBeLessThan(.01);
+        expect(vertex(chunk(3, 0), 98).distanceTo(vertex(chunk(3, 1), 0))).toBeLessThan(.01);
+        for (const [arc, axial] of [[0, 0], [2, 1], [3, 0], [6, 1]]) {
+            for (const index of [0, 24, 48, 73, 146]) {
+                const position = vertex(chunk(arc, axial), index);
                 expect(Math.hypot(position.x, position.y - HABITAT_RADIUS_M)).toBeCloseTo(HABITAT_RADIUS_M - HABITAT_GROUND_Y, 2);
             }
         }
     });
 
     it('points buildings toward the rotation axis on the far side as well as beside the room', () => {
-        for (const [arc, axial] of [[0, 5], [8, 4], [15, 4], [24, 5]]) {
-            const lod = sector(arc, axial);
-            const facade = lod.levels[0].object.getObjectByName('facade') as THREE.InstancedMesh;
+        for (const [arc, axial] of [[0, 1], [2, 0], [3, 1], [6, 1]]) {
+            const facade = chunk(arc, axial).getObjectByName('facade') as THREE.InstancedMesh;
             const matrix = new THREE.Matrix4(); facade.getMatrixAt(0, matrix); matrix.premultiply(facade.matrixWorld);
             const position = new THREE.Vector3().setFromMatrixPosition(matrix);
             const up = new THREE.Vector3(0, 1, 0).transformDirection(matrix);
@@ -71,36 +77,81 @@ describe('continuous orbital city', () => {
         expect(at(CITY_NEAR_LOD_METRES * 1.1)).toBe(1);
         expect(at(CITY_NEAR_LOD_METRES * .95)).toBe(1);
         expect(at(CITY_NEAR_LOD_METRES * .8)).toBe(0);
-        expect(at(CITY_FAR_LOD_METRES * 1.1)).toBe(2);
-        expect(at(CITY_FAR_LOD_METRES * .95)).toBe(2);
-        expect(at(CITY_FAR_LOD_METRES * .8)).toBe(1);
+        // Beyond that, buildings stay real geometry at any distance: there is no flat stand-in level.
+        expect(lod.levels).toHaveLength(2);
+        expect(at(40_000)).toBe(1);
+        // Every chunk always carries its buildings' massing, whatever the sector's dressing level.
+        for (let arc = 0; arc < 8; arc++) for (let axial = 0; axial < 2; axial++)
+            expect((chunk(arc, axial).getObjectByName('facade') as THREE.InstancedMesh).count).toBeGreaterThan(1000);
     });
 
-    it('keeps the apartment view bounded while preserving city geometry behind and beside it', () => {
+    it('replaces procedural building masses at every local LOD instead of drawing the kit on top', () => {
+        const buildings = createCityLayout(CITY_LOCAL_BOUNDS, { density: 'local' });
+        const placements = planNeoCity(buildings, NEO_CITY_FIXTURE_MODELS);
+        const replaced = new Set(placements.map(placement => placement.building.seed));
+        const expectedMasses = buildings.filter(building => !replaced.has(building.seed)).flatMap(buildingMasses).length;
+        const neighborhood = city.group.getObjectByName('local-neighborhood-lod') as THREE.LOD;
+        const kit = city.group.getObjectByName('neo-city-neighborhood')!;
+        expect(placements.length).toBeGreaterThan(0);
+        expect(kit.userData.buildingCount).toBe(placements.length);
+        expect(city.group.userData.neoCityBuildingCount).toBe(placements.length);
+        expect(city.group.userData.localBuildingCount).toBe(buildings.length);
+        for (const distance of [800, 5500]) {
+            placeCamera(new THREE.Vector3(0, 0, distance), new THREE.Vector3(0, 0, 0));
+            city.update(0, camera);
+            const level = neighborhood.getCurrentLevel();
+            expect(level).toBe(distance < 4500 ? 0 : 1);
+            const facade = neighborhood.levels[level].object.getObjectByName('facade') as THREE.InstancedMesh;
+            expect(facade.count).toBe(expectedMasses);
+            expect(facade.count).toBeLessThan(buildings.flatMap(buildingMasses).length);
+        }
+    });
+
+    it('keeps both residence views bounded, with the interior behind the Earth window', () => {
+        // Count what the renderer would draw: visible objects that pass its frustum test.
+        const measure = () => {
+            let draws = 0, triangles = 0;
+            const frustum = new THREE.Frustum().setFromProjectionMatrix(new THREE.Matrix4().multiplyMatrices(camera.projectionMatrix, camera.matrixWorldInverse));
+            city.group.updateMatrixWorld(true);
+            city.group.traverseVisible(object => {
+                if (!(object instanceof THREE.Mesh)) return;
+                if (object.frustumCulled) {
+                    const bounds = object instanceof THREE.InstancedMesh ? object.boundingSphere! : (object.geometry.computeBoundingSphere(), object.geometry.boundingSphere!);
+                    if (!frustum.intersectsSphere(bounds.clone().applyMatrix4(object.matrixWorld))) return;
+                }
+                draws++;
+                const copies = object instanceof THREE.InstancedMesh ? object.count : 1;
+                triangles += copies * (object.geometry.index?.count ?? object.geometry.getAttribute('position').count) / 3;
+            });
+            return { draws, triangles };
+        };
+        const near = sector(15, 2), far = sector(15, 8);
+        // The Earth window faces out through the endcap: the city lies behind it.
         placeCamera(new THREE.Vector3(0, 1.6, .6), new THREE.Vector3(0, 2.2, -30));
         city.update(0, camera);
-        let draws = 0, triangles = 0;
-        city.group.traverseVisible(object => {
-            if (!(object instanceof THREE.Mesh)) return;
-            draws++;
-            const copies = object instanceof THREE.InstancedMesh ? object.count : 1;
-            triangles += copies * (object.geometry.index?.count ?? object.geometry.getAttribute('position').count) / 3;
-        });
-        expect(draws).toBeLessThan(180);
-        // Includes sectors retained at higher detail by the previous camera's hysteresis band.
-        expect(triangles).toBeLessThan(550000);
-        expect(city.group.userData.preallocatedInstanceCount).toBeLessThan(350000);
-        expect(city.group.userData.lodSectorCount).toBe(321);
-        expect(city.group.userData.activeLodCounts[2]).toBeGreaterThan(0);
-        const front = sector(15, 2), rear = sector(15, 8);
-        expect(front.visible).toBe(true); expect(rear.visible).toBe(false);
+        expect(near.visible).toBe(false); expect(far.visible).toBe(false);
+        expect(measure().draws).toBeLessThan(60);
+        // The inner windows look along the whole cylinder.
         placeCamera(camera.position, new THREE.Vector3(0, 2.2, 100)); city.update(0, camera);
-        expect(front.visible).toBe(false); expect(rear.visible).toBe(true);
-        expect(city.group.userData.visibleBuildingCount).toBeGreaterThan(800);
+        expect(near.visible).toBe(true); expect(far.visible).toBe(true);
+        const inner = measure();
+        expect(inner.draws).toBeLessThan(160);
+        // Every building on the visible part of the ring is real geometry: there is no flat stand-in.
+        expect(inner.triangles).toBeLessThan(3_000_000);
+        expect(city.group.userData.preallocatedInstanceCount).toBeLessThan(320_000);
+        let allocatedInstances = 0;
+        city.group.traverse(object => { if (object instanceof THREE.InstancedMesh) allocatedInstances += object.instanceMatrix.count; });
+        expect(allocatedInstances).toBeLessThan(320_000);
+        expect(city.group.userData.lodSectorCount).toBe(321);
+        expect(city.group.userData.activeLodCounts[1]).toBeGreaterThan(0);
+        expect(city.group.userData.visibleBuildingCount).toBeGreaterThan(3000);
+        for (const name of ['advert', 'neon', 'skybridge']) expect(city.group.getObjectByName(name)).toBeDefined();
+        for (const name of ['near-endcap-inner', 'far-endcap-inner', 'rail-guideways', 'light-rail-cars', 'park-trees', 'vertical-farms'])
+            expect(city.group.getObjectByName(name)).toBeDefined();
     });
 
     it('freezes traffic at a fixed timestamp without rebuilding GPU resources', () => {
-        const ship = city.group.getObjectByName('orbital-shuttles') as THREE.InstancedMesh;
+        const ship = city.group.getObjectByName('flying-vehicles') as THREE.InstancedMesh;
         const geometry = ship.geometry, buffer = ship.instanceMatrix.array;
         city.update(17, camera); const snapshot = [...buffer];
         city.update(81, camera); expect([...buffer]).not.toEqual(snapshot);
