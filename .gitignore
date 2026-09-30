@@ -4,34 +4,3 @@ dist/
 
 src/content/earth/nasa-topography.tif
 src/content/earth/earth_specular_map.tif
-
-# The web client does not use the residence or city assets. Keep local copies
-# outside version control, while retaining provenance, licenses and manifests.
-/.unreal-engine/
-/unreal/
-
-/asset-sources/**
-!/asset-sources/**/
-!/asset-sources/**/*.md
-!/asset-sources/**/*.txt
-!/asset-sources/**/*.json
-
-/public/models/**
-!/public/models/**/
-!/public/models/**/*.md
-!/public/models/**/*.txt
-!/public/models/credits.html
-!/public/models/**/manifest.json
-
-/public/textures/furniture/**
-!/public/textures/furniture/**/
-!/public/textures/furniture/**/*.md
-!/public/textures/furniture/**/*.txt
-/public/textures/city/**
-!/public/textures/city/**/
-!/public/textures/city/**/*.md
-!/public/textures/city/**/*.txt
-/public/textures/sky/**
-!/public/textures/sky/**/
-!/public/textures/sky/**/*.md
-!/public/textures/sky/**/*.txt
