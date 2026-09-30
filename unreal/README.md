@@ -2,6 +2,8 @@
 
 此分支把三维绘制迁入 Unreal Engine 5.8。React 面板、确定性模拟 Worker、地理数据和存档版本继续使用现有实现。`web` 分支仍为独立浏览器游戏。
 
+资源文件不使用 Git 或 Git LFS 管理。`Content/`、模型、纹理、音频和地形数据由本地资源目录提供；来源说明和许可证继续跟踪。首次检出需先按 [资源管理说明](../docs/assets.md) 恢复相应目录。
+
 ## Linux 开发运行
 
 需要 Unreal Engine **5.8.3**、Node.js 和 npm。本机引擎位于仓库内的 `.unreal-engine/`，仅作本地工具缓存，不进入 Git。也可设置 `UNREAL_ENGINE=/绝对路径/UnrealEngine`。
@@ -17,7 +19,7 @@ npm run unreal:run
 
 NixOS 启动脚本通过已有的 `steam-run` FHS 环境运行引擎，并从本机 Nix store 中解析 NSS/NSPR 动态库。其他 Linux 发行版直接启动引擎。首次运行会编译材质着色器。
 
-`npm run unreal:prepare` 根据 `scripts/unreal/prepare-assets.py` 重新生成原生材质和关卡；猫咪原生骨骼资源已包含在项目中，可通过 `node scripts/unreal/tool.mjs import-cat` 从迁移 GLB 重建。
+`npm run unreal:prepare` 根据 `scripts/unreal/prepare-assets.py` 重新生成原生材质和关卡；猫咪原生骨骼资源保存在本地 `Content/Cat/` 中，可通过 `node scripts/unreal/tool.mjs import-cat` 从迁移 GLB 重建。
 
 ## 结构
 
