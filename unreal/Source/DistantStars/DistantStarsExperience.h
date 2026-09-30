@@ -5,6 +5,9 @@
 #include "DistantStarsExperience.generated.h"
 
 class ACameraActor;
+class ADirectionalLight;
+class ASkyLight;
+class ARectLight;
 class UNativeRenderer;
 class SWebBrowser;
 class IHttpRouter;
@@ -36,6 +39,9 @@ class DISTANTSTARS_API ADistantStarsExperience : public AActor
     void OpenInterface();
     void SendEvent(const TSharedRef<FJsonObject> &Event);
     UPROPERTY() TObjectPtr<ACameraActor> Camera;
+    UPROPERTY() TObjectPtr<ADirectionalLight> Sun;
+    UPROPERTY() TObjectPtr<ASkyLight> Sky;
+    UPROPERTY() TArray<TObjectPtr<ARectLight>> ResidenceLights;
     UPROPERTY() TObjectPtr<UNativeRenderer> Renderer;
     UPROPERTY() TObjectPtr<UDistantStarsInterface> Interface;
     TSharedPtr<SWebBrowser> Browser;

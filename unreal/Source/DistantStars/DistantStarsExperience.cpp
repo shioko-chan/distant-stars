@@ -2,13 +2,13 @@
 #include "Camera/CameraActor.h"
 #include "Camera/CameraComponent.h"
 #include "Components/DirectionalLightComponent.h"
-#include "Components/PointLightComponent.h"
+#include "Components/RectLightComponent.h"
 #include "Components/SkyLightComponent.h"
 #include "Dom/JsonObject.h"
 #include "Engine/DirectionalLight.h"
 #include "Engine/Engine.h"
 #include "Engine/GameViewportClient.h"
-#include "Engine/PointLight.h"
+#include "Engine/RectLight.h"
 #include "Engine/SkyLight.h"
 #include "Engine/TextureCube.h"
 #include "Engine/World.h"
@@ -56,16 +56,19 @@ void ADistantStarsExperience::BeginPlay()
         Controller->bShowMouseCursor = true;
         Controller->SetInputMode(FInputModeGameAndUI().SetHideCursorDuringCapture(false));
     }
-    auto Sun = GetWorld()->SpawnActor<ADirectionalLight>();
+    Sun = GetWorld()->SpawnActor<ADirectionalLight>();
     Sun->GetLightComponent()->SetMobility(EComponentMobility::Movable);
-    Sun->SetActorRotation(FRotator(-32, -25, 0));
+    Sun->SetActorRotation(FRotator(-24, -48, 0));
     Sun->GetLightComponent()->SetIntensity(3.0f);
-    auto Sky = GetWorld()->SpawnActor<ASkyLight>();
+    auto SunComponent = Cast<UDirectionalLightComponent>(Sun->GetLightComponent());
+    SunComponent->SetAtmosphereSunLight(true);
+    SunComponent->bPerPixelAtmosphereTransmittance = true;
+    Sky = GetWorld()->SpawnActor<ASkyLight>();
     Sky->GetLightComponent()->SetMobility(EComponentMobility::Movable);
     Sky->GetLightComponent()->SourceType = SLS_SpecifiedCubemap;
     Sky->GetLightComponent()->SetCubemap(
         LoadObject<UTextureCube>(nullptr, TEXT("/Engine/MapTemplates/Sky/DaylightAmbientCubemap")));
-    Sky->GetLightComponent()->SetIntensity(1.2f);
+    Sky->GetLightComponent()->SetIntensity(.45f);
     Sky->GetLightComponent()->bLowerHemisphereIsBlack = false;
     Camera->GetCameraComponent()->PostProcessSettings.bOverride_AutoExposureMethod = true;
     Camera->GetCameraComponent()->PostProcessSettings.AutoExposureMethod = EAutoExposureMethod::AEM_Manual;
@@ -74,16 +77,27 @@ void ADistantStarsExperience::BeginPlay()
     Camera->GetCameraComponent()->PostProcessSettings.bOverride_AutoExposureApplyPhysicalCameraExposure =
         true;
     Camera->GetCameraComponent()->PostProcessSettings.AutoExposureApplyPhysicalCameraExposure = false;
-    for (const FVector Position : {FVector(-3, 2.8, -5), FVector(3, 2.8, -5), FVector(0, 2.8, 2)})
+    auto &Post = Camera->GetCameraComponent()->PostProcessSettings;
+    Post.bOverride_BloomIntensity = true;
+    Post.BloomIntensity = .25f;
+    Post.bOverride_AmbientOcclusionIntensity = true;
+    Post.AmbientOcclusionIntensity = .65f;
+    for (const FVector Position : {FVector(-3, 4.5, -3), FVector(3, 4.5, 2)})
     {
-        auto Lamp = GetWorld()->SpawnActor<APointLight>();
-        Lamp->GetLightComponent()->SetMobility(EComponentMobility::Movable);
+        auto Lamp = GetWorld()->SpawnActor<ARectLight>();
+        auto Light = Cast<URectLightComponent>(Lamp->GetLightComponent());
+        Light->SetMobility(EComponentMobility::Movable);
         Lamp->SetActorLocation(DistantStars::ToNative(Position));
-        auto Light = Cast<UPointLightComponent>(Lamp->GetLightComponent());
+        Lamp->SetActorRotation(FRotator(-78, 0, 0));
         Light->SetIntensityUnits(ELightUnits::Lumens);
-        Light->SetIntensity(1600);
-        Light->SetAttenuationRadius(1500);
-        Light->SetLightColor(FLinearColor(1, .85, .68));
+        Light->SetIntensity(ResidenceLights.IsEmpty() ? 600 : 350);
+        Light->SetSourceWidth(250);
+        Light->SetSourceHeight(150);
+        Light->SetAttenuationRadius(1100);
+        Light->SetLightColor(FLinearColor(1, .82, .61));
+        // One soft key supplies contact shadows; the other panel is inexpensive fill.
+        Light->SetCastShadows(ResidenceLights.IsEmpty());
+        ResidenceLights.Add(Lamp);
     }
     OpenInterface();
 }
@@ -192,6 +206,11 @@ void ADistantStarsExperience::Submit(const FString &Message)
         auto Event = MakeShared<FJsonObject>();
         if (Renderer->SetScene(Payload, Error))
         {
+            const bool bResidence = Renderer->Mode == TEXT("residence");
+            Sky->GetLightComponent()->SetIntensity(bResidence ? .45f : 1.2f);
+            Sun->SetActorRotation(bResidence ? FRotator(-24, -48, 0) : FRotator(-32, -25, 0));
+            for (auto Lamp : ResidenceLights)
+                Lamp->GetLightComponent()->SetVisibility(bResidence);
             Event->SetStringField(TEXT("type"), TEXT("scene-ready"));
             Event->SetStringField(TEXT("mode"), Renderer->Mode);
             UE_LOG(LogTemp, Display, TEXT("DistantStars: native scene ready: %s"), *Renderer->Mode);

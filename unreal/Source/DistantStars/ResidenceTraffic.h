@@ -1,6 +1,6 @@
 #pragma once
 #include "CoreMinimal.h"
-class UHierarchicalInstancedStaticMeshComponent;
+class UInstancedStaticMeshComponent;
 class FJsonObject;
 /** Native animation of the migrated timetables and flight paths, independent of
  * simulation time. */
@@ -8,14 +8,14 @@ class FResidenceTraffic
 {
   public:
     bool Load();
-    void Bind(const FString &Name, int32 MotionIndex, UHierarchicalInstancedStaticMeshComponent *Mesh,
+    void Bind(const FString &Name, int32 MotionIndex, UInstancedStaticMeshComponent *Mesh,
               int32 InstanceIndex);
     void Tick(double Seconds);
 
   private:
     struct FBinding
     {
-        TWeakObjectPtr<UHierarchicalInstancedStaticMeshComponent> Mesh;
+        TWeakObjectPtr<UInstancedStaticMeshComponent> Mesh;
         int32 Index = 0;
     };
     TMap<FString, TArray<FBinding>> Bindings;

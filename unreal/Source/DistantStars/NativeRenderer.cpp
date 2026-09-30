@@ -5,7 +5,8 @@
 #include "Engine/SkeletalMesh.h"
 #include "Engine/Texture2D.h"
 #include "GameFramework/Actor.h"
-#include "ImageUtils.h"
+#include "Components/SkyAtmosphereComponent.h"
+#include "Components/LocalFogVolumeComponent.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "Misc/Paths.h"
 #include "Misc/Crc.h"
@@ -55,7 +56,20 @@ bool UNativeRenderer::SetScene(const TSharedPtr<FJsonObject> &Data, FString &Err
             Residence = nullptr;
             return false;
         }
+        // Habitat haze stays inside the distant city, leaving the orbital window clear.
+        auto Haze = NewObject<ULocalFogVolumeComponent>(GetOwner());
+        GetOwner()->AddInstanceComponent(Haze);
+        Haze->SetupAttachment(Residence);
+        Haze->SetRelativeLocation(DistantStars::ToNative(FVector(0, 15000, 12000)));
+        Haze->SetRelativeScale3D(FVector(18000. * 100 / ULocalFogVolumeComponent::GetBaseVolumeSize()));
+        Haze->RadialFogExtinction = .6f;
+        Haze->HeightFogExtinction = 0;
+        Haze->FogAlbedo = FLinearColor(.28f, .42f, .52f);
+        Haze->FogEmissive = FLinearColor(.008f, .016f, .023f);
+        Haze->RegisterComponent();
     }
+    if (Atmosphere)
+        Atmosphere->SetVisibility(Mode == TEXT("residence"));
     if (CatRoot)
         CatRoot->SetVisibility(Mode == TEXT("residence"), true);
     if (Residence)
@@ -71,7 +85,12 @@ UMaterialInstanceDynamic *UNativeRenderer::Material(const TSharedPtr<FJsonObject
     Data->TryGetBoolField(TEXT("unlit"), Unlit);
     double Opacity = 1;
     Data->TryGetNumberField(TEXT("opacity"), Opacity);
-    const TCHAR *Path = Opacity < 1 ? TEXT("/Game/Materials/M_SceneGlass")
+    FString Id;
+    Data->TryGetStringField(TEXT("id"), Id);
+    const TCHAR *Path = Id == TEXT("sky:earth") ? TEXT("/Game/Materials/M_Earth")
+                        : Id == TEXT("sky:earth-clouds") ? TEXT("/Game/Materials/M_Clouds")
+                        : Id == TEXT("sky:background") ? TEXT("/Game/Materials/M_Backdrop")
+                        : Opacity < 1 ? TEXT("/Game/Materials/M_SceneGlass")
                         : Unlit     ? TEXT("/Game/Materials/M_SceneUnlit")
                                     : TEXT("/Game/Materials/M_SceneLit");
     auto Result = UMaterialInstanceDynamic::Create(LoadObject<UMaterialInterface>(nullptr, Path), GetOwner());
@@ -87,18 +106,12 @@ UMaterialInstanceDynamic *UNativeRenderer::Material(const TSharedPtr<FJsonObject
         UTexture2D *Image = Found ? Found->Get() : nullptr;
         if (!Image)
         {
-            Image = FImageUtils::ImportFileAsTexture2D(
-                FPaths::ProjectContentDir() / (Texture.StartsWith(TEXT("/native/"))
-                                                   ? FString(TEXT("SceneData")) / Texture.RightChop(8)
-                                                   : FString(TEXT("Web")) / Texture.RightChop(1)));
+            const FString Asset = TEXT("/Game/Textures/Solar/T_") + FPaths::GetBaseFilename(Texture);
+            Image = LoadObject<UTexture2D>(nullptr, *Asset);
             if (Image)
-            {
-                Image->SRGB = true;
-                Image->AddressX = TA_Wrap;
-                Image->AddressY = TA_Clamp;
-                Image->UpdateResource();
                 Textures.Add(Texture, Image);
-            }
+            else
+                UE_LOG(LogTemp, Error, TEXT("Missing cooked texture %s. Run unreal:prepare."), *Asset);
         }
         if (Image)
             Result->SetTextureParameterValue(TEXT("BaseTexture"), Image);
@@ -156,18 +169,37 @@ void UNativeRenderer::PutObject(const TSharedPtr<FJsonObject> &Data)
     TArray<int32> Indices;
     TArray<FVector2D> UV;
     double Radius = 0;
+    FVector MeshOrigin = FVector::ZeroVector;
     const TArray<TSharedPtr<FJsonValue>> *Values = nullptr;
     if (Data->TryGetNumberField(TEXT("radius"), Radius))
     {
         const FVector Center = V(Data, TEXT("position"));
-        constexpr int32 W = 48, H = 24;
+        // Solar ephemerides are in kilometres, while the room is in metres.
+        // Use physical planet size for Unreal atmosphere lookup tables and local sphere vertices.
+        const double SphereUnits = Mode == TEXT("residence") && Id.StartsWith(TEXT("sky:"))
+                                       ? DistantStars::OrbitalDisplayUnits(Center, Radius, Id == TEXT("sky:background"))
+                                       : Units;
+        MeshOrigin = DistantStars::ToNative(Center, SphereUnits);
+        const bool bEarth = Id == TEXT("sky:earth") || Id == TEXT("sky:earth-clouds");
+        const int32 W = bEarth ? 128 : 48, H = bEarth ? 64 : 24;
+        if (Id == TEXT("sky:earth") && !Atmosphere)
+        {
+            Atmosphere = NewObject<USkyAtmosphereComponent>(GetOwner());
+            GetOwner()->AddInstanceComponent(Atmosphere);
+            Atmosphere->SetupAttachment(this);
+            Atmosphere->TransformMode = ESkyAtmosphereTransformMode::PlanetCenterAtComponentTransform;
+            Atmosphere->BottomRadius = Radius * SphereUnits / 100000.;
+            Atmosphere->AtmosphereHeight = 100;
+            Atmosphere->SetRelativeLocation(MeshOrigin);
+            Atmosphere->RegisterComponent();
+        }
         for (int32 Y = 0; Y <= H; ++Y)
             for (int32 X = 0; X <= W; ++X)
             {
                 const double Latitude = (.5 - double(Y) / H) * PI, Longitude = (double(X) / W - .5) * 2 * PI;
                 const FVector N(FMath::Cos(Latitude) * FMath::Cos(Longitude), FMath::Sin(Latitude),
                                 -FMath::Cos(Latitude) * FMath::Sin(Longitude));
-                Positions.Add(DistantStars::ToNative(Center + N * Radius, Units));
+                Positions.Add(DistantStars::ToNative(N * Radius, SphereUnits));
                 Normals.Add(DistantStars::ToNative(N, 1));
                 UV.Add(FVector2D(double(X) / W, double(Y) / H));
             }
@@ -253,9 +285,12 @@ void UNativeRenderer::PutObject(const TSharedPtr<FJsonObject> &Data)
         Mesh->RegisterComponent();
         Objects.Add(Id, Mesh);
     }
+    Mesh->SetRelativeLocation(MeshOrigin);
     Mesh->CreateMeshSection_LinearColor(0, Positions, Indices, Normals, UV, TArray<FLinearColor>(),
                                         TArray<FProcMeshTangent>(), false);
     Mesh->SetMaterial(0, Material(Data));
+    if (Id.StartsWith(TEXT("sky:")))
+        Mesh->SetCastShadow(false);
 }
 
 void UNativeRenderer::UpdateCat(const TSharedPtr<FJsonObject> &Data)

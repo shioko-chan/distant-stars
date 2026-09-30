@@ -1,5 +1,9 @@
 """Create native materials and the startup map. Run in Unreal Editor's Python commandlet."""
 import unreal
+import runpy
+from pathlib import Path
+
+runpy.run_path(str(Path(__file__).with_name('prepare-textures.py')))
 
 assets = unreal.AssetToolsHelpers.get_asset_tools()
 edit = unreal.MaterialEditingLibrary
@@ -94,9 +98,10 @@ def create_material(name, unlit=False, translucent=False):
     linear_white = unreal.load_asset('/Game/Materials/T_LinearWhite')
 
     def texture(name, linear=False):
-        sample = node(unreal.MaterialExpressionTextureSampleParameter2D, parameter_name=name, texture=linear_white if linear else white)
-        # Runtime textures use ordinary RGBA pixels; linear maps are decoded explicitly.
-        sample.set_editor_property('sampler_type', unreal.MaterialSamplerType.SAMPLERTYPE_LINEAR_COLOR if linear else unreal.MaterialSamplerType.SAMPLERTYPE_COLOR)
+        normal = name == 'NormalTexture'
+        default = unreal.load_asset('/Engine/EngineMaterials/DefaultNormal') if normal else linear_white if linear else white
+        sample = node(unreal.MaterialExpressionTextureSampleParameter2D, parameter_name=name, texture=default)
+        sample.set_editor_property('sampler_type', unreal.MaterialSamplerType.SAMPLERTYPE_NORMAL if normal else unreal.MaterialSamplerType.SAMPLERTYPE_MASKS if linear else unreal.MaterialSamplerType.SAMPLERTYPE_COLOR)
         connect(emission_coords if name == 'EmissionTexture' else coords, sample, 'UVs')
         return sample
 
@@ -118,10 +123,7 @@ def create_material(name, unlit=False, translucent=False):
         metalness = binary(unreal.MaterialExpressionMultiply, scalar('Metalness', 0), mask(texture('MetalnessTexture', True), b=True))
         edit.connect_material_property(roughness, '', unreal.MaterialProperty.MP_ROUGHNESS)
         edit.connect_material_property(metalness, '', unreal.MaterialProperty.MP_METALLIC)
-        normal = binary(unreal.MaterialExpressionSubtract,
-                        binary(unreal.MaterialExpressionMultiply, mask(texture('NormalTexture', True), r=True, g=True, b=True), scalar('NormalScaleEncoding', 2)),
-                        scalar('NormalBiasEncoding', 1))
-        normal = lerp(color('FlatNormal', (0, 0, 1, 0)), normal, scalar('UseNormalTexture', 0))
+        normal = lerp(color('FlatNormal', (0, 0, 1, 0)), texture('NormalTexture'), scalar('NormalStrength', 1))
         edit.connect_material_property(normal, '', unreal.MaterialProperty.MP_NORMAL)
     edit.connect_material_property(emission, '', unreal.MaterialProperty.MP_EMISSIVE_COLOR)
     if translucent:
@@ -132,12 +134,15 @@ def create_material(name, unlit=False, translucent=False):
 
 if not unreal.EditorAssetLibrary.does_asset_exist('/Game/Materials/T_LinearWhite'):
     linear_white = unreal.EditorAssetLibrary.duplicate_asset('/Engine/EngineResources/WhiteSquareTexture', '/Game/Materials/T_LinearWhite')
-    linear_white.set_editor_property('srgb', False)
-    unreal.EditorAssetLibrary.save_loaded_asset(linear_white)
+linear_white = unreal.load_asset('/Game/Materials/T_LinearWhite')
+linear_white.set_editor_property('srgb', False)
+linear_white.set_editor_property('compression_settings', unreal.TextureCompressionSettings.TC_MASKS)
+unreal.EditorAssetLibrary.save_loaded_asset(linear_white)
 
 create_material('M_SceneLit')
 create_material('M_SceneUnlit', unlit=True)
 create_material('M_SceneGlass', translucent=True)
+runpy.run_path(str(Path(__file__).with_name('prepare-celestial.py')))
 level = unreal.get_editor_subsystem(unreal.LevelEditorSubsystem)
 if not unreal.EditorAssetLibrary.does_asset_exist('/Game/Maps/DistantStars'):
     if not level.new_level('/Game/Maps/DistantStars'):

@@ -9,6 +9,7 @@ class UAnimSequence;
 class UProceduralMeshComponent;
 class UTexture2D;
 class UMaterialInstanceDynamic;
+class USkyAtmosphereComponent;
 UCLASS()
 class UNativeRenderer : public USceneComponent
 {
@@ -31,6 +32,7 @@ class UNativeRenderer : public USceneComponent
     void PutObject(const TSharedPtr<FJsonObject> &Data);
     UMaterialInstanceDynamic *Material(const TSharedPtr<FJsonObject> &Data);
     UPROPERTY() TObjectPtr<USceneComponent> Residence;
+    UPROPERTY() TObjectPtr<USkyAtmosphereComponent> Atmosphere;
     UPROPERTY() TObjectPtr<USceneComponent> CatRoot;
     UPROPERTY() TArray<TObjectPtr<USkeletalMeshComponent>> CatMeshes;
     UPROPERTY() TObjectPtr<UAnimSequence> CatIdle;

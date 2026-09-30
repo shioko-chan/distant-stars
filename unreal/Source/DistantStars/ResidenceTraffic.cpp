@@ -1,5 +1,5 @@
 #include "ResidenceTraffic.h"
-#include "Components/HierarchicalInstancedStaticMeshComponent.h"
+#include "Components/InstancedStaticMeshComponent.h"
 #include "Dom/JsonObject.h"
 #include "Misc/FileHelper.h"
 #include "Misc/Paths.h"
@@ -72,7 +72,7 @@ bool FResidenceTraffic::Load()
            FJsonSerializer::Deserialize(TJsonReaderFactory<>::Create(Raw), Data);
 }
 void FResidenceTraffic::Bind(const FString &Name, int32 MotionIndex,
-                             UHierarchicalInstancedStaticMeshComponent *Mesh, int32 InstanceIndex)
+                             UInstancedStaticMeshComponent *Mesh, int32 InstanceIndex)
 {
     auto &List = Bindings.FindOrAdd(Name);
     if (List.Num() <= MotionIndex)
@@ -167,14 +167,6 @@ void FResidenceTraffic::Tick(double Seconds)
         Vehicle(FlyerIndex++, L(TEXT("arc")), L(TEXT("height")) + .4, L(TEXT("axial")), L(TEXT("heading")),
                 1.1);
     }
-    TSet<UHierarchicalInstancedStaticMeshComponent *> Dirty;
-    for (const auto &Pair : Bindings)
-        for (const auto &B : Pair.Value)
-            if (B.Mesh.IsValid())
-                Dirty.Add(B.Mesh.Get());
-    for (auto *Mesh : Dirty)
-    {
-        Mesh->MarkRenderStateDirty();
-        Mesh->BuildTreeIfOutdated(true, false);
-    }
+    // UpdateInstanceTransform records deltas in PrimitiveInstanceDataManager (UE 5.8).
+    // End-of-frame instance updates upload these without replacing the scene proxy.
 }

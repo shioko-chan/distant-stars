@@ -1,7 +1,7 @@
-node_modules/
+node_modules
 .DS_Store
 dist/
-.unreal-engine/
+.unreal-engine
 
 unreal/Binaries/
 unreal/DerivedDataCache/
@@ -14,7 +14,7 @@ unreal/Packaged/
 unreal/Build/*/FileOpenOrder/
 
 # Local resources on unreal; retain provenance, licenses and decoder code.
-/unreal/Content/
+/unreal/Content
 
 /asset-sources/**
 !/asset-sources/**/

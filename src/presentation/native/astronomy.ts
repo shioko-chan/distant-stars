@@ -18,6 +18,7 @@ export function solarScene(seconds: number): NativeObject[] {
         return { id: 'sky:' + body.id, position, radius: body.radiusKm, color: '#ffffff', texture: `/textures/solar/${body.texture}.jpg`, unlit: body.id === 'sun' };
     });
     const phase = .46 + seconds / (27.321661 * 86400) * Math.PI * 2;
+    objects.push({ id: 'sky:earth-clouds', position: earth, radius: EARTH_BODY.radiusKm + 12, color: '#ffffff' });
     objects.push({ id: 'sky:moon', position: add(earth, inertial(scale(unit([Math.sin(phase), .12 * Math.cos(phase), -Math.cos(phase)]), 384400), seconds)), radius: 1737.4, color: '#ffffff', texture: '/native/moon.png' });
     objects.push({ id: 'sky:background', position: [0, 0, 0], radius: 8e9, color: '#687989', texture: '/native/sky.png', unlit: true });
     return objects;

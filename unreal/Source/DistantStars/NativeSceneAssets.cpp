@@ -4,7 +4,6 @@
 #include "Engine/StaticMesh.h"
 #include "Engine/Texture2D.h"
 #include "GameFramework/Actor.h"
-#include "ImageUtils.h"
 #include "Materials/MaterialInstanceDynamic.h"
 #include "MeshDescription.h"
 #include "Misc/FileHelper.h"
@@ -51,6 +50,7 @@ bool DistantStars::LoadResidence(AActor *Owner, USceneComponent *Parent, FReside
         return false;
     }
     TArray<UMaterialInstanceDynamic *> Materials;
+    TArray<bool> ShadowCasters;
     TMap<FString, UTexture2D *> Textures;
     for (const auto &Value : Data->GetArrayField(TEXT("materials")))
     {
@@ -96,27 +96,31 @@ bool DistantStars::LoadResidence(AActor *Owner, USceneComponent *Parent, FReside
             FString Filename;
             if (!Material->TryGetStringField(Slot.Key, Filename))
                 continue;
-            const bool bLinear = Slot.Key == TEXT("normal") || Slot.Key == TEXT("roughnessMap") ||
-                                 Slot.Key == TEXT("metalnessMap");
-            const FString TextureKey = Filename + (bLinear ? TEXT("-linear") : TEXT("-color"));
+            const FString Kind = Slot.Key == TEXT("normal") ? TEXT("normal")
+                                 : (Slot.Key == TEXT("roughnessMap") || Slot.Key == TEXT("metalnessMap"))
+                                     ? TEXT("linear") : TEXT("color");
+            const FString TextureKey = FPaths::GetBaseFilename(Filename).Replace(TEXT("-"), TEXT("_")) +
+                                       TEXT("_") + Kind;
             UTexture2D *&Texture = Textures.FindOrAdd(TextureKey);
             if (!Texture)
             {
-                Texture = FImageUtils::ImportFileAsTexture2D(Root / TEXT("textures") / Filename);
+                Texture = LoadObject<UTexture2D>(nullptr, *(TEXT("/Game/Textures/Residence/T_") + TextureKey));
                 if (!Texture)
                 {
-                    Error = TEXT("Unable to decode residence texture: ") + Filename;
+                    Error = TEXT("Missing cooked texture: ") + TextureKey + TEXT(". Run unreal:prepare.");
                     return false;
                 }
-                Texture->SRGB = !bLinear;
-                Texture->AddressX = TA_Wrap;
-                Texture->AddressY = TA_Wrap;
-                Texture->UpdateResource();
             }
             Instance->SetTextureParameterValue(*Slot.Value, Texture);
             Instance->SetScalarParameterValue(*(TEXT("Use") + Slot.Value), 1);
         }
+        // Preserve the CC0 material's colour detail without overdriving its micro-normal.
+        const int32 MaterialID = Materials.Num();
+        Instance->SetScalarParameterValue(TEXT("NormalStrength"),
+            MaterialID == 0 ? .18f : MaterialID == 3 ? .35f : (MaterialID == 8 || MaterialID == 9) ? .2f : 1.f);
         Materials.Add(Instance);
+        // Facades cover solid building shells; emissive signs and glazing need no shadow pass.
+        ShadowCasters.Add(!bUnlit && Opacity >= 1 && Projection != TEXT("facade"));
     }
 
     TArray<UHierarchicalInstancedStaticMeshComponent *> Batches;
@@ -223,12 +227,20 @@ bool DistantStars::LoadResidence(AActor *Owner, USceneComponent *Parent, FReside
         Owner->AddInstanceComponent(Batch);
         Batch->SetupAttachment(Parent);
         Batch->SetStaticMesh(Mesh);
+        bool bCastShadow = false;
+        for (const auto &MaterialIndex : Source->GetArrayField(TEXT("materials")))
+            bCastShadow |= ShadowCasters[static_cast<int32>(MaterialIndex->AsNumber())];
+        Batch->SetCastShadow(bCastShadow);
         Batch->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+        Batch->SetCanEverAffectNavigation(false);
         Batch->bAutoRebuildTreeOnInstanceChanges = false;
         Batch->NumCustomDataFloats = 6;
         Batch->RegisterComponent();
         Batches.Add(Batch);
     }
+    // Traffic shares cube geometry/materials with fixed rail infrastructure in the v1 export.
+    // Split moving instances into ISMs: rebuilding a city HISM tree every frame is unnecessary.
+    TMap<int32, UInstancedStaticMeshComponent *> MovingBatches;
     int32 Count = 0;
     for (const auto &Value : Data->GetArrayField(TEXT("instances")))
     {
@@ -239,22 +251,42 @@ bool DistantStars::LoadResidence(AActor *Owner, USceneComponent *Parent, FReside
             Error = TEXT("Invalid residence instance index.");
             return false;
         }
+        FString Motion;
+        const bool bMoving = Instance->TryGetStringField(TEXT("motion"), Motion);
+        UInstancedStaticMeshComponent *Batch = Batches[Index];
+        if (bMoving)
+        {
+            auto *&Moving = MovingBatches.FindOrAdd(Index);
+            if (!Moving)
+            {
+                Moving = NewObject<UInstancedStaticMeshComponent>(Owner);
+                Owner->AddInstanceComponent(Moving);
+                Moving->SetupAttachment(Parent);
+                Moving->SetStaticMesh(Batch->GetStaticMesh());
+                Moving->SetCastShadow(Batch->CastShadow);
+                Moving->SetMobility(EComponentMobility::Movable);
+                Moving->SetCollisionEnabled(ECollisionEnabled::NoCollision);
+                Moving->SetCanEverAffectNavigation(false);
+                Moving->NumCustomDataFloats = 6;
+                Moving->RegisterComponent();
+            }
+            Batch = Moving;
+        }
         const auto &Rotation = Instance->GetArrayField(TEXT("rotation"));
         const FVector Scale = Vector(Instance->GetArrayField(TEXT("scale")));
         const FQuat Quaternion(Rotation[2]->AsNumber(), -Rotation[0]->AsNumber(), -Rotation[1]->AsNumber(),
                                Rotation[3]->AsNumber());
-        const int32 NativeIndex = Batches[Index]->AddInstance(
+        const int32 NativeIndex = Batch->AddInstance(
             FTransform(Quaternion, ToNative(Vector(Instance->GetArrayField(TEXT("position")))),
                        FVector(Scale.Z, Scale.X, Scale.Y)));
         const auto &Tint = Instance->GetArrayField(TEXT("color"));
         for (int32 Channel = 0; Channel < 3; Channel++)
-            Batches[Index]->SetCustomDataValue(NativeIndex, Channel, Tint[Channel]->AsNumber(), false);
-        Batches[Index]->SetCustomDataValue(NativeIndex, 3, Scale.Z, false);
-        Batches[Index]->SetCustomDataValue(NativeIndex, 4, Scale.X, false);
-        Batches[Index]->SetCustomDataValue(NativeIndex, 5, Scale.Y, false);
-        FString Motion;
-        if (Instance->TryGetStringField(TEXT("motion"), Motion))
-            Traffic.Bind(Motion, Instance->GetNumberField(TEXT("motionIndex")), Batches[Index], NativeIndex);
+            Batch->SetCustomDataValue(NativeIndex, Channel, Tint[Channel]->AsNumber(), false);
+        Batch->SetCustomDataValue(NativeIndex, 3, Scale.Z, false);
+        Batch->SetCustomDataValue(NativeIndex, 4, Scale.X, false);
+        Batch->SetCustomDataValue(NativeIndex, 5, Scale.Y, false);
+        if (bMoving)
+            Traffic.Bind(Motion, Instance->GetNumberField(TEXT("motionIndex")), Batch, NativeIndex);
         Count++;
     }
     for (auto Batch : Batches)
